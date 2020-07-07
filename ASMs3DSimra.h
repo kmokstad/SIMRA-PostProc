@@ -25,6 +25,8 @@
 class ASMs3DSimra : public ASMs3DLag
 {
 public:
+  static bool useDouble; //!< True to use double precision
+
   //! \brief Default constructor.
   ASMs3DSimra();
   //! \brief Empty destructor.
@@ -49,6 +51,7 @@ public:
 
 private:
   //! \brief Temporary structure for holding mesh structure.
+  template<class T>
   struct Mesh {
     int npoint; //!< Number of points in mesh
     int nelem;  //!< Number of elements in mesh
@@ -56,8 +59,32 @@ private:
     int jmax;   //!< Number of nodes in y
     int kmax;   //!< Number of nodes in z
     int nelM;   //!< Number of macro elements
-    std::vector<std::array<float,3>> coords; //!< Coordinates of nodes
+    std::vector<std::array<T,3>> coords; //!< Coordinates of nodes
     std::vector<std::array<int,8>> elms;  //!< Elemental node connectivities
+
+    void read(std::istream &is)
+    {
+      int header;
+      is.read(reinterpret_cast<char*>(&header), 4);
+      is.read(reinterpret_cast<char*>(&npoint), 4);
+      is.read(reinterpret_cast<char*>(&nelem), 4);
+      is.read(reinterpret_cast<char*>(&imax), 4);
+      is.read(reinterpret_cast<char*>(&jmax), 4);
+      is.read(reinterpret_cast<char*>(&kmax), 4);
+      is.read(reinterpret_cast<char*>(&nelM), 4);
+      is.read(reinterpret_cast<char*>(&header), 4);
+
+      coords.resize(npoint);
+      is.read(reinterpret_cast<char*>(&header), 4);
+      for (int i = 0; i < npoint; ++i)
+        is.read(reinterpret_cast<char*>(coords[i].data()), 3*sizeof(T));
+      is.read(reinterpret_cast<char*>(&header), 4);
+
+      elms.resize(nelem);
+      is.read(reinterpret_cast<char*>(&header), 4);
+      for (int i = 0; i < nelem; ++i)
+        is.read(reinterpret_cast<char*>(elms[i].data()), 8*4);
+    }
   };
 };
 

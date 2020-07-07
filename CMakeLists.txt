@@ -15,6 +15,7 @@ endif()
 
 set(SIMRA_SRCS ASMs3DSimra.C
                main_PostProc.C
+               SimraIntegrand.C
                SIMSimraProject.C)
 
 include_directories(${IFEM_INCLUDES} ${PROJECT_SOURCE_DIR} ../Common)

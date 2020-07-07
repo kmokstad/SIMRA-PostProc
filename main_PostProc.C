@@ -12,8 +12,11 @@
 //==============================================================================
 
 #include "IFEM.h"
+#include "ASMs3DSimra.h"
+#include "SIMenums.h"
 #include "SIMSimraProject.h"
 #include "Profiler.h"
+#include "SIMargsBase.h"
 
 
 /*!
@@ -46,23 +49,89 @@ int main (int argc, char** argv)
 {
   Profiler prof(argv[0]);
   utl::profiler->start("Initialization");
+  char* infile = nullptr;
+
+  IFEM::Init(argc,argv,"SIMRA-PostProc");
+  for (int i = 1; i < argc; i++)
+    if (SIMoptions::ignoreOldOptions(argc,argv,i))
+      ; // ignore the obsolete option
+    else if (!infile)
+      infile = argv[i];
+    else if (!strcasecmp(argv[i],"-double"))
+      ASMs3DSimra::useDouble = true;
+   else
+     std::cerr <<"  ** Unknown option ignored: "<< argv[i] << std::endl;
+
+  if (!infile)
+  {
+    IFEM::cout <<"usage: "<< argv[0]
+               <<" <inputfile> [-double]\n"
+               <<"             [-hdf5]\n"
+               <<"             [-vtf <format> [-nviz <nviz>]\n";
+    return 1;
+  }
 
   SIMSimraProject model;
 
   if (!model.read(argv[1]))
-    return 1;
-
-  if (!model.preprocess())
     return 2;
 
-  if (!model.readResults())
+  if (!model.preprocess())
     return 3;
 
-  int nBlock = 0;
-  int geoBlk = 0;
-  model.writeGlvG(geoBlk, argv[1]);
-  model.writeGlvS1(model.getSolution(), 1, nBlock, model.getSolutionTime());
-  model.writeGlvStep(1, model.getSolutionTime(), 0);
+  if (!model.readResults())
+    return 4;
+
+  utl::profiler->stop("Initialization");
+
+  Vector sol = model.getSolution();
+
+  // Project the secondary solution
+  size_t idx = 0;
+  model.setMode(SIM::RECOVERY);
+  Vectors projs;
+  projs.resize(model.opt.project.size());
+  TimeDomain time;
+  time.t = model.getSolutionTime();
+  std::vector<std::string> prefix;
+  for (const SIMoptions::ProjectionMap::value_type& prj : model.opt.project) {
+    if (prj.first <= SIMoptions::NONE)
+      idx++; // No projection for this norm group
+    else {
+      Matrix stmp(projs[idx++]);
+      if (!model.project(stmp,sol,prj.first,time))
+        return 5;
+    }
+    prefix.push_back(prj.second);
+  }
+
+  Vectors gNorm;
+  Matrix eNorm;
+  if (!model.solutionNorms(time, Vectors(1,sol), projs, gNorm, &eNorm))
+    return 7;
+
+  model.printSolutionNorms(gNorm);
+
+  if (model.opt.format > -1) {
+    int nBlock = 0;
+    int geoBlk = 0;
+    model.writeGlvG(geoBlk, argv[1]);
+    model.writeSolutionVectors(nBlock);
+    model.writeGlvS2(sol, 1, nBlock, model.getSolutionTime());
+    idx = 1;
+    for (const SIMoptions::ProjectionMap::value_type& prj : model.opt.project) {
+      if (prj.first > SIMoptions::NONE)
+        if (!model.writeGlvP(projs[idx-1], 1, nBlock,
+                             100+model.getProblem()->getNoFields(2)*idx, prj.second.c_str()))
+          return 6;
+      ++idx;
+    }
+
+    if (!model.writeGlvN(eNorm, 1, nBlock, prefix))
+      return 8;
+
+    model.writeGlvStep(1, model.getSolutionTime(), 0);
+  }
 
   return 0;
 }
