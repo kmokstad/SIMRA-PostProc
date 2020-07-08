@@ -49,6 +49,12 @@ public:
   //! the nodal coordinate array, as well as global node and element numbers.
   bool generateFEMTopology() override;
 
+  //! \brief Returns number of nodes in each direction.
+  //! \param n1 Number of nodes in x
+  //! \param n2 Number of nodes in y
+  //! \param n3 Number of nodes in z
+  void getNoStructNodes(size_t& n1, size_t& n2, size_t& n3) const;
+
 private:
   //! \brief Temporary structure for holding mesh structure.
   template<class T>

@@ -74,22 +74,27 @@ bool SIMSimraProject::readResults()
   for (Vector& sol : solution)
     sol.resize(this->getNoNodes());
 
-  auto&& copySolution = [](const auto& cr, Vectors& solution)
+  size_t nx, ny, nz;
+  static_cast<const ASMs3DSimra*>(this->getPatch(1))->getNoStructNodes(nx,ny,nz);
+  auto&& copySolution = [nx,ny,nz](const auto& cr, Vectors& solution)
   {
-    for (size_t i = 0; i < cr.u1.size(); ++i) {
-      solution[0][i] = cr.u1[i];
-      solution[1][i] = cr.u2[i];
-      solution[2][i] = cr.u3[i];
-      solution[3][i] = cr.ps[i];
-      solution[4][i] = cr.tk[i];
-      solution[5][i] = cr.td[i];
-      solution[6][i]= cr.vtef[i];
-      solution[7][i] = cr.pt[i];
-      solution[8][i] = cr.pts[i];
-      solution[9][i] = cr.rho[i];
-      solution[10][i] = cr.rhos[i];
-      solution[11][i] = cr.strat[i];
-    }
+    size_t idx = 0;
+    for (size_t k = 0; k < nz; ++k)
+      for (size_t j = 0; j < ny; ++j)
+        for (size_t i = 0; i < nx; ++i, ++idx) {
+          solution[0][idx] = cr.u1[k + i*nz + j*nz*nx];
+          solution[1][idx] = cr.u2[k + i*nz + j*nz*nx];
+          solution[2][idx] = cr.u3[k + i*nz + j*nz*nx];
+          solution[3][idx] = cr.ps[k + i*nz + j*nz*nx];
+          solution[4][idx] = cr.tk[k + i*nz + j*nz*nx];
+          solution[5][idx] = cr.td[k + i*nz + j*nz*nx];
+          solution[6][idx]= cr.vtef[k + i*nz + j*nz*nx];
+          solution[7][idx] = cr.pt[k + i*nz + j*nz*nx];
+          solution[8][idx] = cr.pts[k + i*nz + j*nz*nx];
+          solution[9][idx] = cr.rho[k + i*nz + j*nz*nx];
+          solution[10][idx] = cr.rhos[k + i*nz + j*nz*nx];
+          solution[11][idx] = cr.strat[k + i*nz + j*nz*nx];
+        }
     return cr.time;
   };
 
@@ -123,6 +128,9 @@ bool SIMSimraProject::writeSolutionVectors(int& nBlock)
 
 Vector SIMSimraProject::getSolution() const
 {
+  if (solution.empty())
+    return {};
+
   Matrix stmp(4, this->getPatch(1)->getNoNodes());
   stmp.fillRow(1, solution[0].data());
   stmp.fillRow(2, solution[1].data());
