@@ -21,7 +21,7 @@
 SimraIntegrand::SimraIntegrand () : IntegrandBase(3)
 {
   primsol.resize(1);
-  npv = 4;
+  npv = 5;
 }
 
 
@@ -32,7 +32,7 @@ void SimraIntegrand::velocityGradient(const FiniteElement& fe,
   {
     Vector dNdX = fe.grad(1).getColumn(j);
     for (unsigned short int i = 1; i <= nsd; i++)
-      grad(i,j) = vec[0].dot(dNdX,i-1,4);
+      grad(i,j) = vec[0].dot(dNdX, i-1, 5);
   }
 }
 
@@ -42,7 +42,7 @@ Vec3 SimraIntegrand::velocity(const FiniteElement& fe,
 {
   Vec3 result;
   for (size_t i = 0; i < 3; i++)
-    result[i] = vec[0].dot(fe.N, i, 4);
+    result[i] = vec[0].dot(fe.N, i, 5);
 
   return result;
 }
@@ -50,7 +50,13 @@ Vec3 SimraIntegrand::velocity(const FiniteElement& fe,
 
 double SimraIntegrand::pressure(const FiniteElement& fe, const Vectors& vec) const
 {
-  return vec[0].dot(fe.N,3,4);
+  return vec[0].dot(fe.N, 3, 5);
+}
+
+
+double SimraIntegrand::viscosity(const FiniteElement& fe, const Vectors& vec) const
+{
+  return vec[0].dot(fe.N, 4, 5);
 }
 
 
@@ -139,7 +145,7 @@ bool SimraNorm::evalInt (LocalIntegral& elmInt, const FiniteElement& fe,
   Vec3 Uh = problem.velocity(fe, elmInt.vec);
 
   // Viscosity
-  double mu = 1.0;// TODO: need viscosity
+  double mu = problem.viscosity(fe, elmInt.vec);
 
   // Numerical velocity gradient
   Tensor gradUh(nsd);

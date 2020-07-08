@@ -21,7 +21,7 @@
 
 
 SIMSimraProject::SIMSimraProject() :
-  SIM3D(4)
+  SIM3D(5)
 {
   myProblem = &itg;
 }
@@ -143,11 +143,12 @@ Vector SIMSimraProject::getSolution() const
   if (solution.empty())
     return {};
 
-  Matrix stmp(4, this->getPatch(1)->getNoNodes());
+  Matrix stmp(5, this->getPatch(1)->getNoNodes());
   stmp.fillRow(1, solution[0].data());
   stmp.fillRow(2, solution[1].data());
   stmp.fillRow(3, solution[2].data());
   stmp.fillRow(4, solution[3].data());
+  stmp.fillRow(5, solution[6].data());
 
   return stmp;
 }
