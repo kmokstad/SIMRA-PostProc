@@ -54,11 +54,23 @@ ASMbase* SIMSimraProject::readPatch(std::istream &isp, int pchInd,
 
 bool SIMSimraProject::parse(const TiXmlElement *elem)
 {
-  if (!strcasecmp(elem->Value(), "resultfile")) {
-    resultFile = utl::getValue(elem, "resultfile");
-    IFEM::cout << "\tReading results from file " << resultFile << std::endl;
+  if (!strcasecmp(elem->Value(),"simra")) {
+    const TiXmlElement* child = elem->FirstChildElement();
+    for (; child; child = child->NextSiblingElement())
+      if (!strcasecmp(child->Value(), "resultfile")) {
+        resultFile = utl::getValue(child, "resultfile");
+        IFEM::cout << "\tReading results from file " << resultFile << std::endl;
+        return true;
+      } else if (!strcasecmp(child->Value(),"scaling")) {
+        utl::getAttribute(child, "u", uRef);
+        utl::getAttribute(child, "L", lRef);
+        IFEM::cout << "\tReference velocity U = " << uRef << std::endl;
+        IFEM::cout << "\tReference length L = " << lRef << std::endl;
+      }
+
     return true;
   }
+
 
   return this->SIM3D::parse(elem);
 }
@@ -76,26 +88,26 @@ bool SIMSimraProject::readResults()
 
   size_t nx, ny, nz;
   static_cast<const ASMs3DSimra*>(this->getPatch(1))->getNoStructNodes(nx,ny,nz);
-  auto&& copySolution = [nx,ny,nz](const auto& cr, Vectors& solution)
+  auto&& copySolution = [nx,ny,nz,this](const auto& cr, Vectors& solution)
   {
     size_t idx = 0;
     for (size_t k = 0; k < nz; ++k)
       for (size_t j = 0; j < ny; ++j)
         for (size_t i = 0; i < nx; ++i, ++idx) {
-          solution[0][idx] = cr.u1[k + i*nz + j*nz*nx];
-          solution[1][idx] = cr.u2[k + i*nz + j*nz*nx];
-          solution[2][idx] = cr.u3[k + i*nz + j*nz*nx];
-          solution[3][idx] = cr.ps[k + i*nz + j*nz*nx];
-          solution[4][idx] = cr.tk[k + i*nz + j*nz*nx];
-          solution[5][idx] = cr.td[k + i*nz + j*nz*nx];
-          solution[6][idx]= cr.vtef[k + i*nz + j*nz*nx];
+          solution[0][idx] = cr.u1[k + i*nz + j*nz*nx] * uRef;
+          solution[1][idx] = cr.u2[k + i*nz + j*nz*nx] * uRef;
+          solution[2][idx] = cr.u3[k + i*nz + j*nz*nx] * uRef;
+          solution[3][idx] = cr.ps[k + i*nz + j*nz*nx] * uRef * uRef;
+          solution[4][idx] = cr.tk[k + i*nz + j*nz*nx] * uRef * uRef;
+          solution[5][idx] = cr.td[k + i*nz + j*nz*nx] * pow(uRef,3) / lRef;
+          solution[6][idx]= cr.vtef[k + i*nz + j*nz*nx] * uRef * lRef;
           solution[7][idx] = cr.pt[k + i*nz + j*nz*nx];
           solution[8][idx] = cr.pts[k + i*nz + j*nz*nx];
           solution[9][idx] = cr.rho[k + i*nz + j*nz*nx];
           solution[10][idx] = cr.rhos[k + i*nz + j*nz*nx];
           solution[11][idx] = cr.strat[k + i*nz + j*nz*nx];
         }
-    return cr.time;
+    return cr.time * lRef / uRef;
   };
 
   if (ASMs3DSimra::useDouble) {

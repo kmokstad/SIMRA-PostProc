@@ -62,6 +62,8 @@ protected:
   std::string resultFile; //!< File with result vectors
   Vectors solution; //!< Solution vector
   double solTime; //!< Solution time
+  double uRef = 1.0; //!< Reference velocity value
+  double lRef = 1.0; //!< Reference length scale
 
   SimraIntegrand itg; //!< Integrand to use
 
