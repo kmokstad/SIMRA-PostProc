@@ -16,11 +16,11 @@
 
 #include <numeric>
 
-bool ASMs3DSimra::useDouble = false; //!< Use double precision
+bool ASMs3DSimra::useDouble = false;
 
 
 ASMs3DSimra::ASMs3DSimra ()
-  : ASMs3DLag(5)
+  : ASMs3DLag(4)
 {
 }
 

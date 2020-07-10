@@ -16,6 +16,14 @@
 #include "SIM3D.h"
 #include "SimraIntegrand.h"
 
+#include <fstream>
+
+
+class DataExporter;
+
+/*!
+  \brief Simulation driver for projection of SIMRA results.
+*/
 
 class SIMSimraProject : public SIM3D {
 public:
@@ -43,11 +51,23 @@ public:
   Vector getSolution() const;
 
   //! \brief Write all solution vectors to VTF.
-  bool writeSolutionVectors(int& nBlock);
+  //! \param nBlock Running VTF block counter
+  //! \param sol Primary solution vectors
+  bool writeSolutionVectors(int& nBlock, const Vector& sol);
 
   //! \brief Print solution norms to terminal.
   //! \param gNorm Global norms
   void printSolutionNorms(const Vectors& gNorm) const;
+
+  //! \brief Apply post-processing tasks on norms.
+  bool postProcessNorms(Vectors& gNorm, Matrix* eNormp) override;
+
+  //! \brief Register fields for exporter output.
+  void registerFields(DataExporter& exporter, const Vector& sol,
+                      const Vectors& projs, const Matrix& eNorm) const;
+
+  //! \brief Name for data exporter.
+  std::string getName() const override { return "Simra"; }
 
 protected:
   //! \brief Prints a norm group to the log stream.
@@ -55,10 +75,20 @@ protected:
                       const Vector& fNorm,
                       const std::string& name) const;
 
+  //! \brief Print exact solution and error norms.
+  void printExactNorms(const Vector& gNorm, size_t w) const;
+
   //! \brief Parses a data section from an XML document.
   //! \param[in] elem The XML element to parse
   bool parse(const TiXmlElement *elem) override;
 
+  //! \brief Enumeration of result file types.
+  enum ResultsType {
+    RESTART_FILE, //!< Restart file, holds one time step
+    HISTORY_FILE  //!< History file, holds multiple time steps
+  };
+
+  ResultsType rType = RESTART_FILE; //!< Type for result file
   std::string resultFile; //!< File with result vectors
   Vectors solution; //!< Solution vector
   double solTime; //!< Solution time
@@ -68,6 +98,10 @@ protected:
   SimraIntegrand itg; //!< Integrand to use
 
 private:
+  int iStep = 0; //!< Current time step to read
+  std::ifstream ifs; //!< File stream for reading
+  std::ifstream::pos_type fileSize = 0; //!< Size of file
+
   //! \brief Structure for temporary storage of results.
   template<class T>
   struct Result {
@@ -89,7 +123,9 @@ private:
       strat.resize(len);
     }
 
-    void read(std::istream& ifs)
+    //! \brief Reads results from a restart file.
+    //! \param ifs File stream to read from
+    void readRestart(std::istream& ifs)
     {
       int header;
       ifs.read(reinterpret_cast<char*>(&header), 4);
@@ -111,6 +147,34 @@ private:
 
       ifs.read(reinterpret_cast<char*>(&header), 4);
       ifs.read(reinterpret_cast<char*>(strat.data()), strat.size()*sizeof(T));
+      ifs.read(reinterpret_cast<char*>(&header), 4);
+    }
+
+    //! \brief Reads results for a single time step from a history file.
+    //! \param ifs File stream to read from
+    void readHistory(std::istream& ifs, std::vector<T>& elmPressures)
+    {
+      int header;
+      ifs.read(reinterpret_cast<char*>(&header), 4);
+      ifs.read(reinterpret_cast<char*>(&time), sizeof(T));
+      for (size_t i = 0; i < u1.size(); ++i) {
+        ifs.read(reinterpret_cast<char*>(&u1[i]), sizeof(T));
+        ifs.read(reinterpret_cast<char*>(&u2[i]), sizeof(T));
+        ifs.read(reinterpret_cast<char*>(&u3[i]), sizeof(T));
+        ifs.read(reinterpret_cast<char*>(&ps[i]), sizeof(T));
+        ifs.read(reinterpret_cast<char*>(&tk[i]), sizeof(T));
+        ifs.read(reinterpret_cast<char*>(&td[i]), sizeof(T));
+        ifs.read(reinterpret_cast<char*>(&vtef[i]), sizeof(T));
+        ifs.read(reinterpret_cast<char*>(&pt[i]), sizeof(T));
+        ifs.read(reinterpret_cast<char*>(&pts[i]), sizeof(T));
+        ifs.read(reinterpret_cast<char*>(&rho[i]), sizeof(T));
+        ifs.read(reinterpret_cast<char*>(&rhos[i]), sizeof(T));
+        ifs.read(reinterpret_cast<char*>(&strat[i]), sizeof(T));
+      }
+      ifs.read(reinterpret_cast<char*>(&header), 4);
+
+      ifs.read(reinterpret_cast<char*>(&header), 4);
+      ifs.read(reinterpret_cast<char*>(elmPressures.data()),elmPressures.size()*sizeof(T));
       ifs.read(reinterpret_cast<char*>(&header), 4);
     }
 

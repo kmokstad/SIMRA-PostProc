@@ -14,6 +14,7 @@
 #ifndef _SIMRA_INTEGRAND_H_
 #define _SIMRA_INTEGRAND_H_
 
+#include "AnaSol.h"
 #include "IntegrandBase.h"
 #include "GlobalIntegral.h"
 #include "EqualOrderOperators.h"
@@ -92,6 +93,8 @@ public:
   //! \param[in] fe Finite element data of current integration point
   //! \param[in] vec Primary solution vector for current element
   double viscosity(const FiniteElement& fe, const Vectors& vec) const;
+
+  Vector elmPressure; //!< Element-wise pressures
 };
 
 
@@ -102,10 +105,45 @@ public:
 class SimraNorm : public NormBase
 {
 public:
+  //! \brief Enumeration of primary norms.
+  enum PrimaryNormEntries {
+    L2_Uh     = 0,
+    H1_Uh,
+    L2_DIV_Uh,
+    L2_Ph,
+    L2_SIGMAh,
+    L2_U,
+    L2_E_U,
+    H1_U,
+    H1_E_U,
+    L2_P,
+    L2_E_P,
+    L2_SIGMA,
+    L2_E_SIGMA,
+    TOTAL_ERROR
+  };
+
+  //! \brief Enumeration of recovery norms.
+  enum RecoveryNormEntries {
+    H1_Ur_Uh = 0,
+    TOTAL_NORM_REC,
+    L2_Pr_Ph,
+    L2_DIV_Ur,
+    L2_SIGMA_REC,
+    H1_Ur_U,
+    TOTAL_E_REC,
+    L2_Pr_P,
+    L2_SIGMA_E_REC,
+    EFF_REC_VEL,
+    EFF_REC_PRESS,
+    EFF_REC_STRESS,
+    EFF_REC_TOTAL
+  };
+
   //! \brief The only constructor initializes its data members.
   //! \param[in] p The Poisson problem to evaluate norms for
-  //! \param[in] a The analytical heat flux (optional)
-  SimraNorm(SimraIntegrand& p);
+  //! \param[in] a The analytical solution (optional)
+  SimraNorm(SimraIntegrand& p, AnaSol* aSol);
   //! \brief Empty destructor.
   virtual ~SimraNorm() {}
 
@@ -127,6 +165,9 @@ public:
   //! \param[in] j The norm number (one-based index)
   //! \param[in] prefix Common prefix for all norm names
   std::string getName(size_t i, size_t j, const char* prefix) const override;
+
+protected:
+  AnaSol* aSol; //!< Analytical solution
 };
 
 #endif

@@ -13,6 +13,8 @@
 
 #include "IFEM.h"
 #include "ASMs3DSimra.h"
+#include "DataExporter.h"
+#include "HDF5Writer.h"
 #include "SIMenums.h"
 #include "SIMSimraProject.h"
 #include "Profiler.h"
@@ -51,6 +53,8 @@ int main (int argc, char** argv)
   utl::profiler->start("Initialization");
   char* infile = nullptr;
 
+  SIM3D::msgLevel = 1;
+
   IFEM::Init(argc,argv,"SIMRA-PostProc");
   for (int i = 1; i < argc; i++)
     if (SIMoptions::ignoreOldOptions(argc,argv,i))
@@ -66,8 +70,7 @@ int main (int argc, char** argv)
   {
     IFEM::cout <<"usage: "<< argv[0]
                <<" <inputfile> [-double]\n"
-               <<"             [-hdf5]\n"
-               <<"             [-vtf <format> [-nviz <nviz>]\n";
+               <<"             [-vtf <format>] [-hdf5]\n";
     return 1;
   }
 
@@ -79,58 +82,90 @@ int main (int argc, char** argv)
   if (!model.preprocess())
     return 3;
 
-  if (!model.readResults())
-    return 4;
-
   utl::profiler->stop("Initialization");
 
-  Vector sol = model.getSolution();
-
-  // Project the secondary solution
-  size_t idx = 0;
-  model.setMode(SIM::RECOVERY);
-  Vectors projs;
-  projs.resize(model.opt.project.size());
-  TimeDomain time;
-  time.t = model.getSolutionTime();
-  std::vector<std::string> prefix;
-  for (const SIMoptions::ProjectionMap::value_type& prj : model.opt.project) {
-    if (prj.first <= SIMoptions::NONE)
-      idx++; // No projection for this norm group
-    else {
-      Matrix stmp(projs[idx++]);
-      if (!model.project(stmp,sol,prj.first,time))
-        return 5;
+  int nBlock = 0;
+  int geoBlk = 0;
+  if (model.opt.format > -1)
+    if (!model.writeGlvG(geoBlk, argv[1])) {
+      std::cerr << "Error writing VTF file." << std::endl;
+      return 4;
     }
-    prefix.push_back(prj.second);
-  }
 
+  Vector sol;
   Vectors gNorm;
   Matrix eNorm;
-  if (!model.solutionNorms(time, Vectors(1,sol), projs, gNorm, &eNorm))
-    return 7;
+  Vectors projs;
 
-  model.printSolutionNorms(gNorm);
+  std::unique_ptr<DataExporter> exporter;
+  if (model.opt.dumpHDF5(infile)) {
+    exporter.reset(new DataExporter(true, 1));
+    exporter->registerWriter(new HDF5Writer(model.opt.hdf5, model.getProcessAdm()));
+  }
 
-  if (model.opt.format > -1) {
-    int nBlock = 0;
-    int geoBlk = 0;
-    model.writeGlvG(geoBlk, argv[1]);
-    model.writeSolutionVectors(nBlock);
-    model.writeGlvS2(sol, 1, nBlock, model.getSolutionTime());
-    idx = 1;
+  int iStep = 1;
+  std::vector<std::string> prefix;
+  while (model.readResults()) {
+    IFEM::cout << "\n  step=" << iStep << "  time=" << model.getSolutionTime() << std::endl;
+    if (exporter && iStep == 1)
+      model.registerFields(*exporter, sol, projs, eNorm);
+
+    // Project the secondary solution
+    sol = model.getSolution();
+    size_t idx = 0;
+    model.setMode(SIM::RECOVERY);
+    projs.resize(model.opt.project.size());
+    TimeDomain time;
+    time.t = model.getSolutionTime();
     for (const SIMoptions::ProjectionMap::value_type& prj : model.opt.project) {
-      if (prj.first > SIMoptions::NONE)
-        if (!model.writeGlvP(projs[idx-1], 1, nBlock,
-                             100+model.getProblem()->getNoFields(2)*idx, prj.second.c_str()))
-          return 6;
-      ++idx;
+      if (prj.first <= SIMoptions::NONE)
+        idx++; // No projection for this norm group
+      else {
+        Matrix stmp(projs[idx++]);
+        if (!model.project(stmp,sol,prj.first,time))
+          return 5;
+      }
+      if (iStep == 1)
+        prefix.push_back(prj.second);
+    }
+    if (exporter)
+      exporter->setNormPrefixes(prefix);
+
+    if (!model.solutionNorms(time, Vectors(1,sol), projs, gNorm, &eNorm)) {
+      std::cerr << "Error calculating solution norms." << std::endl;
+      return 6;
     }
 
-    if (!model.writeGlvN(eNorm, 1, nBlock, prefix))
-      return 8;
+    model.printSolutionNorms(gNorm);
 
-    model.writeGlvStep(1, model.getSolutionTime(), 0);
+    if (model.opt.format > -1) {
+      if (!model.writeSolutionVectors(nBlock, sol)) {
+        std::cerr << "Error writing solution fields to VTF" << std::endl;
+        return 7;
+      }
+
+      idx = 1;
+      for (const SIMoptions::ProjectionMap::value_type& prj : model.opt.project) {
+        if (prj.first > SIMoptions::NONE)
+          if (!model.writeGlvP(projs[idx-1], 1, nBlock,
+                               100+model.getProblem()->getNoFields(2)*idx, prj.second.c_str())) {
+            std::cerr << "Error writing projection to VTF" << std::endl;
+            return 8;
+          }
+        ++idx;
+      }
+
+      if (!model.writeGlvN(eNorm, iStep, nBlock, prefix)) {
+        std::cerr << "Error writing norms to VTF" << std::endl;;
+        return 9;
+      }
+
+      model.writeGlvStep(iStep, model.getSolutionTime(), 0);
+    }
+    if (exporter)
+      exporter->dumpTimeLevel();
+
+    ++iStep;
   }
 
   return 0;

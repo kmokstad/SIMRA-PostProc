@@ -12,16 +12,17 @@
 //==============================================================================
 
 #include "SimraIntegrand.h"
-#include "FiniteElement.h"
 #include "ElmMats.h"
 #include "ElmNorm.h"
+#include "FiniteElement.h"
+#include "TensorFunction.h"
 #include "Vec3Oper.h"
 
 
 SimraIntegrand::SimraIntegrand () : IntegrandBase(3)
 {
   primsol.resize(1);
-  npv = 5;
+  npv = 4;
 }
 
 
@@ -32,7 +33,7 @@ void SimraIntegrand::velocityGradient(const FiniteElement& fe,
   {
     Vector dNdX = fe.grad(1).getColumn(j);
     for (unsigned short int i = 1; i <= nsd; i++)
-      grad(i,j) = vec[0].dot(dNdX, i-1, 5);
+      grad(i,j) = vec[0].dot(dNdX, i-1, 4);
   }
 }
 
@@ -42,7 +43,7 @@ Vec3 SimraIntegrand::velocity(const FiniteElement& fe,
 {
   Vec3 result;
   for (size_t i = 0; i < 3; i++)
-    result[i] = vec[0].dot(fe.N, i, 5);
+    result[i] = vec[0].dot(fe.N, i, 4);
 
   return result;
 }
@@ -50,13 +51,13 @@ Vec3 SimraIntegrand::velocity(const FiniteElement& fe,
 
 double SimraIntegrand::pressure(const FiniteElement& fe, const Vectors& vec) const
 {
-  return vec[0].dot(fe.N, 3, 5);
+  return elmPressure.empty() ? 0.0 : elmPressure[fe.iel-1];
 }
 
 
 double SimraIntegrand::viscosity(const FiniteElement& fe, const Vectors& vec) const
 {
-  return vec[0].dot(fe.N, 4, 5);
+  return vec[0].dot(fe.N, 3, 4);
 }
 
 
@@ -64,6 +65,9 @@ void SimraIntegrand::stress (const FiniteElement& fe, Tensor& sigma,
                              const Vectors& vec) const
 {
   this->velocityGradient(fe,sigma,vec);
+  this->strain(sigma);
+  sigma *= 2.0*this->viscosity(fe, vec);
+  sigma -= this->pressure(fe,vec);
 }
 
 
@@ -87,19 +91,26 @@ bool SimraIntegrand::evalSol2(Vector& s, const Vectors& elmVec,
 
   s.push_back(this->pressure(fe, elmVec));
 
+  Tensor sigma(nsd);
+  this->stress(fe, sigma, elmVec);
+  for (size_t i = 0; i < sigma.size(); ++i)
+    s.push_back(sigma.ptr()[i]);
+
   return true;
 }
 
 
 size_t SimraIntegrand::getNoFields (int fld) const
 {
-  return fld < 2 ? 4 : nsd*nsd + 1;
+  return fld < 2 ? 4 : nsd*nsd + 1 + nsd*nsd;
 }
 
 
 std::string SimraIntegrand::getField1Name (size_t i, const char* prefix) const
 {
-  static const char* s[4] = { "u_x", "u_y", "u_z", "p"};
+  static const char* s[4] = { "u_x", "u_y", "u_z", "vtef"};
+  if (i == 11)
+    return "u_x&&u_y&&u_z&&vtef";
 
   return prefix ? prefix + std::string(" ") + s[i] : s[i];
 }
@@ -111,7 +122,10 @@ std::string SimraIntegrand::getField2Name (size_t i, const char* prefix) const
 
   static const char* s3[] = { "u_x,x", "u_y,x", "u_z,x",
                               "u_x,y", "u_y,y", "u_z,y",
-                              "u_x,z", "u_y,z", "u_z,z", "p-rec" };
+                              "u_x,z", "u_y,z", "u_z,z", "p-rec",
+                              "sigma_xx", "sigma_yx", "sigma_zx",
+                              "sigma_xy", "sigma_yy", "sigma_zy",
+                              "sigma_xz", "sigma_yz", "sigma_zz" };
   std::string n(s3[i]);
 
   return prefix ? prefix + std::string(" ") + n : n;
@@ -120,11 +134,12 @@ std::string SimraIntegrand::getField2Name (size_t i, const char* prefix) const
 
 NormBase* SimraIntegrand::getNormIntegrand (AnaSol* asol) const
 {
-  return new SimraNorm(*const_cast<SimraIntegrand*>(this));
+  return new SimraNorm(*const_cast<SimraIntegrand*>(this), asol);
 }
 
 
-SimraNorm::SimraNorm (SimraIntegrand& p) : NormBase(p)
+SimraNorm::SimraNorm (SimraIntegrand& p, AnaSol* asol) :
+  NormBase(p), aSol(asol)
 {
   nrcmp = myProblem.getNoFields(2);
 }
@@ -147,28 +162,74 @@ bool SimraNorm::evalInt (LocalIntegral& elmInt, const FiniteElement& fe,
   // Viscosity
   double mu = problem.viscosity(fe, elmInt.vec);
 
+  // Stress
+  Tensor sigma_h(nsd);
+  problem.stress(fe, sigma_h, elmInt.vec);
+
   // Numerical velocity gradient
   Tensor gradUh(nsd);
   problem.velocityGradient(fe,gradUh,elmInt.vec);
   Tensor epsUh(gradUh);
   problem.strain(epsUh);
 
-  // L2-norm of the velocity
-  pnorm[0] += Uh*Uh*fe.detJxW;
+  pnorm[L2_Uh] += Uh*Uh*fe.detJxW;
+  pnorm[H1_Uh] += mu*epsUh.innerProd(epsUh)*fe.detJxW;
+  pnorm[L2_DIV_Uh] += gradUh.trace()*gradUh.trace()*fe.detJxW;
+  pnorm[L2_Ph] += Ph*Ph*fe.detJxW;
+  pnorm[L2_SIGMAh] += sigma_h.innerProd(sigma_h)*fe.detJxW;
 
-  // |u|_H1
-  pnorm[1] += mu*epsUh.innerProd(epsUh)*fe.detJxW;
+  // Velocity norms
+  if (aSol && aSol->getVectorSol()) {
+    // Analytical velocity
+    Vec3 U = (*aSol->getVectorSol())(X);
+    pnorm[L2_U] += U*U*fe.detJxW;
 
-  // |div u|_L2
-  pnorm[2] += gradUh.trace()*gradUh.trace()*fe.detJxW;
+    U -= Uh;
+    pnorm[L2_E_U] += U*U*fe.detJxW;
+  }
 
-  // L2-norm of pressure
-  pnorm[3] += Ph*Ph*fe.detJxW;
+  // Analytical velocity gradient
+  if (aSol && aSol->getVectorSecSol()) {
+    Tensor gradU(nsd);
+    gradU = (*aSol->getVectorSecSol())(X);
+    problem.strain(gradU);
+    pnorm[H1_U] += mu*gradU.innerProd(gradU)*fe.detJxW;
+    epsUh -= gradU;
+    pnorm[H1_E_U] += mu*epsUh.innerProd(epsUh)*fe.detJxW;
+    pnorm[TOTAL_ERROR] += mu*epsUh.innerProd(epsUh)*fe.detJxW;
+  }
+
+  // Pressure norms
+  double P = 0;
+  if (aSol && aSol->getScalarSol()) {
+    const RealFunc* psol = aSol->getScalarSol(0);
+    // Analytical pressure
+    P = (*psol)(X);
+
+    // L2-norm of analytical pressure
+    pnorm[L2_P] += P*P*fe.detJxW;
+
+    // L2-norm of pressure error
+    pnorm[L2_E_P] += (P-Ph)*(P-Ph)*fe.detJxW;
+    pnorm[TOTAL_ERROR] += (P-Ph)*(P-Ph)*fe.detJxW;
+  }
+
+  Tensor sigma(nsd);
+  if (aSol && aSol->getVectorSecSol() && aSol->getScalarSol()) {
+    sigma = (*aSol->getVectorSecSol())(X);
+    problem.strain(sigma);
+    sigma *= 2.0*mu;
+    sigma -= P;
+    pnorm[L2_SIGMA] += sigma.innerProd(sigma)*fe.detJxW;
+    Tensor sigma_e = sigma;
+    sigma_e -= sigma_h;
+    pnorm[L2_E_SIGMA] += sigma_e.innerProd(sigma_e)*fe.detJxW;
+  }
 
   size_t ip = this->getNoFields(1);
   if (!pnorm.psol.empty())
     for (size_t i = 0; i < pnorm.psol.size(); ++i) {
-      Tensor gradUs(nsd);
+      Tensor gradUs(nsd), sigma_r(nsd);
       double Ps;
       size_t idx = 0;
       for (size_t k = 1; k <= nsd; ++k)
@@ -176,18 +237,41 @@ bool SimraNorm::evalInt (LocalIntegral& elmInt, const FiniteElement& fe,
           gradUs(j,k) = pnorm.psol[i].dot(fe.N,idx++,problem.getNoFields(2));
 
       Ps = pnorm.psol[i].dot(fe.N,idx++,problem.getNoFields(2));
+      for (size_t j = 1; j <= nsd; ++j)
+        for (size_t k = 1; k <= nsd; ++k)
+          sigma_r(k,j) = pnorm.psol[i].dot(fe.N,idx++,problem.getNoFields(2));
 
       Tensor epssh(gradUs);
       epssh -= gradUh;
       double divus = gradUs.trace();
       problem.strain(epssh);
+      Tensor sigma_e = sigma_h;
+      sigma_e -= sigma_r;
 
-      pnorm[ip + 0] += mu*epssh.innerProd(epssh)*fe.detJxW;
-      pnorm[ip + 1] += (mu*epssh.innerProd(epssh) +
-                                   (Ps-Ph)*(Ps-Ph))*fe.detJxW;
+      pnorm[ip + H1_Ur_Uh] += mu*epssh.innerProd(epssh)*fe.detJxW;
+      pnorm[ip + TOTAL_NORM_REC] += (mu*epssh.innerProd(epssh) +
+                                    (Ps-Ph)*(Ps-Ph))*fe.detJxW;
 
-      pnorm[ip + 2] += divus*divus*fe.detJxW;
-      pnorm[ip + 3] += (Ps-Ph)*(Ps-Ph)*fe.detJxW;
+      pnorm[ip + L2_DIV_Ur] += divus*divus*fe.detJxW;
+      pnorm[ip + L2_Pr_Ph] += (Ps-Ph)*(Ps-Ph)*fe.detJxW;
+      pnorm[ip + L2_SIGMA_REC] += sigma_e.innerProd(sigma_e)*fe.detJxW;
+
+      if (aSol && aSol ->getVectorSecSol() && aSol->getScalarSol()) {
+        Tensor gradU = (*aSol->getVectorSecSol())(X);
+        Tensor epsus(gradUs);
+        epsus -= gradU;
+        problem.strain(epsus);
+
+        const RealFunc* psol = aSol->getScalarSol(0);
+
+        double P = (*psol)(X);
+        pnorm[ip+H1_Ur_U] += mu*epsus.innerProd(epsus)*fe.detJxW;
+        pnorm[ip+TOTAL_E_REC] += (mu*epsus.innerProd(epsus)+(Ps-P)*(Ps-P))*fe.detJxW;
+        pnorm[ip+L2_Pr_P] += (Ps-P)*(Ps-P)*fe.detJxW;
+
+        sigma_r -= sigma;
+        pnorm[ip+L2_SIGMA_E_REC] += sigma_r.innerProd(sigma_r)*fe.detJxW;
+      }
 
       ip += this->getNoFields(i+2);
     }
@@ -204,18 +288,30 @@ size_t SimraNorm::getNoFields (int group) const
 {
   if (group < 1)
     return this->NormBase::getNoFields();
+  else if (group == 1)
+    return 5 + (aSol ? 9 : 0);
   else
-    return 4;
+    return 5 + (aSol ? 8 : 0);
 }
 
 
 std::string SimraNorm::getName (size_t i, size_t j, const char* prefix) const
 {
-  static const char* u[4] = {
+  static const char* u[14] = {
     "|u^h|_L2",
     "|u^h|_H1",
     "|div u^h|_L2",
     "|p^h|_L2",
+    "|s^h|_L2",
+    "|u|_L2",
+    "|e|_L2|, e=u-u^h",
+    "|u|_H1",
+    "|e|_H1|, e=u-u^h",
+    "|p|_L2",
+    "|e|_L2|, e=p-p^h",
+    "|sigma|_L2",
+    "|e|_L2, e=sigma-sigma^h",
+    "|e_u|_H1 + |e_p|_L2"
   };
 
   static const char* rec[13] = {
@@ -223,15 +319,24 @@ std::string SimraNorm::getName (size_t i, size_t j, const char* prefix) const
     "|(u^*,p^*)-(u^h,p^h)|",
     "|div u^*|_L2",
     "|p^*-p^h|_L2",
+    "|s^*-s^h|_L2",
+    "|u^*-u|_H1",
+    "|(u^*,p^*)-(u,p)|",
+    "|p^*-p|_L2",
+    "|sigma^*-sigma|_L2",
+    "eta^u",
+    "eta^p",
+    "eta^s",
+    "eta^total"
   };
 
   std::string n;
   if (i < 2) {
-    if (j > 4)
+    if (j > 14)
       return "";
     n = u[j-1];
   } else {
-    if (j > 4)
+    if (j > 13)
       return "";
     n = rec[j-1];
   }
