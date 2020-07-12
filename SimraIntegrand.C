@@ -22,7 +22,7 @@
 SimraIntegrand::SimraIntegrand () : IntegrandBase(3)
 {
   primsol.resize(1);
-  npv = 4;
+  npv = 5;
 }
 
 
@@ -33,7 +33,7 @@ void SimraIntegrand::velocityGradient(const FiniteElement& fe,
   {
     Vector dNdX = fe.grad(1).getColumn(j);
     for (unsigned short int i = 1; i <= nsd; i++)
-      grad(i,j) = vec[0].dot(dNdX, i-1, 4);
+      grad(i,j) = vec[0].dot(dNdX, i-1, npv);
   }
 }
 
@@ -43,9 +43,25 @@ Vec3 SimraIntegrand::velocity(const FiniteElement& fe,
 {
   Vec3 result;
   for (size_t i = 0; i < 3; i++)
-    result[i] = vec[0].dot(fe.N, i, 4);
+    result[i] = vec[0].dot(fe.N, i, npv);
 
   return result;
+}
+
+
+double SimraIntegrand::temperature(const FiniteElement& fe,
+                                   const Vectors& vec) const
+{
+  return vec[0].dot(fe.N, 4, npv);
+}
+
+
+Vec3 SimraIntegrand::temperatureGradient(const FiniteElement& fe,
+                                         const Vectors& vec) const
+{
+  Vector dT;
+  fe.grad(1).multiply(vec[0], dT, 1.0, 0.0, true, npv, 1, 4, 0);
+  return Vec3(dT.data(), 3);
 }
 
 
@@ -57,7 +73,7 @@ double SimraIntegrand::pressure(const FiniteElement& fe, const Vectors& vec) con
 
 double SimraIntegrand::viscosity(const FiniteElement& fe, const Vectors& vec) const
 {
-  return vec[0].dot(fe.N, 3, 4);
+  return vec[0].dot(fe.N, 3, npv);
 }
 
 
@@ -96,21 +112,26 @@ bool SimraIntegrand::evalSol2(Vector& s, const Vectors& elmVec,
   for (size_t i = 0; i < sigma.size(); ++i)
     s.push_back(sigma.ptr()[i]);
 
+  Vec3 dT = this->temperatureGradient(fe, elmVec);
+  s.push_back(dT[0]);
+  s.push_back(dT[1]);
+  s.push_back(dT[2]);
+
   return true;
 }
 
 
 size_t SimraIntegrand::getNoFields (int fld) const
 {
-  return fld < 2 ? 4 : nsd*nsd + 1 + nsd*nsd;
+  return fld < 2 ? 4 : nsd*nsd + 1 + nsd*nsd + nsd;
 }
 
 
 std::string SimraIntegrand::getField1Name (size_t i, const char* prefix) const
 {
-  static const char* s[4] = { "u_x", "u_y", "u_z", "vtef"};
+  static const char* s[5] = { "u_x", "u_y", "u_z", "vtef", "pT"};
   if (i == 11)
-    return "u_x&&u_y&&u_z&&vtef";
+    return "u_x&&u_y&&u_z&&vtef&&pT";
 
   return prefix ? prefix + std::string(" ") + s[i] : s[i];
 }
@@ -125,7 +146,8 @@ std::string SimraIntegrand::getField2Name (size_t i, const char* prefix) const
                               "u_x,z", "u_y,z", "u_z,z", "p-rec",
                               "sigma_xx", "sigma_yx", "sigma_zx",
                               "sigma_xy", "sigma_yy", "sigma_zy",
-                              "sigma_xz", "sigma_yz", "sigma_zz" };
+                              "sigma_xz", "sigma_yz", "sigma_zz",
+                              "pT,x", "pT,y", "pT,z" };
   std::string n(s3[i]);
 
   return prefix ? prefix + std::string(" ") + n : n;
@@ -159,6 +181,12 @@ bool SimraNorm::evalInt (LocalIntegral& elmInt, const FiniteElement& fe,
   // Computed velocity
   Vec3 Uh = problem.velocity(fe, elmInt.vec);
 
+  // Compute temperature
+  double pTh = problem.temperature(fe, elmInt.vec);
+
+  // Compute gradient temperature
+  Vec3 dpTh = problem.temperatureGradient(fe, elmInt.vec);
+
   // Viscosity
   double mu = problem.viscosity(fe, elmInt.vec);
 
@@ -177,6 +205,8 @@ bool SimraNorm::evalInt (LocalIntegral& elmInt, const FiniteElement& fe,
   pnorm[L2_DIV_Uh] += gradUh.trace()*gradUh.trace()*fe.detJxW;
   pnorm[L2_Ph] += Ph*Ph*fe.detJxW;
   pnorm[L2_SIGMAh] += sigma_h.innerProd(sigma_h)*fe.detJxW;
+  pnorm[L2_PTh] += pTh*pTh*fe.detJxW;
+  pnorm[H1_PTh] += dpTh*dpTh*fe.detJxW;
 
   // Velocity norms
   if (aSol && aSol->getVectorSol()) {
@@ -201,7 +231,7 @@ bool SimraNorm::evalInt (LocalIntegral& elmInt, const FiniteElement& fe,
 
   // Pressure norms
   double P = 0;
-  if (aSol && aSol->getScalarSol()) {
+  if (aSol && aSol->getScalarSol(0)) {
     const RealFunc* psol = aSol->getScalarSol(0);
     // Analytical pressure
     P = (*psol)(X);
@@ -214,8 +244,9 @@ bool SimraNorm::evalInt (LocalIntegral& elmInt, const FiniteElement& fe,
     pnorm[TOTAL_ERROR] += (P-Ph)*(P-Ph)*fe.detJxW;
   }
 
+  // Analytical stress
   Tensor sigma(nsd);
-  if (aSol && aSol->getVectorSecSol() && aSol->getScalarSol()) {
+  if (aSol && aSol->getVectorSecSol() && aSol->getScalarSol(0)) {
     sigma = (*aSol->getVectorSecSol())(X);
     problem.strain(sigma);
     sigma *= 2.0*mu;
@@ -224,6 +255,25 @@ bool SimraNorm::evalInt (LocalIntegral& elmInt, const FiniteElement& fe,
     Tensor sigma_e = sigma;
     sigma_e -= sigma_h;
     pnorm[L2_E_SIGMA] += sigma_e.innerProd(sigma_e)*fe.detJxW;
+  }
+
+  // Analytical temperature
+  double pT = 0;
+  if (aSol && aSol->getScalarSol(1)) {
+    pT = (*aSol->getScalarSol(1))(X);
+    pnorm[L2_PT] += pT*pT*fe.detJxW;
+    pTh -= pT;
+    pnorm[L2_E_PT] += pTh*pTh*fe.detJxW;
+  }
+
+  // Analytical temperature gradient
+  Vec3 dpT;
+  if (aSol && aSol->getScalarSecSol(0)) {
+    dpT = (*aSol->getScalarSecSol(0))(X);
+    pnorm[H1_PT] += dpT*dpT*fe.detJxW;
+    dpTh -= dpT;
+    pnorm[H1_E_PT] += dpTh*dpTh*fe.detJxW;
+    pnorm[TOTAL_ERROR] += dpTh*dpTh*fe.detJxW;
   }
 
   size_t ip = this->getNoFields(1);
@@ -289,7 +339,7 @@ size_t SimraNorm::getNoFields (int group) const
   if (group < 1)
     return this->NormBase::getNoFields();
   else if (group == 1)
-    return 5 + (aSol ? 9 : 0);
+    return 7 + (aSol ? 13 : 0);
   else
     return 5 + (aSol ? 8 : 0);
 }
@@ -297,12 +347,14 @@ size_t SimraNorm::getNoFields (int group) const
 
 std::string SimraNorm::getName (size_t i, size_t j, const char* prefix) const
 {
-  static const char* u[14] = {
+  static const char* u[20] = {
     "|u^h|_L2",
     "|u^h|_H1",
     "|div u^h|_L2",
     "|p^h|_L2",
     "|s^h|_L2",
+    "|pT^h|_L2",
+    "|pT^h|_H1",
     "|u|_L2",
     "|e|_L2|, e=u-u^h",
     "|u|_H1",
@@ -311,6 +363,10 @@ std::string SimraNorm::getName (size_t i, size_t j, const char* prefix) const
     "|e|_L2|, e=p-p^h",
     "|sigma|_L2",
     "|e|_L2, e=sigma-sigma^h",
+    "|pT|_L2",
+    "|e|_L2, e=pT-pT^h"
+    "|pT|_H1",
+    "|e|_H1, e=pT-pT^h"
     "|e_u|_H1 + |e_p|_L2"
   };
 
@@ -332,7 +388,7 @@ std::string SimraNorm::getName (size_t i, size_t j, const char* prefix) const
 
   std::string n;
   if (i < 2) {
-    if (j > 14)
+    if (j > 20)
       return "";
     n = u[j-1];
   } else {

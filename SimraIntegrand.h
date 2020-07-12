@@ -94,6 +94,17 @@ public:
   //! \param[in] vec Primary solution vector for current element
   double viscosity(const FiniteElement& fe, const Vectors& vec) const;
 
+  //! \brief Calculates the temperature at current point.
+  //! \param[in] fe Finite element data of current integration point
+  //! \param[in] vec Primary solution vector for current element
+  double temperature(const FiniteElement& fe, const Vectors& vec) const;
+
+  //! \brief Calculates the temperature gradient at current point.
+  //! \param[in] fe Finite element data of current integration point
+  //! \param[in] vec Primary solution vector for current element
+  Vec3 temperatureGradient(const FiniteElement& fe,
+                           const Vectors& vec) const;
+
   Vector elmPressure; //!< Element-wise pressures
 };
 
@@ -112,6 +123,8 @@ public:
     L2_DIV_Uh,
     L2_Ph,
     L2_SIGMAh,
+    L2_PTh,
+    H1_PTh,
     L2_U,
     L2_E_U,
     H1_U,
@@ -120,6 +133,10 @@ public:
     L2_E_P,
     L2_SIGMA,
     L2_E_SIGMA,
+    L2_PT,
+    L2_E_PT,
+    H1_PT,
+    H1_E_PT,
     TOTAL_ERROR
   };
 

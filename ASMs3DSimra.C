@@ -20,7 +20,7 @@ bool ASMs3DSimra::useDouble = false;
 
 
 ASMs3DSimra::ASMs3DSimra ()
-  : ASMs3DLag(4)
+  : ASMs3DLag(5)
 {
 }
 

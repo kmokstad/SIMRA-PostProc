@@ -20,7 +20,7 @@
 
 
 SIMSimraProject::SIMSimraProject() :
-  SIM3D(4)
+  SIM3D(5)
 {
   myProblem = &itg;
 }
@@ -216,11 +216,12 @@ Vector SIMSimraProject::getSolution() const
   if (solution.empty())
     return {};
 
-  Matrix stmp(4, this->getPatch(1)->getNoNodes());
+  Matrix stmp(5, this->getPatch(1)->getNoNodes());
   stmp.fillRow(1, solution[0].data());
   stmp.fillRow(2, solution[1].data());
   stmp.fillRow(3, solution[2].data());
   stmp.fillRow(4, solution[6].data());
+  stmp.fillRow(5, solution[7].data());
 
   return stmp;
 }
@@ -271,7 +272,11 @@ void SIMSimraProject::printSolutionNorms(const Vectors& gNorm) const
              << "\n  L2 norm |div u^h|"
              << utl::adjustRight(w-19,"") << gNorm[0][SimraNorm::L2_DIV_Uh]
              << "\n  L2 norm |s^h| = (s^h,s^h)^0.5"
-             << utl::adjustRight(w-31,"") << gNorm[0][SimraNorm::L2_SIGMAh];
+             << utl::adjustRight(w-31,"") << gNorm[0][SimraNorm::L2_SIGMAh]
+             << "\n  L2 norm |pT^h| = (pT^h,pT^h)^0.5"
+             << utl::adjustRight(w-34,"") << gNorm[0][SimraNorm::L2_PTh]
+             << "\n  H1 norm |pT^h| = a(pT^h,pT^h)^0.5"
+             << utl::adjustRight(w-35,"") << gNorm[0][SimraNorm::H1_PTh];
   if (mySol)
     this->printExactNorms(gNorm[0], w);
 
@@ -287,7 +292,7 @@ void SIMSimraProject::printExactNorms(const Vector& gNorm, size_t w) const
   if (!mySol)
     return;
 
-  if (mySol->getScalarSol()) {
+  if (mySol->getScalarSol(0)) {
     IFEM::cout << "\n  L2 norm |p| = (p,p)^0.5"
                << utl::adjustRight(w-25,"") << gNorm[SimraNorm::L2_P]
                << "\n  L2 norm |e| = (e,e)^0.5, e=p-p^h"
@@ -305,13 +310,25 @@ void SIMSimraProject::printExactNorms(const Vector& gNorm, size_t w) const
                << "\n  H1 norm |e| = a(e,e)^0.5, e=u-u^h"
                << utl::adjustRight(w-35,"") << gNorm[SimraNorm::H1_E_U];
   }
-  if (mySol->getVectorSecSol() && mySol->getScalarSol()) {
+  if (mySol->getVectorSecSol() && mySol->getScalarSol(0)) {
     IFEM::cout << "\n  L2 norm |sigma|"
                << utl::adjustRight(w-17,"") << gNorm[SimraNorm::L2_SIGMA]
                << "\n  L2 norm |e| = (e,e)^0.5, e=s-s^h"
                << utl::adjustRight(w-34,"") << gNorm[SimraNorm::L2_E_SIGMA];
   }
-  if (mySol->getScalarSol()) {
+  if (mySol->getScalarSol(1)) {
+    IFEM::cout << "\n  L2 norm |pT|"
+               << utl::adjustRight(w-14,"") << gNorm[SimraNorm::L2_PT]
+               << "\n  L2 norm |e| = (e,e)^0.5, e=pT-pT^h"
+               << utl::adjustRight(w-36,"") << gNorm[SimraNorm::L2_E_PT];
+  }
+  if (mySol->getScalarSecSol(0)) {
+    IFEM::cout << "\n  H1 norm |pT|"
+               << utl::adjustRight(w-14,"") << gNorm[SimraNorm::H1_PT]
+               << "\n  H1 norm |e| = (e,e)^0.5, e=pT-pT^h"
+               << utl::adjustRight(w-36,"") << gNorm[SimraNorm::H1_E_PT];
+  }
+  if (mySol->getScalarSol(0)) {
     double pRel = gNorm[SimraNorm::L2_P];
     if (pRel == 0.0)
       pRel = 1.0;
@@ -410,16 +427,16 @@ void SIMSimraProject::printNormGroup(const Vector& rNorm,
 void SIMSimraProject::registerFields(DataExporter& exporter, const Vector& sol,
                                      const Vectors& projs, const Matrix& eNorm) const
 {
-  exporter.registerField("u and vtef", "u and vtef",
+  exporter.registerField("u and vtef and pT", "u and vtef and pT",
                          DataExporter::SIM,
                          DataExporter::PRIMARY |
                          DataExporter::SECONDARY |
                          DataExporter::NORMS);
-  exporter.setFieldValue("u and vtef",this,&sol,&projs,&eNorm);
+  exporter.setFieldValue("u and vtef and pT",this,&sol,&projs,&eNorm);
   static constexpr const char* names[] =
     {"u_x", "u_y", "u_z", "ps", "tk", "td",
      "vtef", "pt", "pts", "rho", "rhos", "strat"};
-  for (int i : {3,4,5,7,8,9,10,11}) {
+  for (int i : {3,4,5,8,9,10,11}) {
     exporter.registerField(names[i], names[i],
                            DataExporter::SIM, -DataExporter::PRIMARY, "", 1);
     exporter.setFieldValue(names[i], this, &solution[i]);
