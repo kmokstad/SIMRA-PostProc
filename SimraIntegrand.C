@@ -205,8 +205,8 @@ bool SimraNorm::evalInt (LocalIntegral& elmInt, const FiniteElement& fe,
   pnorm[L2_DIV_Uh] += gradUh.trace()*gradUh.trace()*fe.detJxW;
   pnorm[L2_Ph] += Ph*Ph*fe.detJxW;
   pnorm[L2_SIGMAh] += sigma_h.innerProd(sigma_h)*fe.detJxW;
-  pnorm[L2_PTh] += pTh*pTh*fe.detJxW;
-  pnorm[H1_PTh] += dpTh*dpTh*fe.detJxW;
+  pnorm[L2_pTh] += pTh*pTh*fe.detJxW;
+  pnorm[H1_pTh] += dpTh*dpTh*fe.detJxW;
 
   // Velocity norms
   if (aSol && aSol->getVectorSol()) {
@@ -261,35 +261,38 @@ bool SimraNorm::evalInt (LocalIntegral& elmInt, const FiniteElement& fe,
   double pT = 0;
   if (aSol && aSol->getScalarSol(1)) {
     pT = (*aSol->getScalarSol(1))(X);
-    pnorm[L2_PT] += pT*pT*fe.detJxW;
+    pnorm[L2_pT] += pT*pT*fe.detJxW;
     pTh -= pT;
-    pnorm[L2_E_PT] += pTh*pTh*fe.detJxW;
+    pnorm[L2_E_pT] += pTh*pTh*fe.detJxW;
   }
 
   // Analytical temperature gradient
-  Vec3 dpT;
   if (aSol && aSol->getScalarSecSol(0)) {
-    dpT = (*aSol->getScalarSecSol(0))(X);
-    pnorm[H1_PT] += dpT*dpT*fe.detJxW;
-    dpTh -= dpT;
-    pnorm[H1_E_PT] += dpTh*dpTh*fe.detJxW;
-    pnorm[TOTAL_ERROR] += dpTh*dpTh*fe.detJxW;
+    Vec3 dpT = (*aSol->getScalarSecSol(0))(X);
+    pnorm[H1_pT] += dpT*dpT*fe.detJxW;
+    dpT -= dpTh;
+    pnorm[H1_E_pT] += dpT*dpT*fe.detJxW;
+    pnorm[TOTAL_ERROR] += dpT*dpT*fe.detJxW;
   }
 
   size_t ip = this->getNoFields(1);
   if (!pnorm.psol.empty())
     for (size_t i = 0; i < pnorm.psol.size(); ++i) {
       Tensor gradUs(nsd), sigma_r(nsd);
-      double Ps;
+      double Pr;
       size_t idx = 0;
       for (size_t k = 1; k <= nsd; ++k)
         for (size_t j = 1; j <= nsd; ++j)
           gradUs(j,k) = pnorm.psol[i].dot(fe.N,idx++,problem.getNoFields(2));
 
-      Ps = pnorm.psol[i].dot(fe.N,idx++,problem.getNoFields(2));
+      Pr = pnorm.psol[i].dot(fe.N,idx++,problem.getNoFields(2));
       for (size_t j = 1; j <= nsd; ++j)
         for (size_t k = 1; k <= nsd; ++k)
           sigma_r(k,j) = pnorm.psol[i].dot(fe.N,idx++,problem.getNoFields(2));
+
+      Vec3 dpTr;
+      for (size_t k = 0; k < 3; ++k)
+        dpTr[k] = pnorm.psol[i].dot(fe.N,idx++,problem.getNoFields(2));
 
       Tensor epssh(gradUs);
       epssh -= gradUh;
@@ -300,13 +303,15 @@ bool SimraNorm::evalInt (LocalIntegral& elmInt, const FiniteElement& fe,
 
       pnorm[ip + H1_Ur_Uh] += mu*epssh.innerProd(epssh)*fe.detJxW;
       pnorm[ip + TOTAL_NORM_REC] += (mu*epssh.innerProd(epssh) +
-                                    (Ps-Ph)*(Ps-Ph))*fe.detJxW;
+                                    (Pr-Ph)*(Pr-Ph) +
+                                    (dpTr-dpTh)*(dpTr-dpTh))*fe.detJxW;
 
       pnorm[ip + L2_DIV_Ur] += divus*divus*fe.detJxW;
-      pnorm[ip + L2_Pr_Ph] += (Ps-Ph)*(Ps-Ph)*fe.detJxW;
+      pnorm[ip + L2_Pr_Ph] += (Pr-Ph)*(Pr-Ph)*fe.detJxW;
       pnorm[ip + L2_SIGMA_REC] += sigma_e.innerProd(sigma_e)*fe.detJxW;
+      pnorm[ip + H1_pTr_pTh] += (dpTr-dpTh)*(dpTr-dpTh)*fe.detJxW;
 
-      if (aSol && aSol ->getVectorSecSol() && aSol->getScalarSol()) {
+      if (aSol && aSol->getVectorSecSol() && aSol->getScalarSol(0)) {
         Tensor gradU = (*aSol->getVectorSecSol())(X);
         Tensor epsus(gradUs);
         epsus -= gradU;
@@ -316,11 +321,16 @@ bool SimraNorm::evalInt (LocalIntegral& elmInt, const FiniteElement& fe,
 
         double P = (*psol)(X);
         pnorm[ip+H1_Ur_U] += mu*epsus.innerProd(epsus)*fe.detJxW;
-        pnorm[ip+TOTAL_E_REC] += (mu*epsus.innerProd(epsus)+(Ps-P)*(Ps-P))*fe.detJxW;
-        pnorm[ip+L2_Pr_P] += (Ps-P)*(Ps-P)*fe.detJxW;
+        pnorm[ip+TOTAL_E_REC] += (mu*epsus.innerProd(epsus)+(Pr-P)*(Pr-P))*fe.detJxW;
+        pnorm[ip+L2_Pr_P] += (Pr-P)*(Pr-P)*fe.detJxW;
 
         sigma_r -= sigma;
         pnorm[ip+L2_SIGMA_E_REC] += sigma_r.innerProd(sigma_r)*fe.detJxW;
+      }
+      if (aSol && aSol->getScalarSecSol(0)) {
+        Vec3 dpT = (*aSol->getScalarSecSol(0))(X);
+        pnorm[ip+H1_pTr_pT] += (dpTr-dpT)*(dpTr-dpT)*fe.detJxW;
+        pnorm[ip+TOTAL_E_REC] += (dpTr-dpT)*(dpTr-dpT)*fe.detJxW;
       }
 
       ip += this->getNoFields(i+2);
@@ -341,7 +351,7 @@ size_t SimraNorm::getNoFields (int group) const
   else if (group == 1)
     return 7 + (aSol ? 13 : 0);
   else
-    return 5 + (aSol ? 8 : 0);
+    return 7 + (aSol ? 9 : 0);
 }
 
 
@@ -364,25 +374,27 @@ std::string SimraNorm::getName (size_t i, size_t j, const char* prefix) const
     "|sigma|_L2",
     "|e|_L2, e=sigma-sigma^h",
     "|pT|_L2",
-    "|e|_L2, e=pT-pT^h"
+    "|e|_L2, e=pT-pT^h",
     "|pT|_H1",
-    "|e|_H1, e=pT-pT^h"
-    "|e_u|_H1 + |e_p|_L2"
+    "|e|_H1, e=pT-pT^h",
+    "|e_u|_H1 + |e_p|_L2 + |e_pT|_H1"
   };
 
-  static const char* rec[13] = {
+  static const char* rec[16] = {
     "|u^*-u^h|_H1",
-    "|(u^*,p^*)-(u^h,p^h)|",
-    "|div u^*|_L2",
+    "|(u^*,p^*,pT^*)-(u^h,p^h,pT^h)|",
     "|p^*-p^h|_L2",
+    "|div u^*|_L2",
     "|s^*-s^h|_L2",
+    "|pT^*-pT^h|_H1",
     "|u^*-u|_H1",
-    "|(u^*,p^*)-(u,p)|",
     "|p^*-p|_L2",
     "|sigma^*-sigma|_L2",
+    "|pT^*-pT|_H1",
     "eta^u",
     "eta^p",
     "eta^s",
+    "eta^pT",
     "eta^total"
   };
 
@@ -392,7 +404,7 @@ std::string SimraNorm::getName (size_t i, size_t j, const char* prefix) const
       return "";
     n = u[j-1];
   } else {
-    if (j > 13)
+    if (j > 16)
       return "";
     n = rec[j-1];
   }

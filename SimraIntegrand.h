@@ -123,8 +123,8 @@ public:
     L2_DIV_Uh,
     L2_Ph,
     L2_SIGMAh,
-    L2_PTh,
-    H1_PTh,
+    L2_pTh,
+    H1_pTh,
     L2_U,
     L2_E_U,
     H1_U,
@@ -133,10 +133,10 @@ public:
     L2_E_P,
     L2_SIGMA,
     L2_E_SIGMA,
-    L2_PT,
-    L2_E_PT,
-    H1_PT,
-    H1_E_PT,
+    L2_pT,
+    L2_E_pT,
+    H1_pT,
+    H1_E_pT,
     TOTAL_ERROR
   };
 
@@ -147,13 +147,16 @@ public:
     L2_Pr_Ph,
     L2_DIV_Ur,
     L2_SIGMA_REC,
+    H1_pTr_pTh,
     H1_Ur_U,
     TOTAL_E_REC,
     L2_Pr_P,
     L2_SIGMA_E_REC,
+    H1_pTr_pT,
     EFF_REC_VEL,
     EFF_REC_PRESS,
     EFF_REC_STRESS,
+    EFF_REC_TEMP,
     EFF_REC_TOTAL
   };
 

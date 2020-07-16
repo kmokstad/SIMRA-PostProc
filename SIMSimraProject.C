@@ -197,7 +197,7 @@ bool SIMSimraProject::writeSolutionVectors(int& nBlock, const Vector& sol)
 {
   static constexpr const char* names[] =
     {"u_x", "u_y", "u_z", "ps", "tk",
-     "td", "vtef", "pt", "pts", "rho", "rhos", "strat"};
+     "td", "vtef", "pT", "pts", "rho", "rhos", "strat"};
 
   bool result = true;
   for (size_t i = 0; i < 12; ++i) {
@@ -229,7 +229,7 @@ Vector SIMSimraProject::getSolution() const
 
  bool SIMSimraProject::postProcessNorms(Vectors& gNorm, Matrix* eNormp)
  {
-   if (!eNormp)
+   if (!eNormp || !mySol)
      return true;
 
    NormBase* norm = itg.getNormIntegrand(mySol);
@@ -241,16 +241,18 @@ Vector SIMSimraProject::getSolution() const
 
    Matrix& eNorm = *eNormp;
    for (size_t i = 1; i <= eNorm.cols(); ++ i) {
-     eNorm(ip + SimraNorm::EFF_REC_VEL, i) = eNorm(i, ip+SimraNorm::H1_Ur_Uh) /
-                                             eNorm(i, 1+SimraNorm::H1_E_U);
-     eNorm(ip + SimraNorm::EFF_REC_PRESS, i) = eNorm(i, ip+SimraNorm::L2_Pr_Ph) /
-                                               eNorm(i, 1+SimraNorm::L2_E_P);
-     eNorm(ip + SimraNorm::EFF_REC_STRESS, i) = eNorm(i, ip+SimraNorm::L2_SIGMA_REC) /
-                                                eNorm(i, 1+SimraNorm::L2_E_SIGMA);
-     double tRel = hypot(eNorm(i, 1+SimraNorm::H1_E_U), eNorm(i, 1+SimraNorm::L2_E_P));
+     eNorm(ip + SimraNorm::EFF_REC_VEL, i) = eNorm(ip+SimraNorm::H1_Ur_Uh, i) /
+                                             eNorm(1+SimraNorm::H1_E_U, i);
+     eNorm(ip + SimraNorm::EFF_REC_PRESS, i) = eNorm(ip+SimraNorm::L2_Pr_Ph, i) /
+                                               eNorm(1+SimraNorm::L2_E_P, i);
+     eNorm(ip + SimraNorm::EFF_REC_STRESS, i) = eNorm(ip+SimraNorm::L2_SIGMA_REC, i) /
+                                                eNorm(1+SimraNorm::L2_E_SIGMA, i);
+     eNorm(ip + SimraNorm::EFF_REC_TEMP, i) = eNorm(ip+SimraNorm::H1_pTr_pT, i) /
+                                              eNorm(1+SimraNorm::H1_E_pT, i);
+     double tRel = eNorm(1+SimraNorm::TOTAL_ERROR, i);
      if (tRel == 0)
        tRel = 1.0;
-     eNorm(ip + SimraNorm::EFF_REC_TOTAL, i) = hypot(eNorm(i, ip+SimraNorm::H1_Ur_Uh), eNorm(i, ip+SimraNorm::L2_Pr_Ph)) / tRel;
+     eNorm(ip + SimraNorm::EFF_REC_TOTAL, i) = eNorm(ip+SimraNorm::TOTAL_E_REC, i) / tRel;
    }
 
    return true;
@@ -274,9 +276,9 @@ void SIMSimraProject::printSolutionNorms(const Vectors& gNorm) const
              << "\n  L2 norm |s^h| = (s^h,s^h)^0.5"
              << utl::adjustRight(w-31,"") << gNorm[0][SimraNorm::L2_SIGMAh]
              << "\n  L2 norm |pT^h| = (pT^h,pT^h)^0.5"
-             << utl::adjustRight(w-34,"") << gNorm[0][SimraNorm::L2_PTh]
+             << utl::adjustRight(w-34,"") << gNorm[0][SimraNorm::L2_pTh]
              << "\n  H1 norm |pT^h| = a(pT^h,pT^h)^0.5"
-             << utl::adjustRight(w-35,"") << gNorm[0][SimraNorm::H1_PTh];
+             << utl::adjustRight(w-35,"") << gNorm[0][SimraNorm::H1_pTh];
   if (mySol)
     this->printExactNorms(gNorm[0], w);
 
@@ -318,15 +320,15 @@ void SIMSimraProject::printExactNorms(const Vector& gNorm, size_t w) const
   }
   if (mySol->getScalarSol(1)) {
     IFEM::cout << "\n  L2 norm |pT|"
-               << utl::adjustRight(w-14,"") << gNorm[SimraNorm::L2_PT]
+               << utl::adjustRight(w-14,"") << gNorm[SimraNorm::L2_pT]
                << "\n  L2 norm |e| = (e,e)^0.5, e=pT-pT^h"
-               << utl::adjustRight(w-36,"") << gNorm[SimraNorm::L2_E_PT];
+               << utl::adjustRight(w-36,"") << gNorm[SimraNorm::L2_E_pT];
   }
   if (mySol->getScalarSecSol(0)) {
     IFEM::cout << "\n  H1 norm |pT|"
-               << utl::adjustRight(w-14,"") << gNorm[SimraNorm::H1_PT]
+               << utl::adjustRight(w-14,"") << gNorm[SimraNorm::H1_pT]
                << "\n  H1 norm |e| = (e,e)^0.5, e=pT-pT^h"
-               << utl::adjustRight(w-36,"") << gNorm[SimraNorm::H1_E_PT];
+               << utl::adjustRight(w-36,"") << gNorm[SimraNorm::H1_E_pT];
   }
   if (mySol->getScalarSol(0)) {
     double pRel = gNorm[SimraNorm::L2_P];
@@ -352,8 +354,9 @@ void SIMSimraProject::printExactNorms(const Vector& gNorm, size_t w) const
       (gNorm[SimraNorm::L2_P] != 0.0 || gNorm[SimraNorm::H1_U] != 0.0))
     IFEM::cout << "\n  Exact total error (%)"
                << utl::adjustRight(w-23,"")
-               << hypot(gNorm[SimraNorm::L2_E_P], gNorm[SimraNorm::H1_E_U]) /
-                  hypot(gNorm[SimraNorm::L2_P], gNorm[SimraNorm::H1_U]) * 100.0;
+               << gNorm[SimraNorm::TOTAL_ERROR] /
+                  hypot(hypot(gNorm[SimraNorm::L2_P], gNorm[SimraNorm::H1_U]),
+                        gNorm[SimraNorm::H1_pT]) * 100.0;
 }
 
 
@@ -380,13 +383,20 @@ void SIMSimraProject::printNormGroup(const Vector& rNorm,
     sRel = fNorm[SimraNorm::L2_SIGMA];
   else
     sRel = hypot(fNorm[SimraNorm::L2_SIGMAh], rNorm[SimraNorm::L2_SIGMA_REC]);
+  double tRel;
+  if (mySol && mySol->getScalarSecSol(0))
+    tRel = fNorm[SimraNorm::H1_pT];
+  else
+    tRel = hypot(fNorm[SimraNorm::H1_pTh], rNorm[SimraNorm::H1_pTr_pTh]);
 
   IFEM::cout << "\n  H1 norm |u^*-u^h|"
              << utl::adjustRight(w-19,"") << rNorm[SimraNorm::H1_Ur_Uh]
              << "\n  L2 norm |p^*-p^h|"
              << utl::adjustRight(w-19,"") << rNorm[SimraNorm::L2_Pr_Ph]
              << "\n  L2 norm |s^*-s^h|"
-             << utl::adjustRight(w-19,"") << rNorm[SimraNorm::L2_SIGMA_REC];
+             << utl::adjustRight(w-19,"") << rNorm[SimraNorm::L2_SIGMA_REC]
+             << "\n  H1 norm |pT^*-pT^h|"
+             << utl::adjustRight(w-21,"") << rNorm[SimraNorm::H1_pTr_pTh];
   if (mySol) {
     IFEM::cout << "\n  H1 norm |u^*-u|"
                << utl::adjustRight(w-17,"") << rNorm[SimraNorm::H1_Ur_U]
@@ -401,9 +411,10 @@ void SIMSimraProject::printNormGroup(const Vector& rNorm,
              << rNorm[SimraNorm::L2_Pr_Ph] / pRel * 100.0
              << "\n  Relative stress error (%)" << utl::adjustRight(w-27,"")
              << rNorm[SimraNorm::L2_SIGMA_REC] / sRel * 100.0
+             << "\n  Relative temperature error (%)" << utl::adjustRight(w-32,"")
+             << rNorm[SimraNorm::H1_pTr_pTh] / tRel * 100.0
              << "\n  Relative total error (%)" << utl::adjustRight(w-26,"")
-             << hypot(rNorm[SimraNorm::H1_Ur_Uh], rNorm[SimraNorm::L2_Pr_Ph]) /
-                hypot(uRel, pRel);
+             << rNorm[SimraNorm::TOTAL_NORM_REC] / hypot(hypot(uRel, pRel), tRel) * 100.0;
 
   if (mySol) {
     IFEM::cout << "\n  Effectivity index eta^u"
@@ -414,11 +425,14 @@ void SIMSimraProject::printNormGroup(const Vector& rNorm,
                << rNorm[SimraNorm::L2_Pr_Ph] / fNorm[SimraNorm::L2_E_P]
                << "\n  Effectivity index eta^s"
                << utl::adjustRight(w-25,"")
-               << rNorm[SimraNorm::L2_SIGMA_REC] / fNorm[SimraNorm::L2_E_SIGMA]
-               << "\n  Effectivity index eta^total"
+               << rNorm[SimraNorm::L2_SIGMA_REC] / fNorm[SimraNorm::L2_E_SIGMA];
+    if (mySol->getScalarSecSol((0)))
+      IFEM::cout << "\n  Effectivity index eta^pT"
+                 << utl::adjustRight(w-26,"")
+                 << rNorm[SimraNorm::H1_pTr_pTh] / fNorm[SimraNorm::H1_E_pT];
+    IFEM::cout << "\n  Effectivity index eta^total"
                << utl::adjustRight(w-29,"")
-               << hypot(rNorm[SimraNorm::H1_Ur_Uh], rNorm[SimraNorm::L2_Pr_Ph]) /
-                  hypot(fNorm[SimraNorm::H1_E_U], fNorm[SimraNorm::L2_E_P]);
+               << rNorm[SimraNorm::TOTAL_E_REC] / fNorm[SimraNorm::TOTAL_ERROR];
   }
   IFEM::cout << std::endl;
 }
@@ -435,7 +449,7 @@ void SIMSimraProject::registerFields(DataExporter& exporter, const Vector& sol,
   exporter.setFieldValue("u and vtef and pT",this,&sol,&projs,&eNorm);
   static constexpr const char* names[] =
     {"u_x", "u_y", "u_z", "ps", "tk", "td",
-     "vtef", "pt", "pts", "rho", "rhos", "strat"};
+     "vtef", "pT", "pts", "rho", "rhos", "strat"};
   for (int i : {3,4,5,8,9,10,11}) {
     exporter.registerField(names[i], names[i],
                            DataExporter::SIM, -DataExporter::PRIMARY, "", 1);
