@@ -13,6 +13,11 @@
 
 #include "ASMs3DSimra.h"
 #include "ElementBlock.h"
+#include "ElmMats.h"
+#include "GlobalIntegral.h"
+#include "GlbL2projector.h"
+#include "Profiler.h"
+#include "SparseMatrix.h"
 
 #include <numeric>
 

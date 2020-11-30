@@ -97,7 +97,7 @@ void SimraIntegrand::strain (Tensor& eps) const
 
 
 bool SimraIntegrand::evalSol2(Vector& s, const Vectors& elmVec,
-                              const FiniteElement &fe, const Vec3 &X) const
+                              const FiniteElement& fe, const Vec3& X) const
 {
   Tensor grad(nsd);
   this->velocityGradient(fe, grad, elmVec);
@@ -335,10 +335,6 @@ bool SimraNorm::evalInt (LocalIntegral& elmInt, const FiniteElement& fe,
 
       ip += this->getNoFields(i+2);
     }
-
-  return true;
-
-
 
   return true;
 }

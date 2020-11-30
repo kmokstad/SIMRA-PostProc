@@ -91,6 +91,7 @@ protected:
   ResultsType rType = RESTART_FILE; //!< Type for result file
   std::string resultFile; //!< File with result vectors
   Vectors solution; //!< Solution vector
+  bool stratified = true; //!< Include temperature
   double solTime; //!< Solution time
   double uRef = 1.0; //!< Reference velocity value
   double lRef = 1.0; //!< Reference length scale

@@ -68,9 +68,10 @@ int main (int argc, char** argv)
 
   if (!infile)
   {
-    IFEM::cout <<"usage: "<< argv[0]
-               <<" <inputfile> [-double]\n"
-               <<"             [-vtf <format>] [-hdf5]\n";
+    IFEM::cout <<"usage: "<< argv[0] <<" <inputfile>\n"
+               << "\t[-double] - Use double precision input data\n"
+               << "\t[-vtf <format>] - Write VTF result file\n"
+               <<"\t[-hdf5] - Write HDF5 result file\n";
     return 1;
   }
 

@@ -72,6 +72,9 @@ bool SIMSimraProject::parse(const TiXmlElement *elem)
         utl::getAttribute(child, "L", lRef);
         IFEM::cout << "\tReference velocity U = " << uRef << std::endl;
         IFEM::cout << "\tReference length L = " << lRef << std::endl;
+      } else if (!strcasecmp(child->Value(),"no_stratification")) {
+        stratified = false;
+        IFEM::cout << "\tNot including temperature terms" << std::endl;
       } else if (!strcasecmp(child->Value(),"anasol")) {
           std::string type;
           utl::getAttribute(child,"type",type,true);
@@ -200,11 +203,12 @@ bool SIMSimraProject::writeSolutionVectors(int& nBlock, const Vector& sol)
      "td", "vtef", "pT", "pts", "rho", "rhos", "strat"};
 
   bool result = true;
-  for (size_t i = 0; i < 12; ++i) {
+  for (size_t i = 0; i < 12; ++i)
     result &= this->writeGlvS(solution[i], names[i], iStep, nBlock, i+2);
-    if ( i == 3 && !itg.elmPressure.empty())
-      result &= this->writeGlvE(itg.elmPressure, iStep, nBlock, "p");
-  }
+
+  if (!itg.elmPressure.empty())
+    result &= this->writeGlvE(itg.elmPressure, iStep, nBlock, "p");
+
   result &= this->writeGlvS2(sol, iStep, nBlock, this->getSolutionTime());
 
   return result;
@@ -274,11 +278,13 @@ void SIMSimraProject::printSolutionNorms(const Vectors& gNorm) const
              << "\n  L2 norm |div u^h|"
              << utl::adjustRight(w-19,"") << gNorm[0][SimraNorm::L2_DIV_Uh]
              << "\n  L2 norm |s^h| = (s^h,s^h)^0.5"
-             << utl::adjustRight(w-31,"") << gNorm[0][SimraNorm::L2_SIGMAh]
-             << "\n  L2 norm |pT^h| = (pT^h,pT^h)^0.5"
-             << utl::adjustRight(w-34,"") << gNorm[0][SimraNorm::L2_pTh]
-             << "\n  H1 norm |pT^h| = a(pT^h,pT^h)^0.5"
-             << utl::adjustRight(w-35,"") << gNorm[0][SimraNorm::H1_pTh];
+             << utl::adjustRight(w-31,"") << gNorm[0][SimraNorm::L2_SIGMAh];
+  if (stratified) {
+    IFEM::cout << "\n  L2 norm |pT^h| = (pT^h,pT^h)^0.5"
+               << utl::adjustRight(w-34,"") << gNorm[0][SimraNorm::L2_pTh]
+               << "\n  H1 norm |pT^h| = a(pT^h,pT^h)^0.5"
+               << utl::adjustRight(w-35,"") << gNorm[0][SimraNorm::H1_pTh];
+  }
   if (mySol)
     this->printExactNorms(gNorm[0], w);
 
@@ -351,12 +357,14 @@ void SIMSimraProject::printExactNorms(const Vector& gNorm, size_t w) const
                << utl::adjustRight(w-24,"")
                << gNorm[SimraNorm::L2_E_SIGMA] / gNorm[SimraNorm::L2_SIGMA] * 100.0;
   if (mySol->getVectorSecSol() && mySol->getScalarSol() &&
-      (gNorm[SimraNorm::L2_P] != 0.0 || gNorm[SimraNorm::H1_U] != 0.0))
+      (gNorm[SimraNorm::L2_P] != 0.0 || gNorm[SimraNorm::H1_U] != 0.0)) {
+    double tot = hypot(gNorm[SimraNorm::L2_P], gNorm[SimraNorm::H1_U]);
+    if (stratified)
+      tot = hypot(tot, gNorm[SimraNorm::H1_pT]);
     IFEM::cout << "\n  Exact total error (%)"
                << utl::adjustRight(w-23,"")
-               << gNorm[SimraNorm::TOTAL_ERROR] /
-                  hypot(hypot(gNorm[SimraNorm::L2_P], gNorm[SimraNorm::H1_U]),
-                        gNorm[SimraNorm::H1_pT]) * 100.0;
+               << gNorm[SimraNorm::TOTAL_ERROR] / tot * 100.0;
+  }
 }
 
 
@@ -394,9 +402,10 @@ void SIMSimraProject::printNormGroup(const Vector& rNorm,
              << "\n  L2 norm |p^*-p^h|"
              << utl::adjustRight(w-19,"") << rNorm[SimraNorm::L2_Pr_Ph]
              << "\n  L2 norm |s^*-s^h|"
-             << utl::adjustRight(w-19,"") << rNorm[SimraNorm::L2_SIGMA_REC]
-             << "\n  H1 norm |pT^*-pT^h|"
-             << utl::adjustRight(w-21,"") << rNorm[SimraNorm::H1_pTr_pTh];
+             << utl::adjustRight(w-19,"") << rNorm[SimraNorm::L2_SIGMA_REC];
+  if (stratified)
+    IFEM::cout << "\n  H1 norm |pT^*-pT^h|"
+               << utl::adjustRight(w-21,"") << rNorm[SimraNorm::H1_pTr_pTh];
   if (mySol) {
     IFEM::cout << "\n  H1 norm |u^*-u|"
                << utl::adjustRight(w-17,"") << rNorm[SimraNorm::H1_Ur_U]
@@ -410,11 +419,15 @@ void SIMSimraProject::printNormGroup(const Vector& rNorm,
              << "\n  Relative pressure error (%)" << utl::adjustRight(w-29,"")
              << rNorm[SimraNorm::L2_Pr_Ph] / pRel * 100.0
              << "\n  Relative stress error (%)" << utl::adjustRight(w-27,"")
-             << rNorm[SimraNorm::L2_SIGMA_REC] / sRel * 100.0
-             << "\n  Relative temperature error (%)" << utl::adjustRight(w-32,"")
-             << rNorm[SimraNorm::H1_pTr_pTh] / tRel * 100.0
-             << "\n  Relative total error (%)" << utl::adjustRight(w-26,"")
-             << rNorm[SimraNorm::TOTAL_NORM_REC] / hypot(hypot(uRel, pRel), tRel) * 100.0;
+             << rNorm[SimraNorm::L2_SIGMA_REC] / sRel * 100.0;
+  double tot = hypot(uRel, pRel);
+  if (stratified) {
+    IFEM::cout << "\n  Relative temperature error (%)" << utl::adjustRight(w-32,"")
+               << rNorm[SimraNorm::H1_pTr_pTh] / tRel * 100.0;
+    tot = hypot(tot, tRel);
+  }
+  IFEM::cout << "\n  Relative total error (%)" << utl::adjustRight(w-26,"")
+             << rNorm[SimraNorm::TOTAL_NORM_REC] / tot * 100.0;
 
   if (mySol) {
     IFEM::cout << "\n  Effectivity index eta^u"
