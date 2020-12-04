@@ -7,7 +7,7 @@
 //!
 //! \author Arne Morten Kvarving
 //!
-//! \brief Main program for postprocessing for SIMRA results.
+//! \brief Main program for postprocessing of SIMRA results.
 //!
 //==============================================================================
 
@@ -34,9 +34,6 @@
   \arg -superlu : Use the sparse SuperLU equation solver
   \arg -samg :    Use the sparse algebraic multi-grid equation solver
   \arg -petsc :   Use equation solver from PETSc library
-  \arg -lag : Use Lagrangian basis functions instead of splines/NURBS
-  \arg -spec : Use Spectral basis functions instead of splines/NURBS
-  \arg -LR : Use LR-spline basis functions instead of tensorial splines/NURBS
   \arg -nGauss \a n : Number of Gauss points over a knot-span in each direction
   \arg -vtf \a format : VTF-file format (-1=NONE, 0=ASCII, 1=BINARY)
   \arg -nviz \a nviz : Number of visualization points over each knot-span
@@ -44,8 +41,6 @@
   \arg -nv \a nv : Number of visualization points per knot-span in v-direction
   \arg -nw \a nw : Number of visualization points per knot-span in w-direction
   \arg -hdf5 : Write primary and projected secondary solution to HDF5 file
-  \arg -2D : Use two-parametric simulation driver
-  \arg -adap : Use adaptive simulation driver with LR-splines discretization
 */
 
 int main (int argc, char** argv)
