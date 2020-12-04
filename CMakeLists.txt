@@ -38,6 +38,7 @@ include(IFEMTesting)
 if(MPI_FOUND)
 endif()
 if(NOT MPI_FOUND OR IFEM_SERIAL_TESTS_IN_PARALLEL)
+  ifem_add_test(Box.reg SIMRA-PostProc)
 endif()
 list(APPEND TEST_APPS SIMRA-PostProc)
 

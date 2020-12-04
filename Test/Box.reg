@@ -1,0 +1,141 @@
+Box.xinp
+
+	Reading data file Box.dat
+	Reference velocity U = 1
+	Reference length L = 1
+	Reading results from history file Box.res
+	Not including temperature terms
+Number of elements    24
+Number of nodes       60
+Number of dofs        300
+Number of unknowns    300
+  step=1  time=0.001
+  L2 norm |p^h| = (p^h,p^h)^0.5      : 418.893
+  L2 norm |u^h| = (u^h,u^h)^0.5      : 0.888041
+  H1 norm |u^h| = a(u^h,u^h)^0.5     : 1.24329
+  L2 norm |div u^h|                  : 0.757858
+  L2 norm |s^h| = (s^h,s^h)^0.5      : 725.86
+  H1 norm |u^\*-u^h|                  : 0.447405
+  L2 norm |p^\*-p^h|                  : 127.114
+  L2 norm |s^\*-s^h|                  : 220.244
+  Relative velocity error (%)        : 33.8599
+  Relative pressure error (%)        : 29.0377
+  Relative stress error (%)          : 29.0354
+  Relative total error (%)           : 29.0377
+  step=2  time=0.0881335
+  L2 norm |p^h| = (p^h,p^h)^0.5      : 329.795
+  L2 norm |u^h| = (u^h,u^h)^0.5      : 5.45779
+  H1 norm |u^h| = a(u^h,u^h)^0.5     : 14.4033
+  L2 norm |div u^h|                  : 13.6434
+  L2 norm |s^h| = (s^h,s^h)^0.5      : 566.335
+  H1 norm |u^\*-u^h|                  : 4.65568
+  L2 norm |p^\*-p^h|                  : 95.9591
+  L2 norm |s^\*-s^h|                  : 164.722
+  Relative velocity error (%)        : 30.7568
+  Relative pressure error (%)        : 27.938
+  Relative stress error (%)          : 27.9283
+  Relative total error (%)           : 27.9437
+  step=3  time=0.175267
+  L2 norm |p^h| = (p^h,p^h)^0.5      : 255.841
+  L2 norm |u^h| = (u^h,u^h)^0.5      : 4.36289
+  H1 norm |u^h| = a(u^h,u^h)^0.5     : 12.1051
+  L2 norm |div u^h|                  : 11.3914
+  L2 norm |s^h| = (s^h,s^h)^0.5      : 439.328
+  H1 norm |u^\*-u^h|                  : 4.42949
+  L2 norm |p^\*-p^h|                  : 68.6822
+  L2 norm |s^\*-s^h|                  : 117.782
+  Relative velocity error (%)        : 34.3636
+  Relative pressure error (%)        : 25.9276
+  Relative stress error (%)          : 25.8951
+  Relative total error (%)           : 25.9508
+  step=4  time=0.2624
+  L2 norm |p^h| = (p^h,p^h)^0.5      : 196.802
+  L2 norm |u^h| = (u^h,u^h)^0.5      : 3.93032
+  H1 norm |u^h| = a(u^h,u^h)^0.5     : 10.8657
+  L2 norm |div u^h|                  : 9.07408
+  L2 norm |s^h| = (s^h,s^h)^0.5      : 337.831
+  H1 norm |u^\*-u^h|                  : 3.83074
+  L2 norm |p^\*-p^h|                  : 48.4774
+  L2 norm |s^\*-s^h|                  : 83.3507
+  Relative velocity error (%)        : 33.2496
+  Relative pressure error (%)        : 23.9177
+  Relative stress error (%)          : 23.954
+  Relative total error (%)           : 23.9536
+  step=5  time=0.349534
+  L2 norm |p^h| = (p^h,p^h)^0.5      : 149.806
+  L2 norm |u^h| = (u^h,u^h)^0.5      : 3.50382
+  H1 norm |u^h| = a(u^h,u^h)^0.5     : 9.65453
+  L2 norm |div u^h|                  : 7.41615
+  L2 norm |s^h| = (s^h,s^h)^0.5      : 257.03
+  H1 norm |u^\*-u^h|                  : 3.20564
+  L2 norm |p^\*-p^h|                  : 34.0328
+  L2 norm |s^\*-s^h|                  : 58.7603
+  Relative velocity error (%)        : 31.5118
+  Relative pressure error (%)        : 22.1534
+  Relative stress error (%)          : 22.2863
+  Relative total error (%)           : 22.2028
+  step=6  time=0.436667
+  L2 norm |p^h| = (p^h,p^h)^0.5      : 112.444
+  L2 norm |u^h| = (u^h,u^h)^0.5      : 3.01969
+  H1 norm |u^h| = a(u^h,u^h)^0.5     : 8.36418
+  L2 norm |div u^h|                  : 6.20768
+  L2 norm |s^h| = (s^h,s^h)^0.5      : 192.819
+  H1 norm |u^\*-u^h|                  : 2.64929
+  L2 norm |p^\*-p^h|                  : 23.7713
+  L2 norm |s^\*-s^h|                  : 41.2539
+  Relative velocity error (%)        : 30.1958
+  Relative pressure error (%)        : 20.6835
+  Relative stress error (%)          : 20.9216
+  Relative total error (%)           : 20.7511
+  step=7  time=0.523801
+  L2 norm |p^h| = (p^h,p^h)^0.5      : 83.3832
+  L2 norm |u^h| = (u^h,u^h)^0.5      : 2.45859
+  H1 norm |u^h| = a(u^h,u^h)^0.5     : 6.91928
+  L2 norm |div u^h|                  : 5.09607
+  L2 norm |s^h| = (s^h,s^h)^0.5      : 142.925
+  H1 norm |u^\*-u^h|                  : 2.13214
+  L2 norm |p^\*-p^h|                  : 16.5561
+  L2 norm |s^\*-s^h|                  : 28.8909
+  Relative velocity error (%)        : 29.4481
+  Relative pressure error (%)        : 19.4753
+  Relative stress error (%)          : 19.8133
+  Relative total error (%)           : 19.5653
+  step=8  time=0.610934
+  L2 norm |p^h| = (p^h,p^h)^0.5      : 61.4938
+  L2 norm |u^h| = (u^h,u^h)^0.5      : 1.88475
+  H1 norm |u^h| = a(u^h,u^h)^0.5     : 5.44641
+  L2 norm |div u^h|                  : 4.02308
+  L2 norm |s^h| = (s^h,s^h)^0.5      : 105.381
+  H1 norm |u^\*-u^h|                  : 1.65133
+  L2 norm |p^\*-p^h|                  : 11.5642
+  L2 norm |s^\*-s^h|                  : 20.2819
+  Relative velocity error (%)        : 29.0153
+  Relative pressure error (%)        : 18.4815
+  Relative stress error (%)          : 18.8993
+  Relative total error (%)           : 18.5922
+  step=9  time=0.698068
+  L2 norm |p^h| = (p^h,p^h)^0.5      : 45.4447
+  L2 norm |u^h| = (u^h,u^h)^0.5      : 1.37968
+  H1 norm |u^h| = a(u^h,u^h)^0.5     : 4.12896
+  L2 norm |div u^h|                  : 3.06799
+  L2 norm |s^h| = (s^h,s^h)^0.5      : 77.8747
+  H1 norm |u^\*-u^h|                  : 1.23528
+  L2 norm |p^\*-p^h|                  : 8.15669
+  L2 norm |s^\*-s^h|                  : 14.3617
+  Relative velocity error (%)        : 28.6623
+  Relative pressure error (%)        : 17.6663
+  Relative stress error (%)          : 18.1362
+  Relative total error (%)           : 17.7904
+  step=10  time=0.785201
+  L2 norm |p^h| = (p^h,p^h)^0.5      : 33.8459
+  L2 norm |u^h| = (u^h,u^h)^0.5      : 0.98985
+  H1 norm |u^h| = a(u^h,u^h)^0.5     : 3.06952
+  L2 norm |div u^h|                  : 2.29031
+  L2 norm |s^h| = (s^h,s^h)^0.5      : 58.0048
+  H1 norm |u^\*-u^h|                  : 0.904954
+  L2 norm |p^\*-p^h|                  : 5.83805
+  L2 norm |s^\*-s^h|                  : 10.3058
+  Relative velocity error (%)        : 28.2786
+  Relative pressure error (%)        : 16.9979
+  Relative stress error (%)          : 17.4931
+  Relative total error (%)           : 17.1268
