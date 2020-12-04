@@ -88,12 +88,10 @@ Box.xinp
 /0/Simra-1/fields/sigma_zz/1 Dataset {60}
 /0/Simra-1/fields/strat  Group
 /0/Simra-1/fields/strat/1 Dataset {60}
-/0/Simra-1/fields/td     Group
-/0/Simra-1/fields/td/1   Dataset {60}
 /0/Simra-1/fields/terrain\ distance Group
 /0/Simra-1/fields/terrain\ distance/1 Dataset {60}
-/0/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk Group
-/0/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk/1 Dataset {360}
+/0/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk&&td Group
+/0/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk&&td/1 Dataset {420}
 /0/Simra-1/fields/u_x,x  Group
 /0/Simra-1/fields/u_x,x/1 Dataset {60}
 /0/Simra-1/fields/u_x,y  Group
@@ -232,12 +230,10 @@ Box.xinp
 /1/Simra-1/fields/sigma_zz/1 Dataset {60}
 /1/Simra-1/fields/strat  Group
 /1/Simra-1/fields/strat/1 Dataset {60}
-/1/Simra-1/fields/td     Group
-/1/Simra-1/fields/td/1   Dataset {60}
 /1/Simra-1/fields/terrain\ distance Group
 /1/Simra-1/fields/terrain\ distance/1 Dataset {60}
-/1/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk Group
-/1/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk/1 Dataset {360}
+/1/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk&&td Group
+/1/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk&&td/1 Dataset {420}
 /1/Simra-1/fields/u_x,x  Group
 /1/Simra-1/fields/u_x,x/1 Dataset {60}
 /1/Simra-1/fields/u_x,y  Group
@@ -376,12 +372,10 @@ Box.xinp
 /2/Simra-1/fields/sigma_zz/1 Dataset {60}
 /2/Simra-1/fields/strat  Group
 /2/Simra-1/fields/strat/1 Dataset {60}
-/2/Simra-1/fields/td     Group
-/2/Simra-1/fields/td/1   Dataset {60}
 /2/Simra-1/fields/terrain\ distance Group
 /2/Simra-1/fields/terrain\ distance/1 Dataset {60}
-/2/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk Group
-/2/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk/1 Dataset {360}
+/2/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk&&td Group
+/2/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk&&td/1 Dataset {420}
 /2/Simra-1/fields/u_x,x  Group
 /2/Simra-1/fields/u_x,x/1 Dataset {60}
 /2/Simra-1/fields/u_x,y  Group
@@ -520,12 +514,10 @@ Box.xinp
 /3/Simra-1/fields/sigma_zz/1 Dataset {60}
 /3/Simra-1/fields/strat  Group
 /3/Simra-1/fields/strat/1 Dataset {60}
-/3/Simra-1/fields/td     Group
-/3/Simra-1/fields/td/1   Dataset {60}
 /3/Simra-1/fields/terrain\ distance Group
 /3/Simra-1/fields/terrain\ distance/1 Dataset {60}
-/3/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk Group
-/3/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk/1 Dataset {360}
+/3/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk&&td Group
+/3/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk&&td/1 Dataset {420}
 /3/Simra-1/fields/u_x,x  Group
 /3/Simra-1/fields/u_x,x/1 Dataset {60}
 /3/Simra-1/fields/u_x,y  Group
@@ -664,12 +656,10 @@ Box.xinp
 /4/Simra-1/fields/sigma_zz/1 Dataset {60}
 /4/Simra-1/fields/strat  Group
 /4/Simra-1/fields/strat/1 Dataset {60}
-/4/Simra-1/fields/td     Group
-/4/Simra-1/fields/td/1   Dataset {60}
 /4/Simra-1/fields/terrain\ distance Group
 /4/Simra-1/fields/terrain\ distance/1 Dataset {60}
-/4/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk Group
-/4/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk/1 Dataset {360}
+/4/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk&&td Group
+/4/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk&&td/1 Dataset {420}
 /4/Simra-1/fields/u_x,x  Group
 /4/Simra-1/fields/u_x,x/1 Dataset {60}
 /4/Simra-1/fields/u_x,y  Group
@@ -808,12 +798,10 @@ Box.xinp
 /5/Simra-1/fields/sigma_zz/1 Dataset {60}
 /5/Simra-1/fields/strat  Group
 /5/Simra-1/fields/strat/1 Dataset {60}
-/5/Simra-1/fields/td     Group
-/5/Simra-1/fields/td/1   Dataset {60}
 /5/Simra-1/fields/terrain\ distance Group
 /5/Simra-1/fields/terrain\ distance/1 Dataset {60}
-/5/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk Group
-/5/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk/1 Dataset {360}
+/5/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk&&td Group
+/5/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk&&td/1 Dataset {420}
 /5/Simra-1/fields/u_x,x  Group
 /5/Simra-1/fields/u_x,x/1 Dataset {60}
 /5/Simra-1/fields/u_x,y  Group
@@ -952,12 +940,10 @@ Box.xinp
 /6/Simra-1/fields/sigma_zz/1 Dataset {60}
 /6/Simra-1/fields/strat  Group
 /6/Simra-1/fields/strat/1 Dataset {60}
-/6/Simra-1/fields/td     Group
-/6/Simra-1/fields/td/1   Dataset {60}
 /6/Simra-1/fields/terrain\ distance Group
 /6/Simra-1/fields/terrain\ distance/1 Dataset {60}
-/6/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk Group
-/6/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk/1 Dataset {360}
+/6/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk&&td Group
+/6/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk&&td/1 Dataset {420}
 /6/Simra-1/fields/u_x,x  Group
 /6/Simra-1/fields/u_x,x/1 Dataset {60}
 /6/Simra-1/fields/u_x,y  Group
@@ -1096,12 +1082,10 @@ Box.xinp
 /7/Simra-1/fields/sigma_zz/1 Dataset {60}
 /7/Simra-1/fields/strat  Group
 /7/Simra-1/fields/strat/1 Dataset {60}
-/7/Simra-1/fields/td     Group
-/7/Simra-1/fields/td/1   Dataset {60}
 /7/Simra-1/fields/terrain\ distance Group
 /7/Simra-1/fields/terrain\ distance/1 Dataset {60}
-/7/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk Group
-/7/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk/1 Dataset {360}
+/7/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk&&td Group
+/7/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk&&td/1 Dataset {420}
 /7/Simra-1/fields/u_x,x  Group
 /7/Simra-1/fields/u_x,x/1 Dataset {60}
 /7/Simra-1/fields/u_x,y  Group
@@ -1240,12 +1224,10 @@ Box.xinp
 /8/Simra-1/fields/sigma_zz/1 Dataset {60}
 /8/Simra-1/fields/strat  Group
 /8/Simra-1/fields/strat/1 Dataset {60}
-/8/Simra-1/fields/td     Group
-/8/Simra-1/fields/td/1   Dataset {60}
 /8/Simra-1/fields/terrain\ distance Group
 /8/Simra-1/fields/terrain\ distance/1 Dataset {60}
-/8/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk Group
-/8/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk/1 Dataset {360}
+/8/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk&&td Group
+/8/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk&&td/1 Dataset {420}
 /8/Simra-1/fields/u_x,x  Group
 /8/Simra-1/fields/u_x,x/1 Dataset {60}
 /8/Simra-1/fields/u_x,y  Group
@@ -1384,12 +1366,10 @@ Box.xinp
 /9/Simra-1/fields/sigma_zz/1 Dataset {60}
 /9/Simra-1/fields/strat  Group
 /9/Simra-1/fields/strat/1 Dataset {60}
-/9/Simra-1/fields/td     Group
-/9/Simra-1/fields/td/1   Dataset {60}
 /9/Simra-1/fields/terrain\ distance Group
 /9/Simra-1/fields/terrain\ distance/1 Dataset {60}
-/9/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk Group
-/9/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk/1 Dataset {360}
+/9/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk&&td Group
+/9/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT&&tk&&td/1 Dataset {420}
 /9/Simra-1/fields/u_x,x  Group
 /9/Simra-1/fields/u_x,x/1 Dataset {60}
 /9/Simra-1/fields/u_x,y  Group

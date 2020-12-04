@@ -21,7 +21,7 @@
 
 
 SIMSimraProject::SIMSimraProject() :
-  SIMSimraBase(6)
+  SIMSimraBase(7)
 {
   myProblem = &itg;
 }
@@ -213,13 +213,14 @@ Vector SIMSimraProject::getSolution() const
   if (solution.empty())
     return {};
 
-  Matrix stmp(6, this->getPatch(1)->getNoNodes());
+  Matrix stmp(7, this->getPatch(1)->getNoNodes());
   stmp.fillRow(1, solution[0].data());
   stmp.fillRow(2, solution[1].data());
   stmp.fillRow(3, solution[2].data());
   stmp.fillRow(4, solution[6].data());
   stmp.fillRow(5, solution[7].data());
   stmp.fillRow(6, solution[4].data());
+  stmp.fillRow(7, solution[5].data());
 
   return stmp;
 }
@@ -459,16 +460,16 @@ void SIMSimraProject::printNormGroup(const Vector& rNorm,
 void SIMSimraProject::registerFields(DataExporter& exporter, const Vector& sol,
                                      const Vectors& projs, const Matrix& eNorm) const
 {
-  exporter.registerField("u and vtef and pT and tk", "u and vtef and pT and tk",
+  exporter.registerField("solution",
                          DataExporter::SIM,
                          DataExporter::PRIMARY |
                          DataExporter::SECONDARY |
                          DataExporter::NORMS);
-  exporter.setFieldValue("u and vtef and pT and tk",this,&sol,&projs,&eNorm);
+  exporter.setFieldValue("solution",this,&sol,&projs,&eNorm);
   static constexpr const char* names[] =
     {"u_x", "u_y", "u_z", "ps", "tk", "td",
      "vtef", "pT", "pts", "rho", "rhos", "strat"};
-  for (int i : {3,5,8,9,10,11}) {
+  for (int i : {3,8,9,10,11}) {
     exporter.registerField(names[i], names[i],
                            DataExporter::SIM, -DataExporter::PRIMARY, "", 1);
     exporter.setFieldValue(names[i], this, &solution[i]);

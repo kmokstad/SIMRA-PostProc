@@ -8,8 +8,8 @@ Box.xinp
 	Not including temperature terms
 Number of elements    24
 Number of nodes       60
-Number of dofs        360
-Number of unknowns    360
+Number of dofs        420
+Number of unknowns    420
   step=1  time=0.001
 Solving the terrain-distance problem.
 Number of elements    24

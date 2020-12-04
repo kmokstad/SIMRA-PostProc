@@ -23,7 +23,7 @@
 SimraIntegrand::SimraIntegrand () : IntegrandBase(3)
 {
   primsol.resize(1);
-  npv = 6;
+  npv = 7;
 }
 
 
@@ -82,6 +82,12 @@ double SimraIntegrand::TKE(const FiniteElement& fe,
                            const Vectors& vec) const
 {
   return vec[0].dot(fe.N, 5, npv);
+}
+
+double SimraIntegrand::TD(const FiniteElement& fe,
+                          const Vectors& vec) const
+{
+  return vec[0].dot(fe.N, 6, npv);
 }
 
 
@@ -165,9 +171,9 @@ size_t SimraIntegrand::getNoFields (int fld) const
 
 std::string SimraIntegrand::getField1Name (size_t i, const char* prefix) const
 {
-  static const char* s[6] = { "u_x", "u_y", "u_z", "vtef", "pT", "tk"};
+  static const char* s[7] = { "u_x", "u_y", "u_z", "vtef", "pT", "tk", "td"};
   if (i == 11)
-    return "u_x&&u_y&&u_z&&vtef&&pT&&tk";
+    return "u_x&&u_y&&u_z&&vtef&&pT&&tk&&td";
 
   return prefix ? prefix + std::string(" ") + s[i] : s[i];
 }
