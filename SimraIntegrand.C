@@ -123,7 +123,7 @@ bool SimraIntegrand::evalSol2(Vector& s, const Vectors& elmVec,
 
 size_t SimraIntegrand::getNoFields (int fld) const
 {
-  return fld < 2 ? 4 : nsd*nsd + 1 + nsd*nsd + nsd;
+  return fld < 2 ? 5 : nsd*nsd + 1 + nsd*nsd + nsd;
 }
 
 
