@@ -20,34 +20,9 @@
 
 
 SIMSimraProject::SIMSimraProject() :
-  SIM3D(5)
+  SIMSimraBase(5)
 {
   myProblem = &itg;
-}
-
-
-ASMbase* SIMSimraProject::readPatch(std::istream &isp, int pchInd,
-                                    const CharVec &unf, const char *whiteSpace) const
-{
-  ASMs3DSimra* pch = new ASMs3DSimra(5);
-  if (pch)
-  {
-    if (!pch->read(isp) || this->getLocalPatchIndex(pchInd+1) < 1)
-    {
-      delete pch;
-      pch = nullptr;
-    }
-    else
-    {
-      if (whiteSpace)
-        IFEM::cout << whiteSpace <<"Reading patch "<< pchInd+1 << std::endl;
-      if (checkRHSys && dynamic_cast<ASM3D*>(pch)->checkRightHandSystem())
-        IFEM::cout <<"\tSwapped."<< std::endl;
-      pch->idx = myModel.size();
-    }
-  }
-
-  return pch;
 }
 
 

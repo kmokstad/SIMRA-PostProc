@@ -15,6 +15,7 @@
 
 #include "SIM3D.h"
 #include "SimraIntegrand.h"
+#include "SIMSimraBase.h"
 
 #include <fstream>
 
@@ -25,21 +26,13 @@ class DataExporter;
   \brief Simulation driver for projection of SIMRA results.
 */
 
-class SIMSimraProject : public SIM3D {
+class SIMSimraProject : public SIMSimraBase {
 public:
   //! \brief Default constructor.
   SIMSimraProject();
 
   //! \brief Empty destructor.
   virtual ~SIMSimraProject() { myInts.clear(); myProblem = nullptr; }
-
-  //! \brief Reads a patch from given input stream.
-  //! \param[in] isp The input stream to read from
-  //! \param[in] pchInd 0-based index of the patch to read
-  //! \param[in] unf Number of unknowns per basis function for each field
-  //! \param[in] whiteSpace For message formatting
-  ASMbase* readPatch(std::istream& isp, int pchInd, const CharVec& unf,
-                     const char* whiteSpace) const override;
 
   //! \brief Read results from the result file.
   bool readResults();
