@@ -16,6 +16,7 @@
 #include "DataExporter.h"
 #include "HDF5Writer.h"
 #include "SIMenums.h"
+#include "SIMFSWallDistance.h"
 #include "SIMSimraProject.h"
 #include "Profiler.h"
 #include "SIMargsBase.h"
@@ -107,9 +108,22 @@ int main (int argc, char** argv)
   int iStep = 1;
   std::vector<std::string> prefix;
   while (model.readResults()) {
+
     IFEM::cout << "\n  step=" << iStep << "  time=" << model.getSolutionTime() << std::endl;
     if (exporter && iStep == 1)
       model.registerFields(*exporter, sol, projs, eNorm);
+
+    if (iStep == 1) {
+      Vector& dist = model.getDistance();
+      if (!dist.empty()) {
+        if (!model.orthogonalDistance()) {
+          if (!SIMFSWallDistance::solveProblem(dist, argv[1])) {
+            std::cerr << "Error solving terrain distance problem." << std::endl;
+            return 6;
+          }
+        }
+      }
+    }
 
     // Project the secondary solution
     sol = model.getSolution();
@@ -160,6 +174,9 @@ int main (int argc, char** argv)
         std::cerr << "Error writing norms to VTF" << std::endl;;
         return 9;
       }
+
+      if (iStep == 1 && !model.getDistance().empty())
+        model.writeGlvS(model.getDistance(), "terrain distance", iStep, nBlock, 110);
 
       model.writeGlvStep(iStep, model.getSolutionTime(), 0);
     }

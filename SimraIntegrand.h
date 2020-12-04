@@ -106,6 +106,7 @@ public:
                            const Vectors& vec) const;
 
   Vector elmPressure; //!< Element-wise pressures
+  Vector dist; //!< Wall distance
 };
 
 

@@ -15,6 +15,7 @@
 #include "ASMs3DSimra.h"
 #include "IFEM.h"
 #include "Utilities.h"
+#include "Vec3Oper.h"
 
 #include <tinyxml.h>
 
@@ -50,6 +51,17 @@ bool SIMSimraProject::parse(const TiXmlElement *elem)
       } else if (!strcasecmp(child->Value(),"no_stratification")) {
         stratified = false;
         IFEM::cout << "\tNot including temperature terms" << std::endl;
+      } else if (!strcasecmp(child->Value(),"no_yplus")) {
+        calcYp = false;
+        IFEM::cout << "\tNot calculating y+ term" << std::endl;
+      } else if (!strcasecmp(child->Value(),"distance")) {
+        std::string type;
+        utl::getAttribute(child,"type",type);
+        if (type == "orthogonal") {
+          useOrthogonalMesh = true;
+          IFEM::cout << "\tCalculating terrain distance assuming orthogonal mesh lines." << std::endl;
+        } else
+          IFEM::cout << "\tCalculating terrain distance using Fares-Schröder approximation." << std::endl;
       } else if (!strcasecmp(child->Value(),"anasol")) {
           std::string type;
           utl::getAttribute(child,"type",type,true);
@@ -59,6 +71,9 @@ bool SIMSimraProject::parse(const TiXmlElement *elem)
           } else
             std::cerr <<"  ** SIMSimraProject::parse: Invalid analytical solution "
                          << type <<" (ignored)"<< std::endl;
+      } else {
+        if (!this->SIM3D::parse(child))
+          return false;
       }
 
     return true;
@@ -206,7 +221,18 @@ Vector SIMSimraProject::getSolution() const
 }
 
 
- bool SIMSimraProject::postProcessNorms(Vectors& gNorm, Matrix* eNormp)
+Vector& SIMSimraProject::getDistance()
+{
+  if (calcYp)
+   itg.dist.resize(this->getNoNodes());
+  else
+    itg.dist.clear();
+
+  return itg.dist;
+}
+
+
+ bool SIMSimraProject::postProcessNorms(Vectors&, Matrix* eNormp)
  {
    if (!eNormp || !mySol)
      return true;
@@ -443,6 +469,30 @@ void SIMSimraProject::registerFields(DataExporter& exporter, const Vector& sol,
                            DataExporter::SIM, -DataExporter::PRIMARY, "", 1);
     exporter.setFieldValue(names[i], this, &solution[i]);
   }
+  if (calcYp) {
+    exporter.registerField("terrain distance", "terrain distance",
+                           DataExporter::SIM,-DataExporter::PRIMARY, "", 1);
+    exporter.setFieldValue("terrain distance", this, &itg.dist);
+  }
   exporter.registerField("p", "p", DataExporter::KNOTSPAN);
   exporter.setFieldValue("p", this, &itg.elmPressure);
+}
+
+
+bool SIMSimraProject::orthogonalDistance()
+{
+  if (!useOrthogonalMesh)
+    return false;
+
+  std::array<size_t,3> n;
+  const ASMs3DSimra* pch = static_cast<const ASMs3DSimra*>(this->getPatch(1));
+  pch->getNoStructNodes(n[0],n[1],n[2]);
+
+  size_t idx = n[0]*n[1]+1;
+  for (size_t nz = 2; nz <= n[2]; ++nz)
+    for (size_t ny = 1; ny <= n[1]; ++ny)
+      for (size_t nx = 1; nx <= n[0]; ++nx, ++idx)
+        itg.dist(idx) = (pch->getCoord(idx)-pch->getCoord((ny-1)*n[0]+nx)).length();
+
+  return true;
 }

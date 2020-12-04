@@ -14,10 +14,18 @@ if(NOT IFEM_CONFIGURED)
 endif()
 
 set(SIMRA_SRCS ASMs3DSimra.C
+               FSWallDistance.C
                main_PostProc.C
                SimraIntegrand.C
+               SIMFSWallDistance.C
                SIMSimraBase.C
-               SIMSimraProject.C)
+               SIMSimraProject.C
+               ASMs3DSimra.h
+               FSWallDistance.h
+               SIMFSWallDistance.h
+               SimraIntegrand.h
+               SIMSimraProject.h
+               SIMSimraBase.h)
 
 include_directories(${IFEM_INCLUDES} ${PROJECT_SOURCE_DIR} ../Common)
 

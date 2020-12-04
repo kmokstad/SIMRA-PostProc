@@ -5,7 +5,22 @@
   <!-- General - geometry definitions !-->
   <geometry>
     <patchfile>Box.dat</patchfile>
+    <topologysets>
+      <set name="Bottom" type="face">
+        <item patch="1">5</item>
+      </set>
+    </topologysets>
   </geometry>
+
+  <fswalldistance>
+    <boundaryconditions>
+      <dirichlet set="Bottom" comp="-1" type="constant">1</dirichlet>
+    </boundaryconditions>
+    <wall_value>1</wall_value>
+    <nonlinearsolver>
+      <dtol>1e3</dtol>
+    </nonlinearsolver>
+  </fswalldistance>
 
   <discretization>
     <nGauss>2 2</nGauss>

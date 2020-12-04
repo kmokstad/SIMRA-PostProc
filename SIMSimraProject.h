@@ -43,6 +43,9 @@ public:
   //! \brief Returns primary solution vector.
   Vector getSolution() const;
 
+  //! \brief Returns a reference to wall distance.
+  Vector& getDistance();
+
   //! \brief Write all solution vectors to VTF.
   //! \param nBlock Running VTF block counter
   //! \param sol Primary solution vectors
@@ -62,11 +65,15 @@ public:
   //! \brief Name for data exporter.
   std::string getName() const override { return "Simra"; }
 
+  //! \brief Returns whether to calculate terrain distance based on orthogonal mesh.
+  //! \details If enabled, this function also calculates the distance
+  bool orthogonalDistance();
+
 protected:
   //! \brief Prints a norm group to the log stream.
   void printNormGroup(const Vector& rNorm,
                       const Vector& fNorm,
-                      const std::string& name) const;
+                      const std::string& name) const override;
 
   //! \brief Print exact solution and error norms.
   void printExactNorms(const Vector& gNorm, size_t w) const;
@@ -85,6 +92,8 @@ protected:
   std::string resultFile; //!< File with result vectors
   Vectors solution; //!< Solution vector
   bool stratified = true; //!< Include temperature
+  bool calcYp = true; //!< True to calculate y+ term
+  bool useOrthogonalMesh = false; //!< True to assume terrain-orthogonal mesh lines.
   double solTime; //!< Solution time
   double uRef = 1.0; //!< Reference velocity value
   double lRef = 1.0; //!< Reference length scale

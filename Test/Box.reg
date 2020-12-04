@@ -10,6 +10,14 @@ Number of nodes       60
 Number of dofs        300
 Number of unknowns    300
   step=1  time=0.001
+Solving the terrain-distance problem.
+Number of elements    24
+Number of nodes       60
+Number of dofs        60
+Number of constraints 12
+Number of unknowns    48
+  Primary solution summary: L2-norm      : 0.753735
+                            Max value    : 1
   L2 norm |p^h| = (p^h,p^h)^0.5      : 418.893
   L2 norm |u^h| = (u^h,u^h)^0.5      : 0.888041
   H1 norm |u^h| = a(u^h,u^h)^0.5     : 1.24329
