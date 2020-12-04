@@ -16,6 +16,7 @@
 #include "ElmNorm.h"
 #include "FiniteElement.h"
 #include "TensorFunction.h"
+#include "Utilities.h"
 #include "Vec3Oper.h"
 
 
@@ -120,9 +121,12 @@ bool SimraIntegrand::initElement(const std::vector<int>& MNPC,
 }
 
 
-bool SimraIntegrand::evalSol2(Vector& s, const Vectors& elmVec,
-                              const FiniteElement& fe, const Vec3&) const
+bool SimraIntegrand::evalSol(Vector& s, const FiniteElement& fe,
+                             const Vec3&, const std::vector<int>& MNPC) const
 {
+  ElmMats elmInt;
+  const_cast<SimraIntegrand*>(this)->initElement(MNPC, elmInt);
+  Vectors& elmVec = elmInt.vec;
   Tensor grad(nsd);
   this->velocityGradient(fe, grad, elmVec);
 
@@ -141,13 +145,21 @@ bool SimraIntegrand::evalSol2(Vector& s, const Vectors& elmVec,
   s.push_back(dT[1]);
   s.push_back(dT[2]);
 
+  if (!dist.empty()) {
+    double yp = elmVec.back().dot(fe.N);
+    static constexpr double Cmu = 0.09;
+    double tke = this->TKE(fe, elmVec);
+    double utau = pow(Cmu, 0.25) * sqrt(tke);
+    s.push_back(yp*utau/nu);
+  }
+
   return true;
 }
 
 
 size_t SimraIntegrand::getNoFields (int fld) const
 {
-  return fld < 2 ? 6 : nsd*nsd + 1 + nsd*nsd + nsd;
+  return fld < 2 ? 6 : nsd*nsd + 1 + nsd*nsd + nsd + (dist.empty() ? 0 : 1);
 }
 
 
@@ -171,7 +183,7 @@ std::string SimraIntegrand::getField2Name (size_t i, const char* prefix) const
                               "sigma_xx", "sigma_yx", "sigma_zx",
                               "sigma_xy", "sigma_yy", "sigma_zy",
                               "sigma_xz", "sigma_yz", "sigma_zz",
-                              "pT,x", "pT,y", "pT,z" };
+                              "pT,x", "pT,y", "pT,z", "y+"};
   std::string n(s3[i]);
 
   return prefix ? prefix + std::string(" ") + n : n;

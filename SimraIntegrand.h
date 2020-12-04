@@ -33,13 +33,24 @@ public:
   //! \brief Empty destructor.
   virtual ~SimraIntegrand() {}
 
+  using IntegrandBase::initElement;
+  //! \brief Initializes current element for numerical integration.
+  //! \param[in] MNPC Matrix of nodal point correspondance for current element
+  //! \param elmInt Local integral for element
+  //!
+  //! \details This method is invoked once before starting the numerical
+  //! integration loop over the Gaussian quadrature points over an element.
+  //! It is supposed to perform all the necessary internal initializations
+  //! needed before the numerical integration is started for current element.
+  bool initElement(const std::vector<int>& MNPC, LocalIntegral& elmInt) override;
+
   //! \brief Evaluates the secondary solution at a result point.
   //! \param[out] s The solution field values at current point
-  //! \param[in] elmVec Element-level primary solution vectors
   //! \param[in] fe Finite element data at current point
   //! \param[in] X Cartesian coordinates of current point
-  bool evalSol2(Vector& s, const Vectors& elmVec,
-                const FiniteElement& fe, const Vec3& X) const override;
+  //! \param[in] MNPC Nodal point correspondance for the basis function values
+  bool evalSol(Vector& s, const FiniteElement& fe, const Vec3& X,
+               const std::vector<int>& MNPC) const override;
 
   //! \brief Returns a pointer to an Integrand for solution norm evaluation.
   //! \note The Integrand object is allocated dynamically and has to be deleted
