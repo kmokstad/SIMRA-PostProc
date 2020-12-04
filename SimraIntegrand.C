@@ -22,7 +22,7 @@
 SimraIntegrand::SimraIntegrand () : IntegrandBase(3)
 {
   primsol.resize(1);
-  npv = 5;
+  npv = 6;
 }
 
 
@@ -77,6 +77,13 @@ double SimraIntegrand::viscosity(const FiniteElement& fe, const Vectors& vec) co
 }
 
 
+double SimraIntegrand::TKE(const FiniteElement& fe,
+                           const Vectors& vec) const
+{
+  return vec[0].dot(fe.N, 5, npv);
+}
+
+
 void SimraIntegrand::stress (const FiniteElement& fe, Tensor& sigma,
                              const Vectors& vec) const
 {
@@ -123,15 +130,15 @@ bool SimraIntegrand::evalSol2(Vector& s, const Vectors& elmVec,
 
 size_t SimraIntegrand::getNoFields (int fld) const
 {
-  return fld < 2 ? 5 : nsd*nsd + 1 + nsd*nsd + nsd;
+  return fld < 2 ? 6 : nsd*nsd + 1 + nsd*nsd + nsd;
 }
 
 
 std::string SimraIntegrand::getField1Name (size_t i, const char* prefix) const
 {
-  static const char* s[5] = { "u_x", "u_y", "u_z", "vtef", "pT"};
+  static const char* s[6] = { "u_x", "u_y", "u_z", "vtef", "pT", "tk"};
   if (i == 11)
-    return "u_x&&u_y&&u_z&&vtef&&pT";
+    return "u_x&&u_y&&u_z&&vtef&&pT&&tk";
 
   return prefix ? prefix + std::string(" ") + s[i] : s[i];
 }

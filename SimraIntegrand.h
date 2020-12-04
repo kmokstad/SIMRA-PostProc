@@ -94,6 +94,11 @@ public:
   //! \param[in] vec Primary solution vector for current element
   double viscosity(const FiniteElement& fe, const Vectors& vec) const;
 
+  //! \brief Calculates the turbulent kinetic energy at current point.
+  //! \param[in] fe Finite element data of current integration point
+  //! \param[in] vec Primary solution vector for current element
+  double TKE(const FiniteElement& fe, const Vectors& vec) const;
+
   //! \brief Calculates the temperature at current point.
   //! \param[in] fe Finite element data of current integration point
   //! \param[in] vec Primary solution vector for current element
