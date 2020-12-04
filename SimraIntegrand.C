@@ -103,8 +103,25 @@ void SimraIntegrand::strain (Tensor& eps) const
 }
 
 
+bool SimraIntegrand::initElement(const std::vector<int>& MNPC,
+                                 LocalIntegral& elmInt)
+{
+  if (!this->IntegrandBase::initElement(MNPC, elmInt))
+    return false;
+  int ierr = 0;
+  if (!dist.empty()) {
+    elmInt.vec.resize(elmInt.vec.size()+1);
+    ierr = utl::gather(MNPC,1,dist,elmInt.vec.back());
+    if (ierr != 0)
+      std::cerr << "*** Error extract distance" << std::endl;
+  }
+
+  return ierr == 0;
+}
+
+
 bool SimraIntegrand::evalSol2(Vector& s, const Vectors& elmVec,
-                              const FiniteElement& fe, const Vec3& X) const
+                              const FiniteElement& fe, const Vec3&) const
 {
   Tensor grad(nsd);
   this->velocityGradient(fe, grad, elmVec);
