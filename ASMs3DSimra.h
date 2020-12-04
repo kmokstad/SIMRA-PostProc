@@ -28,7 +28,8 @@ public:
   static bool useDouble; //!< True to use double precision
 
   //! \brief Default constructor.
-  ASMs3DSimra();
+  //! \param nf Number of primary solution fields
+  ASMs3DSimra(size_t nf);
   //! \brief Empty destructor.
   virtual ~ASMs3DSimra() {}
 

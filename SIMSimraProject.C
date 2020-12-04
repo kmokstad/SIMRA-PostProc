@@ -29,7 +29,7 @@ SIMSimraProject::SIMSimraProject() :
 ASMbase* SIMSimraProject::readPatch(std::istream &isp, int pchInd,
                                     const CharVec &unf, const char *whiteSpace) const
 {
-  ASMs3DSimra* pch = new ASMs3DSimra;
+  ASMs3DSimra* pch = new ASMs3DSimra(5);
   if (pch)
   {
     if (!pch->read(isp) || this->getLocalPatchIndex(pchInd+1) < 1)

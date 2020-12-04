@@ -24,8 +24,8 @@
 bool ASMs3DSimra::useDouble = false;
 
 
-ASMs3DSimra::ASMs3DSimra ()
-  : ASMs3DLag(5)
+ASMs3DSimra::ASMs3DSimra (size_t nf)
+  : ASMs3DLag(nf)
 {
 }
 
