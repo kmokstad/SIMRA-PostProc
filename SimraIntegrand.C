@@ -65,7 +65,7 @@ Vec3 SimraIntegrand::temperatureGradient(const FiniteElement& fe,
 }
 
 
-double SimraIntegrand::pressure(const FiniteElement& fe, const Vectors& vec) const
+double SimraIntegrand::pressure(const FiniteElement& fe) const
 {
   return elmPressure.empty() ? 0.0 : elmPressure[fe.iel-1];
 }
@@ -90,7 +90,7 @@ void SimraIntegrand::stress (const FiniteElement& fe, Tensor& sigma,
   this->velocityGradient(fe,sigma,vec);
   this->strain(sigma);
   sigma *= 2.0*this->viscosity(fe, vec);
-  sigma -= this->pressure(fe,vec);
+  sigma -= this->pressure(fe);
 }
 
 
@@ -112,7 +112,7 @@ bool SimraIntegrand::evalSol2(Vector& s, const Vectors& elmVec,
   s.reserve(this->getNoFields(2));
   s = grad;
 
-  s.push_back(this->pressure(fe, elmVec));
+  s.push_back(this->pressure(fe));
 
   Tensor sigma(nsd);
   this->stress(fe, sigma, elmVec);
@@ -183,7 +183,7 @@ bool SimraNorm::evalInt (LocalIntegral& elmInt, const FiniteElement& fe,
   size_t nsd   = fe.dNdX.cols();
 
   // Computed pressure
-  double Ph = problem.pressure(fe, elmInt.vec);
+  double Ph = problem.pressure(fe);
 
   // Computed velocity
   Vec3 Uh = problem.velocity(fe, elmInt.vec);

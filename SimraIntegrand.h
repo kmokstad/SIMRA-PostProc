@@ -86,8 +86,7 @@ public:
 
   //! \brief Calculates the pressure at current point.
   //! \param[in] fe Finite element data of current integration point
-  //! \param[in] vec Primary solution vector for current element
-  double pressure(const FiniteElement& fe, const Vectors& vec) const;
+  double pressure(const FiniteElement& fe) const;
 
   //! \brief Calculates the viscosity at current point.
   //! \param[in] fe Finite element data of current integration point
