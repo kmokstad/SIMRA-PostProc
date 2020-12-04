@@ -1,0 +1,1385 @@
+Box.xinp
+
+/                        Group
+/0                       Group
+/0/Simra-1               Group
+/0/Simra-1/basis         Group
+/0/Simra-1/basis/1       Dataset {1407}
+/0/Simra-1/fields        Group
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ p-rec Group
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ p-rec/1 Dataset {60}
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ pT,x Group
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ pT,x/1 Dataset {60}
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ pT,y Group
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ pT,y/1 Dataset {60}
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ pT,z Group
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ pT,z/1 Dataset {60}
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xx Group
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xx/1 Dataset {60}
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xy Group
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xy/1 Dataset {60}
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xz Group
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xz/1 Dataset {60}
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yx Group
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yx/1 Dataset {60}
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yy Group
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yy/1 Dataset {60}
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yz Group
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yz/1 Dataset {60}
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zx Group
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zx/1 Dataset {60}
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zy Group
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zy/1 Dataset {60}
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zz Group
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zz/1 Dataset {60}
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,x Group
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,x/1 Dataset {60}
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,y Group
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,y/1 Dataset {60}
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,z Group
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,z/1 Dataset {60}
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,x Group
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,x/1 Dataset {60}
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,y Group
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,y/1 Dataset {60}
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,z Group
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,z/1 Dataset {60}
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,x Group
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,x/1 Dataset {60}
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,y Group
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,y/1 Dataset {60}
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,z Group
+/0/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,z/1 Dataset {60}
+/0/Simra-1/fields/p-rec  Group
+/0/Simra-1/fields/p-rec/1 Dataset {60}
+/0/Simra-1/fields/pT,x   Group
+/0/Simra-1/fields/pT,x/1 Dataset {60}
+/0/Simra-1/fields/pT,y   Group
+/0/Simra-1/fields/pT,y/1 Dataset {60}
+/0/Simra-1/fields/pT,z   Group
+/0/Simra-1/fields/pT,z/1 Dataset {60}
+/0/Simra-1/fields/ps     Group
+/0/Simra-1/fields/ps/1   Dataset {60}
+/0/Simra-1/fields/pts    Group
+/0/Simra-1/fields/pts/1  Dataset {60}
+/0/Simra-1/fields/rho    Group
+/0/Simra-1/fields/rho/1  Dataset {60}
+/0/Simra-1/fields/rhos   Group
+/0/Simra-1/fields/rhos/1 Dataset {60}
+/0/Simra-1/fields/sigma_xx Group
+/0/Simra-1/fields/sigma_xx/1 Dataset {60}
+/0/Simra-1/fields/sigma_xy Group
+/0/Simra-1/fields/sigma_xy/1 Dataset {60}
+/0/Simra-1/fields/sigma_xz Group
+/0/Simra-1/fields/sigma_xz/1 Dataset {60}
+/0/Simra-1/fields/sigma_yx Group
+/0/Simra-1/fields/sigma_yx/1 Dataset {60}
+/0/Simra-1/fields/sigma_yy Group
+/0/Simra-1/fields/sigma_yy/1 Dataset {60}
+/0/Simra-1/fields/sigma_yz Group
+/0/Simra-1/fields/sigma_yz/1 Dataset {60}
+/0/Simra-1/fields/sigma_zx Group
+/0/Simra-1/fields/sigma_zx/1 Dataset {60}
+/0/Simra-1/fields/sigma_zy Group
+/0/Simra-1/fields/sigma_zy/1 Dataset {60}
+/0/Simra-1/fields/sigma_zz Group
+/0/Simra-1/fields/sigma_zz/1 Dataset {60}
+/0/Simra-1/fields/strat  Group
+/0/Simra-1/fields/strat/1 Dataset {60}
+/0/Simra-1/fields/td     Group
+/0/Simra-1/fields/td/1   Dataset {60}
+/0/Simra-1/fields/tk     Group
+/0/Simra-1/fields/tk/1   Dataset {60}
+/0/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT Group
+/0/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT/1 Dataset {300}
+/0/Simra-1/fields/u_x,x  Group
+/0/Simra-1/fields/u_x,x/1 Dataset {60}
+/0/Simra-1/fields/u_x,y  Group
+/0/Simra-1/fields/u_x,y/1 Dataset {60}
+/0/Simra-1/fields/u_x,z  Group
+/0/Simra-1/fields/u_x,z/1 Dataset {60}
+/0/Simra-1/fields/u_y,x  Group
+/0/Simra-1/fields/u_y,x/1 Dataset {60}
+/0/Simra-1/fields/u_y,y  Group
+/0/Simra-1/fields/u_y,y/1 Dataset {60}
+/0/Simra-1/fields/u_y,z  Group
+/0/Simra-1/fields/u_y,z/1 Dataset {60}
+/0/Simra-1/fields/u_z,x  Group
+/0/Simra-1/fields/u_z,x/1 Dataset {60}
+/0/Simra-1/fields/u_z,y  Group
+/0/Simra-1/fields/u_z,y/1 Dataset {60}
+/0/Simra-1/fields/u_z,z  Group
+/0/Simra-1/fields/u_z,z/1 Dataset {60}
+/0/Simra-1/knotspan      Group
+/0/Simra-1/knotspan/Continuous\ global\ L2-projection\ |(u^*,p^*,pT^*)-(u^h,p^h,pT^h)| Group
+/0/Simra-1/knotspan/Continuous\ global\ L2-projection\ |(u^*,p^*,pT^*)-(u^h,p^h,pT^h)|/1 Dataset {24}
+/0/Simra-1/knotspan/Continuous\ global\ L2-projection\ |div\ u^*|_L2 Group
+/0/Simra-1/knotspan/Continuous\ global\ L2-projection\ |div\ u^*|_L2/1 Dataset {24}
+/0/Simra-1/knotspan/Continuous\ global\ L2-projection\ |pT^*-pT^h|_H1 Group
+/0/Simra-1/knotspan/Continuous\ global\ L2-projection\ |pT^*-pT^h|_H1/1 Dataset {24}
+/0/Simra-1/knotspan/Continuous\ global\ L2-projection\ |p^*-p^h|_L2 Group
+/0/Simra-1/knotspan/Continuous\ global\ L2-projection\ |p^*-p^h|_L2/1 Dataset {24}
+/0/Simra-1/knotspan/Continuous\ global\ L2-projection\ |s^*-s^h|_L2 Group
+/0/Simra-1/knotspan/Continuous\ global\ L2-projection\ |s^*-s^h|_L2/1 Dataset {24}
+/0/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u^h|_H1 Group
+/0/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u^h|_H1/1 Dataset {24}
+/0/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u|_H1 Group
+/0/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u|_H1/1 Dataset {24}
+/0/Simra-1/knotspan/p    Group
+/0/Simra-1/knotspan/p/1  Dataset {24}
+/0/Simra-1/knotspan/|div\ u^h|_L2 Group
+/0/Simra-1/knotspan/|div\ u^h|_L2/1 Dataset {24}
+/0/Simra-1/knotspan/|pT^h|_H1 Group
+/0/Simra-1/knotspan/|pT^h|_H1/1 Dataset {24}
+/0/Simra-1/knotspan/|pT^h|_L2 Group
+/0/Simra-1/knotspan/|pT^h|_L2/1 Dataset {24}
+/0/Simra-1/knotspan/|p^h|_L2 Group
+/0/Simra-1/knotspan/|p^h|_L2/1 Dataset {24}
+/0/Simra-1/knotspan/|s^h|_L2 Group
+/0/Simra-1/knotspan/|s^h|_L2/1 Dataset {24}
+/0/Simra-1/knotspan/|u^h|_H1 Group
+/0/Simra-1/knotspan/|u^h|_H1/1 Dataset {24}
+/0/Simra-1/knotspan/|u^h|_L2 Group
+/0/Simra-1/knotspan/|u^h|_L2/1 Dataset {24}
+/1                       Group
+/1/Simra-1               Group
+/1/Simra-1/fields        Group
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ p-rec Group
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ p-rec/1 Dataset {60}
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ pT,x Group
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ pT,x/1 Dataset {60}
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ pT,y Group
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ pT,y/1 Dataset {60}
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ pT,z Group
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ pT,z/1 Dataset {60}
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xx Group
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xx/1 Dataset {60}
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xy Group
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xy/1 Dataset {60}
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xz Group
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xz/1 Dataset {60}
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yx Group
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yx/1 Dataset {60}
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yy Group
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yy/1 Dataset {60}
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yz Group
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yz/1 Dataset {60}
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zx Group
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zx/1 Dataset {60}
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zy Group
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zy/1 Dataset {60}
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zz Group
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zz/1 Dataset {60}
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,x Group
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,x/1 Dataset {60}
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,y Group
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,y/1 Dataset {60}
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,z Group
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,z/1 Dataset {60}
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,x Group
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,x/1 Dataset {60}
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,y Group
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,y/1 Dataset {60}
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,z Group
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,z/1 Dataset {60}
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,x Group
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,x/1 Dataset {60}
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,y Group
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,y/1 Dataset {60}
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,z Group
+/1/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,z/1 Dataset {60}
+/1/Simra-1/fields/p-rec  Group
+/1/Simra-1/fields/p-rec/1 Dataset {60}
+/1/Simra-1/fields/pT,x   Group
+/1/Simra-1/fields/pT,x/1 Dataset {60}
+/1/Simra-1/fields/pT,y   Group
+/1/Simra-1/fields/pT,y/1 Dataset {60}
+/1/Simra-1/fields/pT,z   Group
+/1/Simra-1/fields/pT,z/1 Dataset {60}
+/1/Simra-1/fields/ps     Group
+/1/Simra-1/fields/ps/1   Dataset {60}
+/1/Simra-1/fields/pts    Group
+/1/Simra-1/fields/pts/1  Dataset {60}
+/1/Simra-1/fields/rho    Group
+/1/Simra-1/fields/rho/1  Dataset {60}
+/1/Simra-1/fields/rhos   Group
+/1/Simra-1/fields/rhos/1 Dataset {60}
+/1/Simra-1/fields/sigma_xx Group
+/1/Simra-1/fields/sigma_xx/1 Dataset {60}
+/1/Simra-1/fields/sigma_xy Group
+/1/Simra-1/fields/sigma_xy/1 Dataset {60}
+/1/Simra-1/fields/sigma_xz Group
+/1/Simra-1/fields/sigma_xz/1 Dataset {60}
+/1/Simra-1/fields/sigma_yx Group
+/1/Simra-1/fields/sigma_yx/1 Dataset {60}
+/1/Simra-1/fields/sigma_yy Group
+/1/Simra-1/fields/sigma_yy/1 Dataset {60}
+/1/Simra-1/fields/sigma_yz Group
+/1/Simra-1/fields/sigma_yz/1 Dataset {60}
+/1/Simra-1/fields/sigma_zx Group
+/1/Simra-1/fields/sigma_zx/1 Dataset {60}
+/1/Simra-1/fields/sigma_zy Group
+/1/Simra-1/fields/sigma_zy/1 Dataset {60}
+/1/Simra-1/fields/sigma_zz Group
+/1/Simra-1/fields/sigma_zz/1 Dataset {60}
+/1/Simra-1/fields/strat  Group
+/1/Simra-1/fields/strat/1 Dataset {60}
+/1/Simra-1/fields/td     Group
+/1/Simra-1/fields/td/1   Dataset {60}
+/1/Simra-1/fields/tk     Group
+/1/Simra-1/fields/tk/1   Dataset {60}
+/1/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT Group
+/1/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT/1 Dataset {300}
+/1/Simra-1/fields/u_x,x  Group
+/1/Simra-1/fields/u_x,x/1 Dataset {60}
+/1/Simra-1/fields/u_x,y  Group
+/1/Simra-1/fields/u_x,y/1 Dataset {60}
+/1/Simra-1/fields/u_x,z  Group
+/1/Simra-1/fields/u_x,z/1 Dataset {60}
+/1/Simra-1/fields/u_y,x  Group
+/1/Simra-1/fields/u_y,x/1 Dataset {60}
+/1/Simra-1/fields/u_y,y  Group
+/1/Simra-1/fields/u_y,y/1 Dataset {60}
+/1/Simra-1/fields/u_y,z  Group
+/1/Simra-1/fields/u_y,z/1 Dataset {60}
+/1/Simra-1/fields/u_z,x  Group
+/1/Simra-1/fields/u_z,x/1 Dataset {60}
+/1/Simra-1/fields/u_z,y  Group
+/1/Simra-1/fields/u_z,y/1 Dataset {60}
+/1/Simra-1/fields/u_z,z  Group
+/1/Simra-1/fields/u_z,z/1 Dataset {60}
+/1/Simra-1/knotspan      Group
+/1/Simra-1/knotspan/Continuous\ global\ L2-projection\ |(u^*,p^*,pT^*)-(u^h,p^h,pT^h)| Group
+/1/Simra-1/knotspan/Continuous\ global\ L2-projection\ |(u^*,p^*,pT^*)-(u^h,p^h,pT^h)|/1 Dataset {24}
+/1/Simra-1/knotspan/Continuous\ global\ L2-projection\ |div\ u^*|_L2 Group
+/1/Simra-1/knotspan/Continuous\ global\ L2-projection\ |div\ u^*|_L2/1 Dataset {24}
+/1/Simra-1/knotspan/Continuous\ global\ L2-projection\ |pT^*-pT^h|_H1 Group
+/1/Simra-1/knotspan/Continuous\ global\ L2-projection\ |pT^*-pT^h|_H1/1 Dataset {24}
+/1/Simra-1/knotspan/Continuous\ global\ L2-projection\ |p^*-p^h|_L2 Group
+/1/Simra-1/knotspan/Continuous\ global\ L2-projection\ |p^*-p^h|_L2/1 Dataset {24}
+/1/Simra-1/knotspan/Continuous\ global\ L2-projection\ |s^*-s^h|_L2 Group
+/1/Simra-1/knotspan/Continuous\ global\ L2-projection\ |s^*-s^h|_L2/1 Dataset {24}
+/1/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u^h|_H1 Group
+/1/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u^h|_H1/1 Dataset {24}
+/1/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u|_H1 Group
+/1/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u|_H1/1 Dataset {24}
+/1/Simra-1/knotspan/p    Group
+/1/Simra-1/knotspan/p/1  Dataset {24}
+/1/Simra-1/knotspan/|div\ u^h|_L2 Group
+/1/Simra-1/knotspan/|div\ u^h|_L2/1 Dataset {24}
+/1/Simra-1/knotspan/|pT^h|_H1 Group
+/1/Simra-1/knotspan/|pT^h|_H1/1 Dataset {24}
+/1/Simra-1/knotspan/|pT^h|_L2 Group
+/1/Simra-1/knotspan/|pT^h|_L2/1 Dataset {24}
+/1/Simra-1/knotspan/|p^h|_L2 Group
+/1/Simra-1/knotspan/|p^h|_L2/1 Dataset {24}
+/1/Simra-1/knotspan/|s^h|_L2 Group
+/1/Simra-1/knotspan/|s^h|_L2/1 Dataset {24}
+/1/Simra-1/knotspan/|u^h|_H1 Group
+/1/Simra-1/knotspan/|u^h|_H1/1 Dataset {24}
+/1/Simra-1/knotspan/|u^h|_L2 Group
+/1/Simra-1/knotspan/|u^h|_L2/1 Dataset {24}
+/2                       Group
+/2/Simra-1               Group
+/2/Simra-1/fields        Group
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ p-rec Group
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ p-rec/1 Dataset {60}
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ pT,x Group
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ pT,x/1 Dataset {60}
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ pT,y Group
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ pT,y/1 Dataset {60}
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ pT,z Group
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ pT,z/1 Dataset {60}
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xx Group
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xx/1 Dataset {60}
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xy Group
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xy/1 Dataset {60}
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xz Group
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xz/1 Dataset {60}
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yx Group
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yx/1 Dataset {60}
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yy Group
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yy/1 Dataset {60}
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yz Group
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yz/1 Dataset {60}
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zx Group
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zx/1 Dataset {60}
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zy Group
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zy/1 Dataset {60}
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zz Group
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zz/1 Dataset {60}
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,x Group
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,x/1 Dataset {60}
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,y Group
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,y/1 Dataset {60}
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,z Group
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,z/1 Dataset {60}
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,x Group
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,x/1 Dataset {60}
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,y Group
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,y/1 Dataset {60}
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,z Group
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,z/1 Dataset {60}
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,x Group
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,x/1 Dataset {60}
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,y Group
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,y/1 Dataset {60}
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,z Group
+/2/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,z/1 Dataset {60}
+/2/Simra-1/fields/p-rec  Group
+/2/Simra-1/fields/p-rec/1 Dataset {60}
+/2/Simra-1/fields/pT,x   Group
+/2/Simra-1/fields/pT,x/1 Dataset {60}
+/2/Simra-1/fields/pT,y   Group
+/2/Simra-1/fields/pT,y/1 Dataset {60}
+/2/Simra-1/fields/pT,z   Group
+/2/Simra-1/fields/pT,z/1 Dataset {60}
+/2/Simra-1/fields/ps     Group
+/2/Simra-1/fields/ps/1   Dataset {60}
+/2/Simra-1/fields/pts    Group
+/2/Simra-1/fields/pts/1  Dataset {60}
+/2/Simra-1/fields/rho    Group
+/2/Simra-1/fields/rho/1  Dataset {60}
+/2/Simra-1/fields/rhos   Group
+/2/Simra-1/fields/rhos/1 Dataset {60}
+/2/Simra-1/fields/sigma_xx Group
+/2/Simra-1/fields/sigma_xx/1 Dataset {60}
+/2/Simra-1/fields/sigma_xy Group
+/2/Simra-1/fields/sigma_xy/1 Dataset {60}
+/2/Simra-1/fields/sigma_xz Group
+/2/Simra-1/fields/sigma_xz/1 Dataset {60}
+/2/Simra-1/fields/sigma_yx Group
+/2/Simra-1/fields/sigma_yx/1 Dataset {60}
+/2/Simra-1/fields/sigma_yy Group
+/2/Simra-1/fields/sigma_yy/1 Dataset {60}
+/2/Simra-1/fields/sigma_yz Group
+/2/Simra-1/fields/sigma_yz/1 Dataset {60}
+/2/Simra-1/fields/sigma_zx Group
+/2/Simra-1/fields/sigma_zx/1 Dataset {60}
+/2/Simra-1/fields/sigma_zy Group
+/2/Simra-1/fields/sigma_zy/1 Dataset {60}
+/2/Simra-1/fields/sigma_zz Group
+/2/Simra-1/fields/sigma_zz/1 Dataset {60}
+/2/Simra-1/fields/strat  Group
+/2/Simra-1/fields/strat/1 Dataset {60}
+/2/Simra-1/fields/td     Group
+/2/Simra-1/fields/td/1   Dataset {60}
+/2/Simra-1/fields/tk     Group
+/2/Simra-1/fields/tk/1   Dataset {60}
+/2/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT Group
+/2/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT/1 Dataset {300}
+/2/Simra-1/fields/u_x,x  Group
+/2/Simra-1/fields/u_x,x/1 Dataset {60}
+/2/Simra-1/fields/u_x,y  Group
+/2/Simra-1/fields/u_x,y/1 Dataset {60}
+/2/Simra-1/fields/u_x,z  Group
+/2/Simra-1/fields/u_x,z/1 Dataset {60}
+/2/Simra-1/fields/u_y,x  Group
+/2/Simra-1/fields/u_y,x/1 Dataset {60}
+/2/Simra-1/fields/u_y,y  Group
+/2/Simra-1/fields/u_y,y/1 Dataset {60}
+/2/Simra-1/fields/u_y,z  Group
+/2/Simra-1/fields/u_y,z/1 Dataset {60}
+/2/Simra-1/fields/u_z,x  Group
+/2/Simra-1/fields/u_z,x/1 Dataset {60}
+/2/Simra-1/fields/u_z,y  Group
+/2/Simra-1/fields/u_z,y/1 Dataset {60}
+/2/Simra-1/fields/u_z,z  Group
+/2/Simra-1/fields/u_z,z/1 Dataset {60}
+/2/Simra-1/knotspan      Group
+/2/Simra-1/knotspan/Continuous\ global\ L2-projection\ |(u^*,p^*,pT^*)-(u^h,p^h,pT^h)| Group
+/2/Simra-1/knotspan/Continuous\ global\ L2-projection\ |(u^*,p^*,pT^*)-(u^h,p^h,pT^h)|/1 Dataset {24}
+/2/Simra-1/knotspan/Continuous\ global\ L2-projection\ |div\ u^*|_L2 Group
+/2/Simra-1/knotspan/Continuous\ global\ L2-projection\ |div\ u^*|_L2/1 Dataset {24}
+/2/Simra-1/knotspan/Continuous\ global\ L2-projection\ |pT^*-pT^h|_H1 Group
+/2/Simra-1/knotspan/Continuous\ global\ L2-projection\ |pT^*-pT^h|_H1/1 Dataset {24}
+/2/Simra-1/knotspan/Continuous\ global\ L2-projection\ |p^*-p^h|_L2 Group
+/2/Simra-1/knotspan/Continuous\ global\ L2-projection\ |p^*-p^h|_L2/1 Dataset {24}
+/2/Simra-1/knotspan/Continuous\ global\ L2-projection\ |s^*-s^h|_L2 Group
+/2/Simra-1/knotspan/Continuous\ global\ L2-projection\ |s^*-s^h|_L2/1 Dataset {24}
+/2/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u^h|_H1 Group
+/2/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u^h|_H1/1 Dataset {24}
+/2/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u|_H1 Group
+/2/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u|_H1/1 Dataset {24}
+/2/Simra-1/knotspan/p    Group
+/2/Simra-1/knotspan/p/1  Dataset {24}
+/2/Simra-1/knotspan/|div\ u^h|_L2 Group
+/2/Simra-1/knotspan/|div\ u^h|_L2/1 Dataset {24}
+/2/Simra-1/knotspan/|pT^h|_H1 Group
+/2/Simra-1/knotspan/|pT^h|_H1/1 Dataset {24}
+/2/Simra-1/knotspan/|pT^h|_L2 Group
+/2/Simra-1/knotspan/|pT^h|_L2/1 Dataset {24}
+/2/Simra-1/knotspan/|p^h|_L2 Group
+/2/Simra-1/knotspan/|p^h|_L2/1 Dataset {24}
+/2/Simra-1/knotspan/|s^h|_L2 Group
+/2/Simra-1/knotspan/|s^h|_L2/1 Dataset {24}
+/2/Simra-1/knotspan/|u^h|_H1 Group
+/2/Simra-1/knotspan/|u^h|_H1/1 Dataset {24}
+/2/Simra-1/knotspan/|u^h|_L2 Group
+/2/Simra-1/knotspan/|u^h|_L2/1 Dataset {24}
+/3                       Group
+/3/Simra-1               Group
+/3/Simra-1/fields        Group
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ p-rec Group
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ p-rec/1 Dataset {60}
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ pT,x Group
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ pT,x/1 Dataset {60}
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ pT,y Group
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ pT,y/1 Dataset {60}
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ pT,z Group
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ pT,z/1 Dataset {60}
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xx Group
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xx/1 Dataset {60}
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xy Group
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xy/1 Dataset {60}
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xz Group
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xz/1 Dataset {60}
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yx Group
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yx/1 Dataset {60}
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yy Group
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yy/1 Dataset {60}
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yz Group
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yz/1 Dataset {60}
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zx Group
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zx/1 Dataset {60}
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zy Group
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zy/1 Dataset {60}
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zz Group
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zz/1 Dataset {60}
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,x Group
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,x/1 Dataset {60}
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,y Group
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,y/1 Dataset {60}
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,z Group
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,z/1 Dataset {60}
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,x Group
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,x/1 Dataset {60}
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,y Group
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,y/1 Dataset {60}
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,z Group
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,z/1 Dataset {60}
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,x Group
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,x/1 Dataset {60}
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,y Group
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,y/1 Dataset {60}
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,z Group
+/3/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,z/1 Dataset {60}
+/3/Simra-1/fields/p-rec  Group
+/3/Simra-1/fields/p-rec/1 Dataset {60}
+/3/Simra-1/fields/pT,x   Group
+/3/Simra-1/fields/pT,x/1 Dataset {60}
+/3/Simra-1/fields/pT,y   Group
+/3/Simra-1/fields/pT,y/1 Dataset {60}
+/3/Simra-1/fields/pT,z   Group
+/3/Simra-1/fields/pT,z/1 Dataset {60}
+/3/Simra-1/fields/ps     Group
+/3/Simra-1/fields/ps/1   Dataset {60}
+/3/Simra-1/fields/pts    Group
+/3/Simra-1/fields/pts/1  Dataset {60}
+/3/Simra-1/fields/rho    Group
+/3/Simra-1/fields/rho/1  Dataset {60}
+/3/Simra-1/fields/rhos   Group
+/3/Simra-1/fields/rhos/1 Dataset {60}
+/3/Simra-1/fields/sigma_xx Group
+/3/Simra-1/fields/sigma_xx/1 Dataset {60}
+/3/Simra-1/fields/sigma_xy Group
+/3/Simra-1/fields/sigma_xy/1 Dataset {60}
+/3/Simra-1/fields/sigma_xz Group
+/3/Simra-1/fields/sigma_xz/1 Dataset {60}
+/3/Simra-1/fields/sigma_yx Group
+/3/Simra-1/fields/sigma_yx/1 Dataset {60}
+/3/Simra-1/fields/sigma_yy Group
+/3/Simra-1/fields/sigma_yy/1 Dataset {60}
+/3/Simra-1/fields/sigma_yz Group
+/3/Simra-1/fields/sigma_yz/1 Dataset {60}
+/3/Simra-1/fields/sigma_zx Group
+/3/Simra-1/fields/sigma_zx/1 Dataset {60}
+/3/Simra-1/fields/sigma_zy Group
+/3/Simra-1/fields/sigma_zy/1 Dataset {60}
+/3/Simra-1/fields/sigma_zz Group
+/3/Simra-1/fields/sigma_zz/1 Dataset {60}
+/3/Simra-1/fields/strat  Group
+/3/Simra-1/fields/strat/1 Dataset {60}
+/3/Simra-1/fields/td     Group
+/3/Simra-1/fields/td/1   Dataset {60}
+/3/Simra-1/fields/tk     Group
+/3/Simra-1/fields/tk/1   Dataset {60}
+/3/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT Group
+/3/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT/1 Dataset {300}
+/3/Simra-1/fields/u_x,x  Group
+/3/Simra-1/fields/u_x,x/1 Dataset {60}
+/3/Simra-1/fields/u_x,y  Group
+/3/Simra-1/fields/u_x,y/1 Dataset {60}
+/3/Simra-1/fields/u_x,z  Group
+/3/Simra-1/fields/u_x,z/1 Dataset {60}
+/3/Simra-1/fields/u_y,x  Group
+/3/Simra-1/fields/u_y,x/1 Dataset {60}
+/3/Simra-1/fields/u_y,y  Group
+/3/Simra-1/fields/u_y,y/1 Dataset {60}
+/3/Simra-1/fields/u_y,z  Group
+/3/Simra-1/fields/u_y,z/1 Dataset {60}
+/3/Simra-1/fields/u_z,x  Group
+/3/Simra-1/fields/u_z,x/1 Dataset {60}
+/3/Simra-1/fields/u_z,y  Group
+/3/Simra-1/fields/u_z,y/1 Dataset {60}
+/3/Simra-1/fields/u_z,z  Group
+/3/Simra-1/fields/u_z,z/1 Dataset {60}
+/3/Simra-1/knotspan      Group
+/3/Simra-1/knotspan/Continuous\ global\ L2-projection\ |(u^*,p^*,pT^*)-(u^h,p^h,pT^h)| Group
+/3/Simra-1/knotspan/Continuous\ global\ L2-projection\ |(u^*,p^*,pT^*)-(u^h,p^h,pT^h)|/1 Dataset {24}
+/3/Simra-1/knotspan/Continuous\ global\ L2-projection\ |div\ u^*|_L2 Group
+/3/Simra-1/knotspan/Continuous\ global\ L2-projection\ |div\ u^*|_L2/1 Dataset {24}
+/3/Simra-1/knotspan/Continuous\ global\ L2-projection\ |pT^*-pT^h|_H1 Group
+/3/Simra-1/knotspan/Continuous\ global\ L2-projection\ |pT^*-pT^h|_H1/1 Dataset {24}
+/3/Simra-1/knotspan/Continuous\ global\ L2-projection\ |p^*-p^h|_L2 Group
+/3/Simra-1/knotspan/Continuous\ global\ L2-projection\ |p^*-p^h|_L2/1 Dataset {24}
+/3/Simra-1/knotspan/Continuous\ global\ L2-projection\ |s^*-s^h|_L2 Group
+/3/Simra-1/knotspan/Continuous\ global\ L2-projection\ |s^*-s^h|_L2/1 Dataset {24}
+/3/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u^h|_H1 Group
+/3/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u^h|_H1/1 Dataset {24}
+/3/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u|_H1 Group
+/3/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u|_H1/1 Dataset {24}
+/3/Simra-1/knotspan/p    Group
+/3/Simra-1/knotspan/p/1  Dataset {24}
+/3/Simra-1/knotspan/|div\ u^h|_L2 Group
+/3/Simra-1/knotspan/|div\ u^h|_L2/1 Dataset {24}
+/3/Simra-1/knotspan/|pT^h|_H1 Group
+/3/Simra-1/knotspan/|pT^h|_H1/1 Dataset {24}
+/3/Simra-1/knotspan/|pT^h|_L2 Group
+/3/Simra-1/knotspan/|pT^h|_L2/1 Dataset {24}
+/3/Simra-1/knotspan/|p^h|_L2 Group
+/3/Simra-1/knotspan/|p^h|_L2/1 Dataset {24}
+/3/Simra-1/knotspan/|s^h|_L2 Group
+/3/Simra-1/knotspan/|s^h|_L2/1 Dataset {24}
+/3/Simra-1/knotspan/|u^h|_H1 Group
+/3/Simra-1/knotspan/|u^h|_H1/1 Dataset {24}
+/3/Simra-1/knotspan/|u^h|_L2 Group
+/3/Simra-1/knotspan/|u^h|_L2/1 Dataset {24}
+/4                       Group
+/4/Simra-1               Group
+/4/Simra-1/fields        Group
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ p-rec Group
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ p-rec/1 Dataset {60}
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ pT,x Group
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ pT,x/1 Dataset {60}
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ pT,y Group
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ pT,y/1 Dataset {60}
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ pT,z Group
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ pT,z/1 Dataset {60}
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xx Group
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xx/1 Dataset {60}
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xy Group
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xy/1 Dataset {60}
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xz Group
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xz/1 Dataset {60}
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yx Group
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yx/1 Dataset {60}
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yy Group
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yy/1 Dataset {60}
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yz Group
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yz/1 Dataset {60}
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zx Group
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zx/1 Dataset {60}
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zy Group
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zy/1 Dataset {60}
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zz Group
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zz/1 Dataset {60}
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,x Group
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,x/1 Dataset {60}
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,y Group
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,y/1 Dataset {60}
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,z Group
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,z/1 Dataset {60}
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,x Group
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,x/1 Dataset {60}
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,y Group
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,y/1 Dataset {60}
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,z Group
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,z/1 Dataset {60}
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,x Group
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,x/1 Dataset {60}
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,y Group
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,y/1 Dataset {60}
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,z Group
+/4/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,z/1 Dataset {60}
+/4/Simra-1/fields/p-rec  Group
+/4/Simra-1/fields/p-rec/1 Dataset {60}
+/4/Simra-1/fields/pT,x   Group
+/4/Simra-1/fields/pT,x/1 Dataset {60}
+/4/Simra-1/fields/pT,y   Group
+/4/Simra-1/fields/pT,y/1 Dataset {60}
+/4/Simra-1/fields/pT,z   Group
+/4/Simra-1/fields/pT,z/1 Dataset {60}
+/4/Simra-1/fields/ps     Group
+/4/Simra-1/fields/ps/1   Dataset {60}
+/4/Simra-1/fields/pts    Group
+/4/Simra-1/fields/pts/1  Dataset {60}
+/4/Simra-1/fields/rho    Group
+/4/Simra-1/fields/rho/1  Dataset {60}
+/4/Simra-1/fields/rhos   Group
+/4/Simra-1/fields/rhos/1 Dataset {60}
+/4/Simra-1/fields/sigma_xx Group
+/4/Simra-1/fields/sigma_xx/1 Dataset {60}
+/4/Simra-1/fields/sigma_xy Group
+/4/Simra-1/fields/sigma_xy/1 Dataset {60}
+/4/Simra-1/fields/sigma_xz Group
+/4/Simra-1/fields/sigma_xz/1 Dataset {60}
+/4/Simra-1/fields/sigma_yx Group
+/4/Simra-1/fields/sigma_yx/1 Dataset {60}
+/4/Simra-1/fields/sigma_yy Group
+/4/Simra-1/fields/sigma_yy/1 Dataset {60}
+/4/Simra-1/fields/sigma_yz Group
+/4/Simra-1/fields/sigma_yz/1 Dataset {60}
+/4/Simra-1/fields/sigma_zx Group
+/4/Simra-1/fields/sigma_zx/1 Dataset {60}
+/4/Simra-1/fields/sigma_zy Group
+/4/Simra-1/fields/sigma_zy/1 Dataset {60}
+/4/Simra-1/fields/sigma_zz Group
+/4/Simra-1/fields/sigma_zz/1 Dataset {60}
+/4/Simra-1/fields/strat  Group
+/4/Simra-1/fields/strat/1 Dataset {60}
+/4/Simra-1/fields/td     Group
+/4/Simra-1/fields/td/1   Dataset {60}
+/4/Simra-1/fields/tk     Group
+/4/Simra-1/fields/tk/1   Dataset {60}
+/4/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT Group
+/4/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT/1 Dataset {300}
+/4/Simra-1/fields/u_x,x  Group
+/4/Simra-1/fields/u_x,x/1 Dataset {60}
+/4/Simra-1/fields/u_x,y  Group
+/4/Simra-1/fields/u_x,y/1 Dataset {60}
+/4/Simra-1/fields/u_x,z  Group
+/4/Simra-1/fields/u_x,z/1 Dataset {60}
+/4/Simra-1/fields/u_y,x  Group
+/4/Simra-1/fields/u_y,x/1 Dataset {60}
+/4/Simra-1/fields/u_y,y  Group
+/4/Simra-1/fields/u_y,y/1 Dataset {60}
+/4/Simra-1/fields/u_y,z  Group
+/4/Simra-1/fields/u_y,z/1 Dataset {60}
+/4/Simra-1/fields/u_z,x  Group
+/4/Simra-1/fields/u_z,x/1 Dataset {60}
+/4/Simra-1/fields/u_z,y  Group
+/4/Simra-1/fields/u_z,y/1 Dataset {60}
+/4/Simra-1/fields/u_z,z  Group
+/4/Simra-1/fields/u_z,z/1 Dataset {60}
+/4/Simra-1/knotspan      Group
+/4/Simra-1/knotspan/Continuous\ global\ L2-projection\ |(u^*,p^*,pT^*)-(u^h,p^h,pT^h)| Group
+/4/Simra-1/knotspan/Continuous\ global\ L2-projection\ |(u^*,p^*,pT^*)-(u^h,p^h,pT^h)|/1 Dataset {24}
+/4/Simra-1/knotspan/Continuous\ global\ L2-projection\ |div\ u^*|_L2 Group
+/4/Simra-1/knotspan/Continuous\ global\ L2-projection\ |div\ u^*|_L2/1 Dataset {24}
+/4/Simra-1/knotspan/Continuous\ global\ L2-projection\ |pT^*-pT^h|_H1 Group
+/4/Simra-1/knotspan/Continuous\ global\ L2-projection\ |pT^*-pT^h|_H1/1 Dataset {24}
+/4/Simra-1/knotspan/Continuous\ global\ L2-projection\ |p^*-p^h|_L2 Group
+/4/Simra-1/knotspan/Continuous\ global\ L2-projection\ |p^*-p^h|_L2/1 Dataset {24}
+/4/Simra-1/knotspan/Continuous\ global\ L2-projection\ |s^*-s^h|_L2 Group
+/4/Simra-1/knotspan/Continuous\ global\ L2-projection\ |s^*-s^h|_L2/1 Dataset {24}
+/4/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u^h|_H1 Group
+/4/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u^h|_H1/1 Dataset {24}
+/4/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u|_H1 Group
+/4/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u|_H1/1 Dataset {24}
+/4/Simra-1/knotspan/p    Group
+/4/Simra-1/knotspan/p/1  Dataset {24}
+/4/Simra-1/knotspan/|div\ u^h|_L2 Group
+/4/Simra-1/knotspan/|div\ u^h|_L2/1 Dataset {24}
+/4/Simra-1/knotspan/|pT^h|_H1 Group
+/4/Simra-1/knotspan/|pT^h|_H1/1 Dataset {24}
+/4/Simra-1/knotspan/|pT^h|_L2 Group
+/4/Simra-1/knotspan/|pT^h|_L2/1 Dataset {24}
+/4/Simra-1/knotspan/|p^h|_L2 Group
+/4/Simra-1/knotspan/|p^h|_L2/1 Dataset {24}
+/4/Simra-1/knotspan/|s^h|_L2 Group
+/4/Simra-1/knotspan/|s^h|_L2/1 Dataset {24}
+/4/Simra-1/knotspan/|u^h|_H1 Group
+/4/Simra-1/knotspan/|u^h|_H1/1 Dataset {24}
+/4/Simra-1/knotspan/|u^h|_L2 Group
+/4/Simra-1/knotspan/|u^h|_L2/1 Dataset {24}
+/5                       Group
+/5/Simra-1               Group
+/5/Simra-1/fields        Group
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ p-rec Group
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ p-rec/1 Dataset {60}
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ pT,x Group
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ pT,x/1 Dataset {60}
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ pT,y Group
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ pT,y/1 Dataset {60}
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ pT,z Group
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ pT,z/1 Dataset {60}
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xx Group
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xx/1 Dataset {60}
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xy Group
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xy/1 Dataset {60}
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xz Group
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xz/1 Dataset {60}
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yx Group
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yx/1 Dataset {60}
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yy Group
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yy/1 Dataset {60}
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yz Group
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yz/1 Dataset {60}
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zx Group
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zx/1 Dataset {60}
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zy Group
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zy/1 Dataset {60}
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zz Group
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zz/1 Dataset {60}
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,x Group
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,x/1 Dataset {60}
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,y Group
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,y/1 Dataset {60}
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,z Group
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,z/1 Dataset {60}
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,x Group
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,x/1 Dataset {60}
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,y Group
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,y/1 Dataset {60}
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,z Group
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,z/1 Dataset {60}
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,x Group
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,x/1 Dataset {60}
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,y Group
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,y/1 Dataset {60}
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,z Group
+/5/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,z/1 Dataset {60}
+/5/Simra-1/fields/p-rec  Group
+/5/Simra-1/fields/p-rec/1 Dataset {60}
+/5/Simra-1/fields/pT,x   Group
+/5/Simra-1/fields/pT,x/1 Dataset {60}
+/5/Simra-1/fields/pT,y   Group
+/5/Simra-1/fields/pT,y/1 Dataset {60}
+/5/Simra-1/fields/pT,z   Group
+/5/Simra-1/fields/pT,z/1 Dataset {60}
+/5/Simra-1/fields/ps     Group
+/5/Simra-1/fields/ps/1   Dataset {60}
+/5/Simra-1/fields/pts    Group
+/5/Simra-1/fields/pts/1  Dataset {60}
+/5/Simra-1/fields/rho    Group
+/5/Simra-1/fields/rho/1  Dataset {60}
+/5/Simra-1/fields/rhos   Group
+/5/Simra-1/fields/rhos/1 Dataset {60}
+/5/Simra-1/fields/sigma_xx Group
+/5/Simra-1/fields/sigma_xx/1 Dataset {60}
+/5/Simra-1/fields/sigma_xy Group
+/5/Simra-1/fields/sigma_xy/1 Dataset {60}
+/5/Simra-1/fields/sigma_xz Group
+/5/Simra-1/fields/sigma_xz/1 Dataset {60}
+/5/Simra-1/fields/sigma_yx Group
+/5/Simra-1/fields/sigma_yx/1 Dataset {60}
+/5/Simra-1/fields/sigma_yy Group
+/5/Simra-1/fields/sigma_yy/1 Dataset {60}
+/5/Simra-1/fields/sigma_yz Group
+/5/Simra-1/fields/sigma_yz/1 Dataset {60}
+/5/Simra-1/fields/sigma_zx Group
+/5/Simra-1/fields/sigma_zx/1 Dataset {60}
+/5/Simra-1/fields/sigma_zy Group
+/5/Simra-1/fields/sigma_zy/1 Dataset {60}
+/5/Simra-1/fields/sigma_zz Group
+/5/Simra-1/fields/sigma_zz/1 Dataset {60}
+/5/Simra-1/fields/strat  Group
+/5/Simra-1/fields/strat/1 Dataset {60}
+/5/Simra-1/fields/td     Group
+/5/Simra-1/fields/td/1   Dataset {60}
+/5/Simra-1/fields/tk     Group
+/5/Simra-1/fields/tk/1   Dataset {60}
+/5/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT Group
+/5/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT/1 Dataset {300}
+/5/Simra-1/fields/u_x,x  Group
+/5/Simra-1/fields/u_x,x/1 Dataset {60}
+/5/Simra-1/fields/u_x,y  Group
+/5/Simra-1/fields/u_x,y/1 Dataset {60}
+/5/Simra-1/fields/u_x,z  Group
+/5/Simra-1/fields/u_x,z/1 Dataset {60}
+/5/Simra-1/fields/u_y,x  Group
+/5/Simra-1/fields/u_y,x/1 Dataset {60}
+/5/Simra-1/fields/u_y,y  Group
+/5/Simra-1/fields/u_y,y/1 Dataset {60}
+/5/Simra-1/fields/u_y,z  Group
+/5/Simra-1/fields/u_y,z/1 Dataset {60}
+/5/Simra-1/fields/u_z,x  Group
+/5/Simra-1/fields/u_z,x/1 Dataset {60}
+/5/Simra-1/fields/u_z,y  Group
+/5/Simra-1/fields/u_z,y/1 Dataset {60}
+/5/Simra-1/fields/u_z,z  Group
+/5/Simra-1/fields/u_z,z/1 Dataset {60}
+/5/Simra-1/knotspan      Group
+/5/Simra-1/knotspan/Continuous\ global\ L2-projection\ |(u^*,p^*,pT^*)-(u^h,p^h,pT^h)| Group
+/5/Simra-1/knotspan/Continuous\ global\ L2-projection\ |(u^*,p^*,pT^*)-(u^h,p^h,pT^h)|/1 Dataset {24}
+/5/Simra-1/knotspan/Continuous\ global\ L2-projection\ |div\ u^*|_L2 Group
+/5/Simra-1/knotspan/Continuous\ global\ L2-projection\ |div\ u^*|_L2/1 Dataset {24}
+/5/Simra-1/knotspan/Continuous\ global\ L2-projection\ |pT^*-pT^h|_H1 Group
+/5/Simra-1/knotspan/Continuous\ global\ L2-projection\ |pT^*-pT^h|_H1/1 Dataset {24}
+/5/Simra-1/knotspan/Continuous\ global\ L2-projection\ |p^*-p^h|_L2 Group
+/5/Simra-1/knotspan/Continuous\ global\ L2-projection\ |p^*-p^h|_L2/1 Dataset {24}
+/5/Simra-1/knotspan/Continuous\ global\ L2-projection\ |s^*-s^h|_L2 Group
+/5/Simra-1/knotspan/Continuous\ global\ L2-projection\ |s^*-s^h|_L2/1 Dataset {24}
+/5/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u^h|_H1 Group
+/5/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u^h|_H1/1 Dataset {24}
+/5/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u|_H1 Group
+/5/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u|_H1/1 Dataset {24}
+/5/Simra-1/knotspan/p    Group
+/5/Simra-1/knotspan/p/1  Dataset {24}
+/5/Simra-1/knotspan/|div\ u^h|_L2 Group
+/5/Simra-1/knotspan/|div\ u^h|_L2/1 Dataset {24}
+/5/Simra-1/knotspan/|pT^h|_H1 Group
+/5/Simra-1/knotspan/|pT^h|_H1/1 Dataset {24}
+/5/Simra-1/knotspan/|pT^h|_L2 Group
+/5/Simra-1/knotspan/|pT^h|_L2/1 Dataset {24}
+/5/Simra-1/knotspan/|p^h|_L2 Group
+/5/Simra-1/knotspan/|p^h|_L2/1 Dataset {24}
+/5/Simra-1/knotspan/|s^h|_L2 Group
+/5/Simra-1/knotspan/|s^h|_L2/1 Dataset {24}
+/5/Simra-1/knotspan/|u^h|_H1 Group
+/5/Simra-1/knotspan/|u^h|_H1/1 Dataset {24}
+/5/Simra-1/knotspan/|u^h|_L2 Group
+/5/Simra-1/knotspan/|u^h|_L2/1 Dataset {24}
+/6                       Group
+/6/Simra-1               Group
+/6/Simra-1/fields        Group
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ p-rec Group
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ p-rec/1 Dataset {60}
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ pT,x Group
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ pT,x/1 Dataset {60}
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ pT,y Group
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ pT,y/1 Dataset {60}
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ pT,z Group
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ pT,z/1 Dataset {60}
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xx Group
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xx/1 Dataset {60}
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xy Group
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xy/1 Dataset {60}
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xz Group
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xz/1 Dataset {60}
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yx Group
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yx/1 Dataset {60}
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yy Group
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yy/1 Dataset {60}
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yz Group
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yz/1 Dataset {60}
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zx Group
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zx/1 Dataset {60}
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zy Group
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zy/1 Dataset {60}
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zz Group
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zz/1 Dataset {60}
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,x Group
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,x/1 Dataset {60}
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,y Group
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,y/1 Dataset {60}
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,z Group
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,z/1 Dataset {60}
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,x Group
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,x/1 Dataset {60}
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,y Group
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,y/1 Dataset {60}
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,z Group
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,z/1 Dataset {60}
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,x Group
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,x/1 Dataset {60}
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,y Group
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,y/1 Dataset {60}
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,z Group
+/6/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,z/1 Dataset {60}
+/6/Simra-1/fields/p-rec  Group
+/6/Simra-1/fields/p-rec/1 Dataset {60}
+/6/Simra-1/fields/pT,x   Group
+/6/Simra-1/fields/pT,x/1 Dataset {60}
+/6/Simra-1/fields/pT,y   Group
+/6/Simra-1/fields/pT,y/1 Dataset {60}
+/6/Simra-1/fields/pT,z   Group
+/6/Simra-1/fields/pT,z/1 Dataset {60}
+/6/Simra-1/fields/ps     Group
+/6/Simra-1/fields/ps/1   Dataset {60}
+/6/Simra-1/fields/pts    Group
+/6/Simra-1/fields/pts/1  Dataset {60}
+/6/Simra-1/fields/rho    Group
+/6/Simra-1/fields/rho/1  Dataset {60}
+/6/Simra-1/fields/rhos   Group
+/6/Simra-1/fields/rhos/1 Dataset {60}
+/6/Simra-1/fields/sigma_xx Group
+/6/Simra-1/fields/sigma_xx/1 Dataset {60}
+/6/Simra-1/fields/sigma_xy Group
+/6/Simra-1/fields/sigma_xy/1 Dataset {60}
+/6/Simra-1/fields/sigma_xz Group
+/6/Simra-1/fields/sigma_xz/1 Dataset {60}
+/6/Simra-1/fields/sigma_yx Group
+/6/Simra-1/fields/sigma_yx/1 Dataset {60}
+/6/Simra-1/fields/sigma_yy Group
+/6/Simra-1/fields/sigma_yy/1 Dataset {60}
+/6/Simra-1/fields/sigma_yz Group
+/6/Simra-1/fields/sigma_yz/1 Dataset {60}
+/6/Simra-1/fields/sigma_zx Group
+/6/Simra-1/fields/sigma_zx/1 Dataset {60}
+/6/Simra-1/fields/sigma_zy Group
+/6/Simra-1/fields/sigma_zy/1 Dataset {60}
+/6/Simra-1/fields/sigma_zz Group
+/6/Simra-1/fields/sigma_zz/1 Dataset {60}
+/6/Simra-1/fields/strat  Group
+/6/Simra-1/fields/strat/1 Dataset {60}
+/6/Simra-1/fields/td     Group
+/6/Simra-1/fields/td/1   Dataset {60}
+/6/Simra-1/fields/tk     Group
+/6/Simra-1/fields/tk/1   Dataset {60}
+/6/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT Group
+/6/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT/1 Dataset {300}
+/6/Simra-1/fields/u_x,x  Group
+/6/Simra-1/fields/u_x,x/1 Dataset {60}
+/6/Simra-1/fields/u_x,y  Group
+/6/Simra-1/fields/u_x,y/1 Dataset {60}
+/6/Simra-1/fields/u_x,z  Group
+/6/Simra-1/fields/u_x,z/1 Dataset {60}
+/6/Simra-1/fields/u_y,x  Group
+/6/Simra-1/fields/u_y,x/1 Dataset {60}
+/6/Simra-1/fields/u_y,y  Group
+/6/Simra-1/fields/u_y,y/1 Dataset {60}
+/6/Simra-1/fields/u_y,z  Group
+/6/Simra-1/fields/u_y,z/1 Dataset {60}
+/6/Simra-1/fields/u_z,x  Group
+/6/Simra-1/fields/u_z,x/1 Dataset {60}
+/6/Simra-1/fields/u_z,y  Group
+/6/Simra-1/fields/u_z,y/1 Dataset {60}
+/6/Simra-1/fields/u_z,z  Group
+/6/Simra-1/fields/u_z,z/1 Dataset {60}
+/6/Simra-1/knotspan      Group
+/6/Simra-1/knotspan/Continuous\ global\ L2-projection\ |(u^*,p^*,pT^*)-(u^h,p^h,pT^h)| Group
+/6/Simra-1/knotspan/Continuous\ global\ L2-projection\ |(u^*,p^*,pT^*)-(u^h,p^h,pT^h)|/1 Dataset {24}
+/6/Simra-1/knotspan/Continuous\ global\ L2-projection\ |div\ u^*|_L2 Group
+/6/Simra-1/knotspan/Continuous\ global\ L2-projection\ |div\ u^*|_L2/1 Dataset {24}
+/6/Simra-1/knotspan/Continuous\ global\ L2-projection\ |pT^*-pT^h|_H1 Group
+/6/Simra-1/knotspan/Continuous\ global\ L2-projection\ |pT^*-pT^h|_H1/1 Dataset {24}
+/6/Simra-1/knotspan/Continuous\ global\ L2-projection\ |p^*-p^h|_L2 Group
+/6/Simra-1/knotspan/Continuous\ global\ L2-projection\ |p^*-p^h|_L2/1 Dataset {24}
+/6/Simra-1/knotspan/Continuous\ global\ L2-projection\ |s^*-s^h|_L2 Group
+/6/Simra-1/knotspan/Continuous\ global\ L2-projection\ |s^*-s^h|_L2/1 Dataset {24}
+/6/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u^h|_H1 Group
+/6/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u^h|_H1/1 Dataset {24}
+/6/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u|_H1 Group
+/6/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u|_H1/1 Dataset {24}
+/6/Simra-1/knotspan/p    Group
+/6/Simra-1/knotspan/p/1  Dataset {24}
+/6/Simra-1/knotspan/|div\ u^h|_L2 Group
+/6/Simra-1/knotspan/|div\ u^h|_L2/1 Dataset {24}
+/6/Simra-1/knotspan/|pT^h|_H1 Group
+/6/Simra-1/knotspan/|pT^h|_H1/1 Dataset {24}
+/6/Simra-1/knotspan/|pT^h|_L2 Group
+/6/Simra-1/knotspan/|pT^h|_L2/1 Dataset {24}
+/6/Simra-1/knotspan/|p^h|_L2 Group
+/6/Simra-1/knotspan/|p^h|_L2/1 Dataset {24}
+/6/Simra-1/knotspan/|s^h|_L2 Group
+/6/Simra-1/knotspan/|s^h|_L2/1 Dataset {24}
+/6/Simra-1/knotspan/|u^h|_H1 Group
+/6/Simra-1/knotspan/|u^h|_H1/1 Dataset {24}
+/6/Simra-1/knotspan/|u^h|_L2 Group
+/6/Simra-1/knotspan/|u^h|_L2/1 Dataset {24}
+/7                       Group
+/7/Simra-1               Group
+/7/Simra-1/fields        Group
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ p-rec Group
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ p-rec/1 Dataset {60}
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ pT,x Group
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ pT,x/1 Dataset {60}
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ pT,y Group
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ pT,y/1 Dataset {60}
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ pT,z Group
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ pT,z/1 Dataset {60}
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xx Group
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xx/1 Dataset {60}
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xy Group
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xy/1 Dataset {60}
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xz Group
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xz/1 Dataset {60}
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yx Group
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yx/1 Dataset {60}
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yy Group
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yy/1 Dataset {60}
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yz Group
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yz/1 Dataset {60}
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zx Group
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zx/1 Dataset {60}
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zy Group
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zy/1 Dataset {60}
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zz Group
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zz/1 Dataset {60}
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,x Group
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,x/1 Dataset {60}
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,y Group
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,y/1 Dataset {60}
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,z Group
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,z/1 Dataset {60}
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,x Group
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,x/1 Dataset {60}
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,y Group
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,y/1 Dataset {60}
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,z Group
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,z/1 Dataset {60}
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,x Group
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,x/1 Dataset {60}
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,y Group
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,y/1 Dataset {60}
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,z Group
+/7/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,z/1 Dataset {60}
+/7/Simra-1/fields/p-rec  Group
+/7/Simra-1/fields/p-rec/1 Dataset {60}
+/7/Simra-1/fields/pT,x   Group
+/7/Simra-1/fields/pT,x/1 Dataset {60}
+/7/Simra-1/fields/pT,y   Group
+/7/Simra-1/fields/pT,y/1 Dataset {60}
+/7/Simra-1/fields/pT,z   Group
+/7/Simra-1/fields/pT,z/1 Dataset {60}
+/7/Simra-1/fields/ps     Group
+/7/Simra-1/fields/ps/1   Dataset {60}
+/7/Simra-1/fields/pts    Group
+/7/Simra-1/fields/pts/1  Dataset {60}
+/7/Simra-1/fields/rho    Group
+/7/Simra-1/fields/rho/1  Dataset {60}
+/7/Simra-1/fields/rhos   Group
+/7/Simra-1/fields/rhos/1 Dataset {60}
+/7/Simra-1/fields/sigma_xx Group
+/7/Simra-1/fields/sigma_xx/1 Dataset {60}
+/7/Simra-1/fields/sigma_xy Group
+/7/Simra-1/fields/sigma_xy/1 Dataset {60}
+/7/Simra-1/fields/sigma_xz Group
+/7/Simra-1/fields/sigma_xz/1 Dataset {60}
+/7/Simra-1/fields/sigma_yx Group
+/7/Simra-1/fields/sigma_yx/1 Dataset {60}
+/7/Simra-1/fields/sigma_yy Group
+/7/Simra-1/fields/sigma_yy/1 Dataset {60}
+/7/Simra-1/fields/sigma_yz Group
+/7/Simra-1/fields/sigma_yz/1 Dataset {60}
+/7/Simra-1/fields/sigma_zx Group
+/7/Simra-1/fields/sigma_zx/1 Dataset {60}
+/7/Simra-1/fields/sigma_zy Group
+/7/Simra-1/fields/sigma_zy/1 Dataset {60}
+/7/Simra-1/fields/sigma_zz Group
+/7/Simra-1/fields/sigma_zz/1 Dataset {60}
+/7/Simra-1/fields/strat  Group
+/7/Simra-1/fields/strat/1 Dataset {60}
+/7/Simra-1/fields/td     Group
+/7/Simra-1/fields/td/1   Dataset {60}
+/7/Simra-1/fields/tk     Group
+/7/Simra-1/fields/tk/1   Dataset {60}
+/7/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT Group
+/7/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT/1 Dataset {300}
+/7/Simra-1/fields/u_x,x  Group
+/7/Simra-1/fields/u_x,x/1 Dataset {60}
+/7/Simra-1/fields/u_x,y  Group
+/7/Simra-1/fields/u_x,y/1 Dataset {60}
+/7/Simra-1/fields/u_x,z  Group
+/7/Simra-1/fields/u_x,z/1 Dataset {60}
+/7/Simra-1/fields/u_y,x  Group
+/7/Simra-1/fields/u_y,x/1 Dataset {60}
+/7/Simra-1/fields/u_y,y  Group
+/7/Simra-1/fields/u_y,y/1 Dataset {60}
+/7/Simra-1/fields/u_y,z  Group
+/7/Simra-1/fields/u_y,z/1 Dataset {60}
+/7/Simra-1/fields/u_z,x  Group
+/7/Simra-1/fields/u_z,x/1 Dataset {60}
+/7/Simra-1/fields/u_z,y  Group
+/7/Simra-1/fields/u_z,y/1 Dataset {60}
+/7/Simra-1/fields/u_z,z  Group
+/7/Simra-1/fields/u_z,z/1 Dataset {60}
+/7/Simra-1/knotspan      Group
+/7/Simra-1/knotspan/Continuous\ global\ L2-projection\ |(u^*,p^*,pT^*)-(u^h,p^h,pT^h)| Group
+/7/Simra-1/knotspan/Continuous\ global\ L2-projection\ |(u^*,p^*,pT^*)-(u^h,p^h,pT^h)|/1 Dataset {24}
+/7/Simra-1/knotspan/Continuous\ global\ L2-projection\ |div\ u^*|_L2 Group
+/7/Simra-1/knotspan/Continuous\ global\ L2-projection\ |div\ u^*|_L2/1 Dataset {24}
+/7/Simra-1/knotspan/Continuous\ global\ L2-projection\ |pT^*-pT^h|_H1 Group
+/7/Simra-1/knotspan/Continuous\ global\ L2-projection\ |pT^*-pT^h|_H1/1 Dataset {24}
+/7/Simra-1/knotspan/Continuous\ global\ L2-projection\ |p^*-p^h|_L2 Group
+/7/Simra-1/knotspan/Continuous\ global\ L2-projection\ |p^*-p^h|_L2/1 Dataset {24}
+/7/Simra-1/knotspan/Continuous\ global\ L2-projection\ |s^*-s^h|_L2 Group
+/7/Simra-1/knotspan/Continuous\ global\ L2-projection\ |s^*-s^h|_L2/1 Dataset {24}
+/7/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u^h|_H1 Group
+/7/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u^h|_H1/1 Dataset {24}
+/7/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u|_H1 Group
+/7/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u|_H1/1 Dataset {24}
+/7/Simra-1/knotspan/p    Group
+/7/Simra-1/knotspan/p/1  Dataset {24}
+/7/Simra-1/knotspan/|div\ u^h|_L2 Group
+/7/Simra-1/knotspan/|div\ u^h|_L2/1 Dataset {24}
+/7/Simra-1/knotspan/|pT^h|_H1 Group
+/7/Simra-1/knotspan/|pT^h|_H1/1 Dataset {24}
+/7/Simra-1/knotspan/|pT^h|_L2 Group
+/7/Simra-1/knotspan/|pT^h|_L2/1 Dataset {24}
+/7/Simra-1/knotspan/|p^h|_L2 Group
+/7/Simra-1/knotspan/|p^h|_L2/1 Dataset {24}
+/7/Simra-1/knotspan/|s^h|_L2 Group
+/7/Simra-1/knotspan/|s^h|_L2/1 Dataset {24}
+/7/Simra-1/knotspan/|u^h|_H1 Group
+/7/Simra-1/knotspan/|u^h|_H1/1 Dataset {24}
+/7/Simra-1/knotspan/|u^h|_L2 Group
+/7/Simra-1/knotspan/|u^h|_L2/1 Dataset {24}
+/8                       Group
+/8/Simra-1               Group
+/8/Simra-1/fields        Group
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ p-rec Group
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ p-rec/1 Dataset {60}
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ pT,x Group
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ pT,x/1 Dataset {60}
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ pT,y Group
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ pT,y/1 Dataset {60}
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ pT,z Group
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ pT,z/1 Dataset {60}
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xx Group
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xx/1 Dataset {60}
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xy Group
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xy/1 Dataset {60}
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xz Group
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xz/1 Dataset {60}
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yx Group
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yx/1 Dataset {60}
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yy Group
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yy/1 Dataset {60}
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yz Group
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yz/1 Dataset {60}
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zx Group
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zx/1 Dataset {60}
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zy Group
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zy/1 Dataset {60}
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zz Group
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zz/1 Dataset {60}
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,x Group
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,x/1 Dataset {60}
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,y Group
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,y/1 Dataset {60}
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,z Group
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,z/1 Dataset {60}
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,x Group
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,x/1 Dataset {60}
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,y Group
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,y/1 Dataset {60}
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,z Group
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,z/1 Dataset {60}
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,x Group
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,x/1 Dataset {60}
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,y Group
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,y/1 Dataset {60}
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,z Group
+/8/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,z/1 Dataset {60}
+/8/Simra-1/fields/p-rec  Group
+/8/Simra-1/fields/p-rec/1 Dataset {60}
+/8/Simra-1/fields/pT,x   Group
+/8/Simra-1/fields/pT,x/1 Dataset {60}
+/8/Simra-1/fields/pT,y   Group
+/8/Simra-1/fields/pT,y/1 Dataset {60}
+/8/Simra-1/fields/pT,z   Group
+/8/Simra-1/fields/pT,z/1 Dataset {60}
+/8/Simra-1/fields/ps     Group
+/8/Simra-1/fields/ps/1   Dataset {60}
+/8/Simra-1/fields/pts    Group
+/8/Simra-1/fields/pts/1  Dataset {60}
+/8/Simra-1/fields/rho    Group
+/8/Simra-1/fields/rho/1  Dataset {60}
+/8/Simra-1/fields/rhos   Group
+/8/Simra-1/fields/rhos/1 Dataset {60}
+/8/Simra-1/fields/sigma_xx Group
+/8/Simra-1/fields/sigma_xx/1 Dataset {60}
+/8/Simra-1/fields/sigma_xy Group
+/8/Simra-1/fields/sigma_xy/1 Dataset {60}
+/8/Simra-1/fields/sigma_xz Group
+/8/Simra-1/fields/sigma_xz/1 Dataset {60}
+/8/Simra-1/fields/sigma_yx Group
+/8/Simra-1/fields/sigma_yx/1 Dataset {60}
+/8/Simra-1/fields/sigma_yy Group
+/8/Simra-1/fields/sigma_yy/1 Dataset {60}
+/8/Simra-1/fields/sigma_yz Group
+/8/Simra-1/fields/sigma_yz/1 Dataset {60}
+/8/Simra-1/fields/sigma_zx Group
+/8/Simra-1/fields/sigma_zx/1 Dataset {60}
+/8/Simra-1/fields/sigma_zy Group
+/8/Simra-1/fields/sigma_zy/1 Dataset {60}
+/8/Simra-1/fields/sigma_zz Group
+/8/Simra-1/fields/sigma_zz/1 Dataset {60}
+/8/Simra-1/fields/strat  Group
+/8/Simra-1/fields/strat/1 Dataset {60}
+/8/Simra-1/fields/td     Group
+/8/Simra-1/fields/td/1   Dataset {60}
+/8/Simra-1/fields/tk     Group
+/8/Simra-1/fields/tk/1   Dataset {60}
+/8/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT Group
+/8/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT/1 Dataset {300}
+/8/Simra-1/fields/u_x,x  Group
+/8/Simra-1/fields/u_x,x/1 Dataset {60}
+/8/Simra-1/fields/u_x,y  Group
+/8/Simra-1/fields/u_x,y/1 Dataset {60}
+/8/Simra-1/fields/u_x,z  Group
+/8/Simra-1/fields/u_x,z/1 Dataset {60}
+/8/Simra-1/fields/u_y,x  Group
+/8/Simra-1/fields/u_y,x/1 Dataset {60}
+/8/Simra-1/fields/u_y,y  Group
+/8/Simra-1/fields/u_y,y/1 Dataset {60}
+/8/Simra-1/fields/u_y,z  Group
+/8/Simra-1/fields/u_y,z/1 Dataset {60}
+/8/Simra-1/fields/u_z,x  Group
+/8/Simra-1/fields/u_z,x/1 Dataset {60}
+/8/Simra-1/fields/u_z,y  Group
+/8/Simra-1/fields/u_z,y/1 Dataset {60}
+/8/Simra-1/fields/u_z,z  Group
+/8/Simra-1/fields/u_z,z/1 Dataset {60}
+/8/Simra-1/knotspan      Group
+/8/Simra-1/knotspan/Continuous\ global\ L2-projection\ |(u^*,p^*,pT^*)-(u^h,p^h,pT^h)| Group
+/8/Simra-1/knotspan/Continuous\ global\ L2-projection\ |(u^*,p^*,pT^*)-(u^h,p^h,pT^h)|/1 Dataset {24}
+/8/Simra-1/knotspan/Continuous\ global\ L2-projection\ |div\ u^*|_L2 Group
+/8/Simra-1/knotspan/Continuous\ global\ L2-projection\ |div\ u^*|_L2/1 Dataset {24}
+/8/Simra-1/knotspan/Continuous\ global\ L2-projection\ |pT^*-pT^h|_H1 Group
+/8/Simra-1/knotspan/Continuous\ global\ L2-projection\ |pT^*-pT^h|_H1/1 Dataset {24}
+/8/Simra-1/knotspan/Continuous\ global\ L2-projection\ |p^*-p^h|_L2 Group
+/8/Simra-1/knotspan/Continuous\ global\ L2-projection\ |p^*-p^h|_L2/1 Dataset {24}
+/8/Simra-1/knotspan/Continuous\ global\ L2-projection\ |s^*-s^h|_L2 Group
+/8/Simra-1/knotspan/Continuous\ global\ L2-projection\ |s^*-s^h|_L2/1 Dataset {24}
+/8/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u^h|_H1 Group
+/8/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u^h|_H1/1 Dataset {24}
+/8/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u|_H1 Group
+/8/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u|_H1/1 Dataset {24}
+/8/Simra-1/knotspan/p    Group
+/8/Simra-1/knotspan/p/1  Dataset {24}
+/8/Simra-1/knotspan/|div\ u^h|_L2 Group
+/8/Simra-1/knotspan/|div\ u^h|_L2/1 Dataset {24}
+/8/Simra-1/knotspan/|pT^h|_H1 Group
+/8/Simra-1/knotspan/|pT^h|_H1/1 Dataset {24}
+/8/Simra-1/knotspan/|pT^h|_L2 Group
+/8/Simra-1/knotspan/|pT^h|_L2/1 Dataset {24}
+/8/Simra-1/knotspan/|p^h|_L2 Group
+/8/Simra-1/knotspan/|p^h|_L2/1 Dataset {24}
+/8/Simra-1/knotspan/|s^h|_L2 Group
+/8/Simra-1/knotspan/|s^h|_L2/1 Dataset {24}
+/8/Simra-1/knotspan/|u^h|_H1 Group
+/8/Simra-1/knotspan/|u^h|_H1/1 Dataset {24}
+/8/Simra-1/knotspan/|u^h|_L2 Group
+/8/Simra-1/knotspan/|u^h|_L2/1 Dataset {24}
+/9                       Group
+/9/Simra-1               Group
+/9/Simra-1/fields        Group
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ p-rec Group
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ p-rec/1 Dataset {60}
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ pT,x Group
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ pT,x/1 Dataset {60}
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ pT,y Group
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ pT,y/1 Dataset {60}
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ pT,z Group
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ pT,z/1 Dataset {60}
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xx Group
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xx/1 Dataset {60}
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xy Group
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xy/1 Dataset {60}
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xz Group
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_xz/1 Dataset {60}
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yx Group
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yx/1 Dataset {60}
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yy Group
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yy/1 Dataset {60}
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yz Group
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_yz/1 Dataset {60}
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zx Group
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zx/1 Dataset {60}
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zy Group
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zy/1 Dataset {60}
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zz Group
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ sigma_zz/1 Dataset {60}
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,x Group
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,x/1 Dataset {60}
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,y Group
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,y/1 Dataset {60}
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,z Group
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ u_x,z/1 Dataset {60}
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,x Group
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,x/1 Dataset {60}
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,y Group
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,y/1 Dataset {60}
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,z Group
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ u_y,z/1 Dataset {60}
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,x Group
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,x/1 Dataset {60}
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,y Group
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,y/1 Dataset {60}
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,z Group
+/9/Simra-1/fields/Continuous\ global\ L2-projection\ u_z,z/1 Dataset {60}
+/9/Simra-1/fields/p-rec  Group
+/9/Simra-1/fields/p-rec/1 Dataset {60}
+/9/Simra-1/fields/pT,x   Group
+/9/Simra-1/fields/pT,x/1 Dataset {60}
+/9/Simra-1/fields/pT,y   Group
+/9/Simra-1/fields/pT,y/1 Dataset {60}
+/9/Simra-1/fields/pT,z   Group
+/9/Simra-1/fields/pT,z/1 Dataset {60}
+/9/Simra-1/fields/ps     Group
+/9/Simra-1/fields/ps/1   Dataset {60}
+/9/Simra-1/fields/pts    Group
+/9/Simra-1/fields/pts/1  Dataset {60}
+/9/Simra-1/fields/rho    Group
+/9/Simra-1/fields/rho/1  Dataset {60}
+/9/Simra-1/fields/rhos   Group
+/9/Simra-1/fields/rhos/1 Dataset {60}
+/9/Simra-1/fields/sigma_xx Group
+/9/Simra-1/fields/sigma_xx/1 Dataset {60}
+/9/Simra-1/fields/sigma_xy Group
+/9/Simra-1/fields/sigma_xy/1 Dataset {60}
+/9/Simra-1/fields/sigma_xz Group
+/9/Simra-1/fields/sigma_xz/1 Dataset {60}
+/9/Simra-1/fields/sigma_yx Group
+/9/Simra-1/fields/sigma_yx/1 Dataset {60}
+/9/Simra-1/fields/sigma_yy Group
+/9/Simra-1/fields/sigma_yy/1 Dataset {60}
+/9/Simra-1/fields/sigma_yz Group
+/9/Simra-1/fields/sigma_yz/1 Dataset {60}
+/9/Simra-1/fields/sigma_zx Group
+/9/Simra-1/fields/sigma_zx/1 Dataset {60}
+/9/Simra-1/fields/sigma_zy Group
+/9/Simra-1/fields/sigma_zy/1 Dataset {60}
+/9/Simra-1/fields/sigma_zz Group
+/9/Simra-1/fields/sigma_zz/1 Dataset {60}
+/9/Simra-1/fields/strat  Group
+/9/Simra-1/fields/strat/1 Dataset {60}
+/9/Simra-1/fields/td     Group
+/9/Simra-1/fields/td/1   Dataset {60}
+/9/Simra-1/fields/tk     Group
+/9/Simra-1/fields/tk/1   Dataset {60}
+/9/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT Group
+/9/Simra-1/fields/u_x&&u_y&&u_z&&vtef&&pT/1 Dataset {300}
+/9/Simra-1/fields/u_x,x  Group
+/9/Simra-1/fields/u_x,x/1 Dataset {60}
+/9/Simra-1/fields/u_x,y  Group
+/9/Simra-1/fields/u_x,y/1 Dataset {60}
+/9/Simra-1/fields/u_x,z  Group
+/9/Simra-1/fields/u_x,z/1 Dataset {60}
+/9/Simra-1/fields/u_y,x  Group
+/9/Simra-1/fields/u_y,x/1 Dataset {60}
+/9/Simra-1/fields/u_y,y  Group
+/9/Simra-1/fields/u_y,y/1 Dataset {60}
+/9/Simra-1/fields/u_y,z  Group
+/9/Simra-1/fields/u_y,z/1 Dataset {60}
+/9/Simra-1/fields/u_z,x  Group
+/9/Simra-1/fields/u_z,x/1 Dataset {60}
+/9/Simra-1/fields/u_z,y  Group
+/9/Simra-1/fields/u_z,y/1 Dataset {60}
+/9/Simra-1/fields/u_z,z  Group
+/9/Simra-1/fields/u_z,z/1 Dataset {60}
+/9/Simra-1/knotspan      Group
+/9/Simra-1/knotspan/Continuous\ global\ L2-projection\ |(u^*,p^*,pT^*)-(u^h,p^h,pT^h)| Group
+/9/Simra-1/knotspan/Continuous\ global\ L2-projection\ |(u^*,p^*,pT^*)-(u^h,p^h,pT^h)|/1 Dataset {24}
+/9/Simra-1/knotspan/Continuous\ global\ L2-projection\ |div\ u^*|_L2 Group
+/9/Simra-1/knotspan/Continuous\ global\ L2-projection\ |div\ u^*|_L2/1 Dataset {24}
+/9/Simra-1/knotspan/Continuous\ global\ L2-projection\ |pT^*-pT^h|_H1 Group
+/9/Simra-1/knotspan/Continuous\ global\ L2-projection\ |pT^*-pT^h|_H1/1 Dataset {24}
+/9/Simra-1/knotspan/Continuous\ global\ L2-projection\ |p^*-p^h|_L2 Group
+/9/Simra-1/knotspan/Continuous\ global\ L2-projection\ |p^*-p^h|_L2/1 Dataset {24}
+/9/Simra-1/knotspan/Continuous\ global\ L2-projection\ |s^*-s^h|_L2 Group
+/9/Simra-1/knotspan/Continuous\ global\ L2-projection\ |s^*-s^h|_L2/1 Dataset {24}
+/9/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u^h|_H1 Group
+/9/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u^h|_H1/1 Dataset {24}
+/9/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u|_H1 Group
+/9/Simra-1/knotspan/Continuous\ global\ L2-projection\ |u^*-u|_H1/1 Dataset {24}
+/9/Simra-1/knotspan/p    Group
+/9/Simra-1/knotspan/p/1  Dataset {24}
+/9/Simra-1/knotspan/|div\ u^h|_L2 Group
+/9/Simra-1/knotspan/|div\ u^h|_L2/1 Dataset {24}
+/9/Simra-1/knotspan/|pT^h|_H1 Group
+/9/Simra-1/knotspan/|pT^h|_H1/1 Dataset {24}
+/9/Simra-1/knotspan/|pT^h|_L2 Group
+/9/Simra-1/knotspan/|pT^h|_L2/1 Dataset {24}
+/9/Simra-1/knotspan/|p^h|_L2 Group
+/9/Simra-1/knotspan/|p^h|_L2/1 Dataset {24}
+/9/Simra-1/knotspan/|s^h|_L2 Group
+/9/Simra-1/knotspan/|s^h|_L2/1 Dataset {24}
+/9/Simra-1/knotspan/|u^h|_H1 Group
+/9/Simra-1/knotspan/|u^h|_H1/1 Dataset {24}
+/9/Simra-1/knotspan/|u^h|_L2 Group
+/9/Simra-1/knotspan/|u^h|_L2/1 Dataset {24}
