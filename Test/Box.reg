@@ -1,6 +1,7 @@
 Box.xinp
 
 	Reading data file Box.dat
+	Viscosity nu = 0.1
 	Reference velocity U = 1
 	Reference length L = 1
 	Reading results from history file Box.res

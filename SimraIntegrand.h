@@ -111,6 +111,7 @@ public:
 
   Vector elmPressure; //!< Element-wise pressures
   Vector dist; //!< Wall distance
+  double nu = 1.0; //!< Fluid viscosity
 };
 
 

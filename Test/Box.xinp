@@ -27,6 +27,7 @@
   </discretization>
 
   <simra>
+    <fluidproperties nu="0.1"/>
     <scaling u="1.0" L="1.0"/>
     <resultfile type="history">Box.res</resultfile>
     <no_stratification/>

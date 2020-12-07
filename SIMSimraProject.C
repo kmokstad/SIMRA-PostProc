@@ -62,6 +62,9 @@ bool SIMSimraProject::parse(const TiXmlElement *elem)
           IFEM::cout << "\tCalculating terrain distance assuming orthogonal mesh lines." << std::endl;
         } else
           IFEM::cout << "\tCalculating terrain distance using Fares-Schröder approximation." << std::endl;
+      } else if (!strcasecmp(child->Value(),"fluidproperties")) {
+        utl::getAttribute(child,"nu",itg.nu);
+        IFEM::cout << "\tViscosity nu = " << itg.nu << std::endl;
       } else if (!strcasecmp(child->Value(),"anasol")) {
           std::string type;
           utl::getAttribute(child,"type",type,true);
