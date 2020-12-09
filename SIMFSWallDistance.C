@@ -15,6 +15,7 @@
 #include "SIMFSWallDistance.h"
 #include "IFEM.h"
 #include "matrix.h"
+#include "Utilities.h"
 #include <tinyxml.h>
 
 
@@ -69,10 +70,18 @@ bool SIMFSWallDistance::parse(const TiXmlElement* elem)
     const TiXmlElement* child = elem->FirstChildElement();
     for (; child && result; child = child->NextSiblingElement())
       if (!strcasecmp(child->Value(),"wall_value")) {
-        if (child->FirstChild())
-          fsw.setWallValue(atof(child->FirstChild()->Value()));
-      }
-      else if (!strcasecmp(child->Value(),"nonlinearsolver"))
+        const char* w = utl::getValue(child,"wall_value");
+        if (w) {
+          fsw.setWallValue(atof(w));
+          IFEM::cout <<"\tWall value = " << atof(w) << std::endl;
+        }
+      } else if (!strcasecmp(child->Value(),"sigma")) {
+        const char* s = utl::getValue(child,"sigma");
+        if (s) {
+          fsw.setSigma(atof(s));
+          IFEM::cout << "\tSigma = " << atof(s) << std::endl;
+        }
+      } else if (!strcasecmp(child->Value(),"nonlinearsolver"))
         nSim.parse(child);
       else
         result = this->SIMSimraBase::parse(child);

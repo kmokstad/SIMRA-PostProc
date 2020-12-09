@@ -19,7 +19,7 @@
 
 
 FSWallDistance::FSWallDistance (unsigned short int n, double w)
-  : IntegrandBase(n), G0(w), sigma(0.2), gamma(1.4)
+  : IntegrandBase(n), G0(w), sigma(0.2), gamma(1.0 + 2*sigma)
 {
   primsol.resize(1);
 }

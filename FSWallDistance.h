@@ -67,6 +67,9 @@ public:
   //! \brief Returns the wall value.
   double getWallValue() const { return G0; }
 
+  //! \brief Set the sigma value.
+  void setSigma(double s) { sigma = s; gamma = 1.0 + 2*sigma; }
+
 protected:
   double G0;    //!< The wall value
   double sigma; //!< Integration parameter
