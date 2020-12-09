@@ -90,6 +90,7 @@ int main (int argc, char** argv)
     }
 
   Vector sol;
+  Vectors old(6);
   Vectors gNorm;
   Matrix eNorm;
   Vectors projs;
@@ -145,6 +146,26 @@ int main (int argc, char** argv)
       std::cerr << "Error calculating solution norms." << std::endl;
       return 6;
     }
+
+    // Convergence monitoring
+    if (iStep > 1) {
+      Vector relNorm(6);
+      for (size_t i = 0; i < 6; ++i) {
+        relNorm(i+1) = old[i].norm2();
+        old[i] -= model.getSol(i + (i > 2 ? 1 : 0));
+      }
+
+      double uRelNorm = hypot(hypot(relNorm(1), relNorm(2)), relNorm(3));
+      double uNorm = hypot(hypot(old[0].norm2(), old[1].norm2()), old[2].norm2());
+      IFEM::cout << "\n>>> Convergence monitoring <<<"
+                 << "\n  L2 norm |delta u|    : " << uNorm / uRelNorm
+                 << "\n  L2 norm |delta tk|   : " << old[3].norm2() / relNorm(4)
+                 << "\n  L2 norm |delta td|   : " << old[4].norm2() / relNorm(5)
+                 << "\n  L2 norm |delta vtef| : " << old[5].norm2() / relNorm(6);
+    }
+
+    for (size_t i = 0; i < 6; ++i)
+      old[i] = model.getSol(i + (i > 2 ? 1 : 0));
 
     model.printSolutionNorms(gNorm);
 

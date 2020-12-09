@@ -69,6 +69,10 @@ public:
   //! \details If enabled, this function also calculates the distance
   bool orthogonalDistance();
 
+  //! \brief Returns a single solution vector.
+  //! \param idx 0-based index for solution to obtain
+  const Vector& getSol(size_t idx) const;
+
 protected:
   //! \brief Prints a norm group to the log stream.
   void printNormGroup(const Vector& rNorm,

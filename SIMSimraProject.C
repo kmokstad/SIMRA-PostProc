@@ -500,3 +500,9 @@ bool SIMSimraProject::orthogonalDistance()
 
   return true;
 }
+
+
+const Vector& SIMSimraProject::getSol(size_t idx) const
+{
+  return solution[idx];
+}
