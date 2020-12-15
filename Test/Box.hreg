@@ -141,6 +141,8 @@ Box.xinp
 /0/Simra-1/knotspan/|p^h|_L2/1 Dataset {24}
 /0/Simra-1/knotspan/|s^h|_L2 Group
 /0/Simra-1/knotspan/|s^h|_L2/1 Dataset {24}
+/0/Simra-1/knotspan/|tk|_L2 Group
+/0/Simra-1/knotspan/|tk|_L2/1 Dataset {24}
 /0/Simra-1/knotspan/|u^h|_H1 Group
 /0/Simra-1/knotspan/|u^h|_H1/1 Dataset {24}
 /0/Simra-1/knotspan/|u^h|_L2 Group
@@ -283,6 +285,8 @@ Box.xinp
 /1/Simra-1/knotspan/|p^h|_L2/1 Dataset {24}
 /1/Simra-1/knotspan/|s^h|_L2 Group
 /1/Simra-1/knotspan/|s^h|_L2/1 Dataset {24}
+/1/Simra-1/knotspan/|tk|_L2 Group
+/1/Simra-1/knotspan/|tk|_L2/1 Dataset {24}
 /1/Simra-1/knotspan/|u^h|_H1 Group
 /1/Simra-1/knotspan/|u^h|_H1/1 Dataset {24}
 /1/Simra-1/knotspan/|u^h|_L2 Group
@@ -425,6 +429,8 @@ Box.xinp
 /2/Simra-1/knotspan/|p^h|_L2/1 Dataset {24}
 /2/Simra-1/knotspan/|s^h|_L2 Group
 /2/Simra-1/knotspan/|s^h|_L2/1 Dataset {24}
+/2/Simra-1/knotspan/|tk|_L2 Group
+/2/Simra-1/knotspan/|tk|_L2/1 Dataset {24}
 /2/Simra-1/knotspan/|u^h|_H1 Group
 /2/Simra-1/knotspan/|u^h|_H1/1 Dataset {24}
 /2/Simra-1/knotspan/|u^h|_L2 Group
@@ -567,6 +573,8 @@ Box.xinp
 /3/Simra-1/knotspan/|p^h|_L2/1 Dataset {24}
 /3/Simra-1/knotspan/|s^h|_L2 Group
 /3/Simra-1/knotspan/|s^h|_L2/1 Dataset {24}
+/3/Simra-1/knotspan/|tk|_L2 Group
+/3/Simra-1/knotspan/|tk|_L2/1 Dataset {24}
 /3/Simra-1/knotspan/|u^h|_H1 Group
 /3/Simra-1/knotspan/|u^h|_H1/1 Dataset {24}
 /3/Simra-1/knotspan/|u^h|_L2 Group
@@ -709,6 +717,8 @@ Box.xinp
 /4/Simra-1/knotspan/|p^h|_L2/1 Dataset {24}
 /4/Simra-1/knotspan/|s^h|_L2 Group
 /4/Simra-1/knotspan/|s^h|_L2/1 Dataset {24}
+/4/Simra-1/knotspan/|tk|_L2 Group
+/4/Simra-1/knotspan/|tk|_L2/1 Dataset {24}
 /4/Simra-1/knotspan/|u^h|_H1 Group
 /4/Simra-1/knotspan/|u^h|_H1/1 Dataset {24}
 /4/Simra-1/knotspan/|u^h|_L2 Group
@@ -851,6 +861,8 @@ Box.xinp
 /5/Simra-1/knotspan/|p^h|_L2/1 Dataset {24}
 /5/Simra-1/knotspan/|s^h|_L2 Group
 /5/Simra-1/knotspan/|s^h|_L2/1 Dataset {24}
+/5/Simra-1/knotspan/|tk|_L2 Group
+/5/Simra-1/knotspan/|tk|_L2/1 Dataset {24}
 /5/Simra-1/knotspan/|u^h|_H1 Group
 /5/Simra-1/knotspan/|u^h|_H1/1 Dataset {24}
 /5/Simra-1/knotspan/|u^h|_L2 Group
@@ -993,6 +1005,8 @@ Box.xinp
 /6/Simra-1/knotspan/|p^h|_L2/1 Dataset {24}
 /6/Simra-1/knotspan/|s^h|_L2 Group
 /6/Simra-1/knotspan/|s^h|_L2/1 Dataset {24}
+/6/Simra-1/knotspan/|tk|_L2 Group
+/6/Simra-1/knotspan/|tk|_L2/1 Dataset {24}
 /6/Simra-1/knotspan/|u^h|_H1 Group
 /6/Simra-1/knotspan/|u^h|_H1/1 Dataset {24}
 /6/Simra-1/knotspan/|u^h|_L2 Group
@@ -1135,6 +1149,8 @@ Box.xinp
 /7/Simra-1/knotspan/|p^h|_L2/1 Dataset {24}
 /7/Simra-1/knotspan/|s^h|_L2 Group
 /7/Simra-1/knotspan/|s^h|_L2/1 Dataset {24}
+/7/Simra-1/knotspan/|tk|_L2 Group
+/7/Simra-1/knotspan/|tk|_L2/1 Dataset {24}
 /7/Simra-1/knotspan/|u^h|_H1 Group
 /7/Simra-1/knotspan/|u^h|_H1/1 Dataset {24}
 /7/Simra-1/knotspan/|u^h|_L2 Group
@@ -1277,6 +1293,8 @@ Box.xinp
 /8/Simra-1/knotspan/|p^h|_L2/1 Dataset {24}
 /8/Simra-1/knotspan/|s^h|_L2 Group
 /8/Simra-1/knotspan/|s^h|_L2/1 Dataset {24}
+/8/Simra-1/knotspan/|tk|_L2 Group
+/8/Simra-1/knotspan/|tk|_L2/1 Dataset {24}
 /8/Simra-1/knotspan/|u^h|_H1 Group
 /8/Simra-1/knotspan/|u^h|_H1/1 Dataset {24}
 /8/Simra-1/knotspan/|u^h|_L2 Group
@@ -1419,6 +1437,8 @@ Box.xinp
 /9/Simra-1/knotspan/|p^h|_L2/1 Dataset {24}
 /9/Simra-1/knotspan/|s^h|_L2 Group
 /9/Simra-1/knotspan/|s^h|_L2/1 Dataset {24}
+/9/Simra-1/knotspan/|tk|_L2 Group
+/9/Simra-1/knotspan/|tk|_L2/1 Dataset {24}
 /9/Simra-1/knotspan/|u^h|_H1 Group
 /9/Simra-1/knotspan/|u^h|_H1/1 Dataset {24}
 /9/Simra-1/knotspan/|u^h|_L2 Group
