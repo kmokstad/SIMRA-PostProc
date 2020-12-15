@@ -284,7 +284,11 @@ void SIMSimraProject::printSolutionNorms(const Vectors& gNorm) const
              << "\n  L2 norm |div u^h|"
              << utl::adjustRight(w-19,"") << gNorm[0][SimraNorm::L2_DIV_Uh]
              << "\n  L2 norm |s^h| = (s^h,s^h)^0.5"
-             << utl::adjustRight(w-31,"") << gNorm[0][SimraNorm::L2_SIGMAh];
+             << utl::adjustRight(w-31,"") << gNorm[0][SimraNorm::L2_SIGMAh]
+             << "\n  L2 norm |tk^h| = (tk^h,tk^h)^0.5"
+             << utl::adjustRight(w-34,"") << gNorm[0][SimraNorm::L2_TK]
+             << "\n  L2 norm |td^h| = (td^h,td^h)^0.5"
+             << utl::adjustRight(w-34,"") << gNorm[0][SimraNorm::L2_TD];
   if (stratified) {
     IFEM::cout << "\n  L2 norm |pT^h| = (pT^h,pT^h)^0.5"
                << utl::adjustRight(w-34,"") << gNorm[0][SimraNorm::L2_pTh]
@@ -460,7 +464,7 @@ void SIMSimraProject::printNormGroup(const Vector& rNorm,
 void SIMSimraProject::registerFields(DataExporter& exporter, const Vector& sol,
                                      const Vectors& projs, const Matrix& eNorm) const
 {
-  exporter.registerField("solution",
+  exporter.registerField("solution", "solution",
                          DataExporter::SIM,
                          DataExporter::PRIMARY |
                          DataExporter::SECONDARY |

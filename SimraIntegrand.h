@@ -148,6 +148,7 @@ public:
     L2_pTh,
     H1_pTh,
     L2_TK,
+    L2_TD,
     L2_U,
     L2_E_U,
     H1_U,

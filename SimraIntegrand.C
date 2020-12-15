@@ -165,7 +165,7 @@ bool SimraIntegrand::evalSol(Vector& s, const FiniteElement& fe,
 
 size_t SimraIntegrand::getNoFields (int fld) const
 {
-  return fld < 2 ? 6 : nsd*nsd + 1 + nsd*nsd + nsd + (dist.empty() ? 0 : 1);
+  return fld < 2 ? 7 : nsd*nsd + 1 + nsd*nsd + nsd + (dist.empty() ? 0 : 1);
 }
 
 
@@ -235,6 +235,9 @@ bool SimraNorm::evalInt (LocalIntegral& elmInt, const FiniteElement& fe,
   // Turbulent kinetic energy
   double tk = problem.TKE(fe, elmInt.vec);
 
+  // Turbulent dissipation rate
+  double td = problem.TD(fe, elmInt.vec);
+
   // Stress
   Tensor sigma_h(nsd);
   problem.stress(fe, sigma_h, elmInt.vec);
@@ -253,6 +256,7 @@ bool SimraNorm::evalInt (LocalIntegral& elmInt, const FiniteElement& fe,
   pnorm[L2_pTh] += pTh*pTh*fe.detJxW;
   pnorm[H1_pTh] += dpTh*dpTh*fe.detJxW;
   pnorm[L2_TK] += tk*tk*fe.detJxW;
+  pnorm[L2_TD] += td*td*fe.detJxW;
 
   // Velocity norms
   if (aSol && aSol->getVectorSol()) {
@@ -391,7 +395,7 @@ size_t SimraNorm::getNoFields (int group) const
   if (group < 1)
     return this->NormBase::getNoFields();
   else if (group == 1)
-    return 8 + (aSol ? 13 : 0);
+    return 9 + (aSol ? 13 : 0);
   else
     return 7 + (aSol ? 9 : 0);
 }
@@ -399,7 +403,7 @@ size_t SimraNorm::getNoFields (int group) const
 
 std::string SimraNorm::getName (size_t i, size_t j, const char* prefix) const
 {
-  static const char* u[21] = {
+  static const char* u[22] = {
     "|u^h|_L2",
     "|u^h|_H1",
     "|div u^h|_L2",
@@ -408,6 +412,7 @@ std::string SimraNorm::getName (size_t i, size_t j, const char* prefix) const
     "|pT^h|_L2",
     "|pT^h|_H1",
     "|tk|_L2",
+    "|td|_L2",
     "|u|_L2",
     "|e|_L2|, e=u-u^h",
     "|u|_H1",
