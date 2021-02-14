@@ -136,11 +136,9 @@ int main (int argc, char** argv)
         if (!model.project(stmp,sol,prj.first,time))
           return 5;
       }
-      if (iStep == 1)
+      if (iStep == 1 && model.opt.format > -1)
         prefix.push_back(prj.second);
     }
-    if (exporter)
-      exporter->setNormPrefixes(prefix);
 
     if (!model.solutionNorms(time, Vectors(1,sol), projs, gNorm, &eNorm)) {
       std::cerr << "Error calculating solution norms." << std::endl;
