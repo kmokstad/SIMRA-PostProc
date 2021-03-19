@@ -11,6 +11,7 @@
 //==============================================================================
 
 #include "SIMSimraProject.h"
+#include "SimraIO.h"
 #include "DataExporter.h"
 #include "ASMs3DSimra.h"
 #include "IFEM.h"
@@ -20,16 +21,17 @@
 #include <tinyxml.h>
 
 
-SIMSimraProject::SIMSimraProject() :
-  SIMSimraBase(7)
+SIMSimraProject::SIMSimraProject (const std::string& context) :
+  SIMSimraBase(7),
+  inputContext(context)
 {
   myProblem = &itg;
 }
 
 
-bool SIMSimraProject::parse(const TiXmlElement *elem)
+bool SIMSimraProject::parse (const TiXmlElement *elem)
 {
-  if (!strcasecmp(elem->Value(),"simra")) {
+  if (!strcasecmp(elem->Value(),inputContext.c_str())) {
     const TiXmlElement* child = elem->FirstChildElement();
     for (; child; child = child->NextSiblingElement())
       if (!strcasecmp(child->Value(), "resultfile")) {
@@ -38,11 +40,17 @@ bool SIMSimraProject::parse(const TiXmlElement *elem)
         utl::getAttribute(child, "type", type);
         if (type == "history")
           rType = HISTORY_FILE;
+        else if (type == "init")
+          rType = INIT_FILE;
         else
           rType = RESTART_FILE;
-        IFEM::cout << "\tReading results from "
-                   << (rType == HISTORY_FILE?"history":"restart")
-                   << " file " << resultFile << std::endl;
+        IFEM::cout << "\tResult file (type="
+                   << (rType == HISTORY_FILE?"history":(rType == INIT_FILE?"init":"restart"))
+                   << "): " << resultFile << std::endl;
+        if (rType == HISTORY_FILE)
+          utl::getAttribute(child,"step",initStep);
+        if (initStep != 0)
+            IFEM::cout << "\tStarting from step " << initStep << std::endl;
       } else if (!strcasecmp(child->Value(),"scaling")) {
         utl::getAttribute(child, "u", uRef);
         utl::getAttribute(child, "L", lRef);
@@ -74,6 +82,13 @@ bool SIMSimraProject::parse(const TiXmlElement *elem)
           } else
             std::cerr <<"  ** SIMSimraProject::parse: Invalid analytical solution "
                          << type <<" (ignored)"<< std::endl;
+      } else if (!strcasecmp(child->Value(),"origin")) {
+        Vec3 origin;
+        utl::getAttribute(child, "x", origin.x);
+        utl::getAttribute(child, "y", origin.y);
+        utl::getAttribute(child, "z", origin.z);
+        static_cast<ASMs3DSimra*>(this->getPatch(1))->updateOrigin(origin);
+        IFEM::cout << "\tModel origin: " << origin << std::endl;
       } else {
         if (!this->SIM3D::parse(child))
           return false;
@@ -87,7 +102,7 @@ bool SIMSimraProject::parse(const TiXmlElement *elem)
 }
 
 
-bool SIMSimraProject::readResults()
+bool SIMSimraProject::readResults ()
 {
   if (resultFile.empty()) {
     std::cerr << "No result file specified." << std::endl;
@@ -162,23 +177,40 @@ bool SIMSimraProject::readResults()
     itg.elmPressure.resize(this->getPatch(1)->getNoElms());
   }
 
+  if (rType == INIT_FILE)
+    itg.elmPressure.resize(this->getPatch(1)->getNoElms());
+
   if (ASMs3DSimra::useDouble) {
-    Result<double> cr(this->getNoNodes());
+    SimraIO<double> cr(this->getNoNodes());
     if (rType == RESTART_FILE)
       cr.readRestart(ifs);
     else {
       std::vector<double> elmPressure(this->getPatch(1)->getNoElms());
-      cr.readHistory(ifs, elmPressure);
+      if (rType == INIT_FILE)
+        cr.readInit(ifs, elmPressure);
+      else {
+        if (iStep == 0 && initStep != 0)
+          for (; iStep < initStep; ++iStep)
+            cr.skipHistory(ifs, elmPressure);
+        cr.readHistory(ifs, elmPressure);
+      }
       copyElmPressure(elmPressure, itg.elmPressure);
     }
     solTime = copySolution(cr, solution);
   } else {
-    Result<float> cr(this->getNoNodes());
+    SimraIO<float> cr(this->getNoNodes());
     if (rType == RESTART_FILE)
       cr.readRestart(ifs);
     else {
       std::vector<float> elmPressure(this->getPatch(1)->getNoElms());
-      cr.readHistory(ifs, elmPressure);
+      if (rType == INIT_FILE)
+        cr.readInit(ifs, elmPressure);
+      else {
+        if (iStep == 0 && initStep != 0)
+          for (; iStep < initStep; ++iStep)
+            cr.skipHistory(ifs, elmPressure);
+        cr.readHistory(ifs, elmPressure);
+      }
       copyElmPressure(elmPressure, itg.elmPressure);
     }
     solTime = copySolution(cr, solution);
@@ -189,7 +221,7 @@ bool SIMSimraProject::readResults()
 }
 
 
-bool SIMSimraProject::writeSolutionVectors(int& nBlock, const Vector& sol)
+bool SIMSimraProject::writeSolutionVectors (int& nBlock, const Vector& sol)
 {
   static constexpr const char* names[] =
     {"u_x", "u_y", "u_z", "ps", "tk",
@@ -202,13 +234,14 @@ bool SIMSimraProject::writeSolutionVectors(int& nBlock, const Vector& sol)
   if (!itg.elmPressure.empty())
     result &= this->writeGlvE(itg.elmPressure, iStep, nBlock, "p");
 
-  result &= this->writeGlvS2(sol, iStep, nBlock, this->getSolutionTime());
+  if (!sol.empty())
+    result &= this->writeGlvS2(sol, iStep, nBlock, this->getSolutionTime());
 
   return result;
 }
 
 
-Vector SIMSimraProject::getSolution() const
+Vector SIMSimraProject::getSolution () const
 {
   if (solution.empty())
     return {};
@@ -226,7 +259,7 @@ Vector SIMSimraProject::getSolution() const
 }
 
 
-Vector& SIMSimraProject::getDistance()
+Vector& SIMSimraProject::getDistance ()
 {
   if (calcYp)
    itg.dist.resize(this->getNoNodes());
@@ -237,7 +270,7 @@ Vector& SIMSimraProject::getDistance()
 }
 
 
- bool SIMSimraProject::postProcessNorms(Vectors&, Matrix* eNormp)
+ bool SIMSimraProject::postProcessNorms (Vectors&, Matrix* eNormp)
  {
    if (!eNormp || !mySol)
      return true;
@@ -269,7 +302,7 @@ Vector& SIMSimraProject::getDistance()
  }
 
 
-void SIMSimraProject::printSolutionNorms(const Vectors& gNorm) const
+void SIMSimraProject::printSolutionNorms (const Vectors& gNorm) const
 {
   if (gNorm.empty()) return;
 
@@ -305,7 +338,7 @@ void SIMSimraProject::printSolutionNorms(const Vectors& gNorm) const
 }
 
 
-void SIMSimraProject::printExactNorms(const Vector& gNorm, size_t w) const
+void SIMSimraProject::printExactNorms (const Vector& gNorm, size_t w) const
 {
   if (!mySol)
     return;
@@ -378,9 +411,9 @@ void SIMSimraProject::printExactNorms(const Vector& gNorm, size_t w) const
 }
 
 
-void SIMSimraProject::printNormGroup(const Vector& rNorm,
-                                     const Vector& fNorm,
-                                     const std::string& name) const
+void SIMSimraProject::printNormGroup (const Vector& rNorm,
+                                      const Vector& fNorm,
+                                      const std::string& name) const
 {
   IFEM::cout << "\nError estimates based on >>> " << name << " <<<";
   size_t w = 36;
@@ -461,8 +494,8 @@ void SIMSimraProject::printNormGroup(const Vector& rNorm,
 }
 
 
-void SIMSimraProject::registerFields(DataExporter& exporter, const Vector& sol,
-                                     const Vectors& projs, const Matrix& eNorm) const
+void SIMSimraProject::registerFields (DataExporter& exporter, const Vector& sol,
+                                      const Vectors& projs, const Matrix& eNorm) const
 {
   exporter.registerField("solution", "solution",
                          DataExporter::SIM,
@@ -488,7 +521,7 @@ void SIMSimraProject::registerFields(DataExporter& exporter, const Vector& sol,
 }
 
 
-bool SIMSimraProject::orthogonalDistance()
+bool SIMSimraProject::orthogonalDistance ()
 {
   if (!useOrthogonalMesh)
     return false;
@@ -507,7 +540,17 @@ bool SIMSimraProject::orthogonalDistance()
 }
 
 
-const Vector& SIMSimraProject::getSol(size_t idx) const
+const Vector& SIMSimraProject::getSol (size_t idx) const
 {
   return solution[idx];
+}
+
+
+void SIMSimraProject::setSolutions (const Vector& vec)
+{
+  solution.resize(12, Vector(this->getNoNodes()));
+  for (size_t i = 0; i < this->getNoNodes(); ++i) {
+    for (size_t j = 0; j < 12; ++j)
+      solution[j][i] = vec[i*12+j];
+  }
 }

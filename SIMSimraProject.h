@@ -16,6 +16,7 @@
 #include "SIM3D.h"
 #include "SimraIntegrand.h"
 #include "SIMSimraBase.h"
+#include "SimraIO.h"
 
 #include <fstream>
 
@@ -29,7 +30,8 @@ class DataExporter;
 class SIMSimraProject : public SIMSimraBase {
 public:
   //! \brief Default constructor.
-  SIMSimraProject();
+  //! \param context The base xml tag to parse
+  SIMSimraProject(const std::string& context = "simra");
 
   //! \brief Empty destructor.
   virtual ~SIMSimraProject() { myInts.clear(); myProblem = nullptr; }
@@ -43,8 +45,14 @@ public:
   //! \brief Returns primary solution vector.
   Vector getSolution() const;
 
+  //! \brief Set the solution vector.
+  void setSolutions(const Vector& sol);
+
   //! \brief Returns a reference to wall distance.
   Vector& getDistance();
+
+  //! \brief Returns a reference to the element-wise pressures.
+  const Vector& getElmPressures() const { return itg.elmPressure; }
 
   //! \brief Write all solution vectors to VTF.
   //! \param nBlock Running VTF block counter
@@ -73,6 +81,9 @@ public:
   //! \param idx 0-based index for solution to obtain
   const Vector& getSol(size_t idx) const;
 
+  //! \brief Returns the file name of the result file.
+  const std::string& getResultFile() const { return resultFile; }
+
 protected:
   //! \brief Prints a norm group to the log stream.
   void printNormGroup(const Vector& rNorm,
@@ -88,8 +99,10 @@ protected:
 
   //! \brief Enumeration of result file types.
   enum ResultsType {
+    BOUNDARY_FILE, //!< Boundary condition file
     RESTART_FILE, //!< Restart file, holds one time step
-    HISTORY_FILE  //!< History file, holds multiple time steps
+    HISTORY_FILE, //!< History file, holds multiple time steps
+    INIT_FILE     //!< Init file, holds one time step
   };
 
   ResultsType rType = RESTART_FILE; //!< Type for result file
@@ -104,101 +117,11 @@ protected:
 
   SimraIntegrand itg; //!< Integrand to use
 
-private:
   int iStep = 0; //!< Current time step to read
+  int initStep = 0; //!< Initial step to read from history file
   std::ifstream ifs; //!< File stream for reading
   std::ifstream::pos_type fileSize = 0; //!< Size of file
-
-  //! \brief Structure for temporary storage of results.
-  template<class T>
-  struct Result {
-    //! \brief Constructor resizes vectors.
-    //! !param len Length of results
-    Result(int len)
-    {
-      u1.resize(len);
-      u2.resize(len);
-      u3.resize(len);
-      ps.resize(len);
-      tk.resize(len);
-      td.resize(len);
-      vtef.resize(len);
-      pt.resize(len);
-      pts.resize(len);
-      rho.resize(len);
-      rhos.resize(len);
-      strat.resize(len);
-    }
-
-    //! \brief Reads results from a restart file.
-    //! \param ifs File stream to read from
-    void readRestart(std::istream& ifs)
-    {
-      int header;
-      ifs.read(reinterpret_cast<char*>(&header), 4);
-      ifs.read(reinterpret_cast<char*>(&time), sizeof(T));
-      for (size_t i = 0; i < u1.size(); ++i) {
-        ifs.read(reinterpret_cast<char*>(&u1[i]), sizeof(T));
-        ifs.read(reinterpret_cast<char*>(&u2[i]), sizeof(T));
-        ifs.read(reinterpret_cast<char*>(&u3[i]), sizeof(T));
-        ifs.read(reinterpret_cast<char*>(&ps[i]), sizeof(T));
-        ifs.read(reinterpret_cast<char*>(&tk[i]), sizeof(T));
-        ifs.read(reinterpret_cast<char*>(&td[i]), sizeof(T));
-        ifs.read(reinterpret_cast<char*>(&vtef[i]), sizeof(T));
-        ifs.read(reinterpret_cast<char*>(&pt[i]), sizeof(T));
-        ifs.read(reinterpret_cast<char*>(&pts[i]), sizeof(T));
-        ifs.read(reinterpret_cast<char*>(&rho[i]), sizeof(T));
-        ifs.read(reinterpret_cast<char*>(&rhos[i]), sizeof(T));
-      }
-      ifs.read(reinterpret_cast<char*>(&header), 4);
-
-      ifs.read(reinterpret_cast<char*>(&header), 4);
-      ifs.read(reinterpret_cast<char*>(strat.data()), strat.size()*sizeof(T));
-      ifs.read(reinterpret_cast<char*>(&header), 4);
-    }
-
-    //! \brief Reads results for a single time step from a history file.
-    //! \param ifs File stream to read from
-    void readHistory(std::istream& ifs, std::vector<T>& elmPressures)
-    {
-      int header;
-      ifs.read(reinterpret_cast<char*>(&header), 4);
-      ifs.read(reinterpret_cast<char*>(&time), sizeof(T));
-      for (size_t i = 0; i < u1.size(); ++i) {
-        ifs.read(reinterpret_cast<char*>(&u1[i]), sizeof(T));
-        ifs.read(reinterpret_cast<char*>(&u2[i]), sizeof(T));
-        ifs.read(reinterpret_cast<char*>(&u3[i]), sizeof(T));
-        ifs.read(reinterpret_cast<char*>(&ps[i]), sizeof(T));
-        ifs.read(reinterpret_cast<char*>(&tk[i]), sizeof(T));
-        ifs.read(reinterpret_cast<char*>(&td[i]), sizeof(T));
-        ifs.read(reinterpret_cast<char*>(&vtef[i]), sizeof(T));
-        ifs.read(reinterpret_cast<char*>(&pt[i]), sizeof(T));
-        ifs.read(reinterpret_cast<char*>(&pts[i]), sizeof(T));
-        ifs.read(reinterpret_cast<char*>(&rho[i]), sizeof(T));
-        ifs.read(reinterpret_cast<char*>(&rhos[i]), sizeof(T));
-        ifs.read(reinterpret_cast<char*>(&strat[i]), sizeof(T));
-      }
-      ifs.read(reinterpret_cast<char*>(&header), 4);
-
-      ifs.read(reinterpret_cast<char*>(&header), 4);
-      ifs.read(reinterpret_cast<char*>(elmPressures.data()),elmPressures.size()*sizeof(T));
-      ifs.read(reinterpret_cast<char*>(&header), 4);
-    }
-
-    T time; //!< Time level for solution
-    std::vector<T> u1; //!< X velocities
-    std::vector<T> u2; //!< Y velocities
-    std::vector<T> u3; //!< Z velocities
-    std::vector<T> ps; //!< Pressures
-    std::vector<T> tk; //!< Turbulent kinetic energy
-    std::vector<T> td; //!< Turbulent dissipation
-    std::vector<T> vtef; //!< Effective viscosity
-    std::vector<T> pt; //!< Potential temperature
-    std::vector<T> pts; //!< Potential temperature with stratification
-    std::vector<T> rho; //!< Densities
-    std::vector<T> rhos; //!< Stratified densities
-    std::vector<T> strat; //!< Stratified temperature
-  };
+  std::string inputContext; //!< Input context
 };
 
 

@@ -4,7 +4,7 @@ Box.xinp
 	Viscosity nu = 0.1
 	Reference velocity U = 1
 	Reference length L = 1
-	Reading results from history file Box.res
+	Result file (type=history): Box.res
 	Not including temperature terms
 Number of elements    24
 Number of nodes       60
