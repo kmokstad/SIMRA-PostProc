@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<simulation>
+  <!-- General - geometry definitions !-->
+  <simra_input>
+    <geometry>
+      <patchfile>Box4.dat</patchfile>
+      <topologysets>
+        <set name="Bottom" type="face">
+          <item patch="1">5</item>
+        </set>
+      </topologysets>
+    </geometry>
+    <resultfile type="init">Box4.init</resultfile>
+    <boundaryfile>Box4.transfer.boun.orig</boundaryfile>
+  </simra_input>
+
+  <simra_output>
+    <geometry>
+      <patchfile>Box4.dat</patchfile>
+    </geometry>
+    <resultfile type="init">Box4.transfer.init</resultfile>
+    <boundaryfile>Box4.transfer.boun</boundaryfile>
+    <use_boundary_transfer/>
+  </simra_output>
+
+</simulation>

@@ -13,6 +13,7 @@
 
 #include "ASMs3DSimra.h"
 #include "ElementBlock.h"
+#include "Vec3Oper.h"
 
 #include <numeric>
 
@@ -25,7 +26,7 @@ ASMs3DSimra::ASMs3DSimra (size_t nf)
 }
 
 
-bool ASMs3DSimra::read(std::istream &is)
+bool ASMs3DSimra::read (std::istream& is)
 {
   if (is.tellg() != 0)
     return false;
@@ -73,17 +74,32 @@ bool ASMs3DSimra::read(std::istream &is)
     copyMesh(mesh);
   }
 
+  Vec3 delta = this->getCoord(nx) - this->getCoord(1);
+  param[0].resize(nx);
+  for (size_t i = 0; i < nx; ++i)
+    param[0][i] = (this->getCoord(i+1).x - this->getCoord(1).x) / delta.x;
+
+  delta = this->getCoord((ny-1)*nx+1) - this->getCoord(1);
+  param[1].resize(ny);
+  for (size_t i = 0; i < ny; ++i)
+    param[1][i] = (this->getCoord(i*nx+1).y - this->getCoord(1).y) / delta.y;
+
+  delta = this->getCoord((nz-1)*nx*ny + 1) - this->getCoord(1);
+  param[2].resize(nz);
+  for (size_t i = 0; i < nz; ++i)
+    param[2][i] = (this->getCoord(i*nx*ny+1).z - this->getCoord(1).z) / delta.z;
+
   return true;
 }
 
 
-bool ASMs3DSimra::empty() const
+bool ASMs3DSimra::empty () const
 {
   return myMNPC.empty();
 }
 
 
-bool ASMs3DSimra::tesselate(ElementBlock& grid, const int* npe) const
+bool ASMs3DSimra::tesselate (ElementBlock& grid, const int* npe) const
 {
   grid.unStructResize(nel, nnod);
 
@@ -155,9 +171,126 @@ bool ASMs3DSimra::generateFEMTopology ()
 }
 
 
-void ASMs3DSimra::getNoStructNodes(size_t& n1, size_t& n2, size_t& n3) const
+void ASMs3DSimra::getNoStructNodes (size_t& n1, size_t& n2, size_t& n3) const
 {
   n1 = nx;
   n2 = ny;
   n3 = nz;
+}
+
+
+void ASMs3DSimra::elementTransfer (const ASMs3DSimra* from,
+                                   const Vector& oldValues,
+                                   Vector& newValues)
+{
+  size_t idx = 1;
+  for (size_t k = 0; k < nz-1; ++k) {
+    double w = (param[2][k+1] + param[2][k]) / 2.0;
+    for (size_t j = 0; j < ny-1; ++j) {
+      double v = (param[1][j+1] + param[1][j]) / 2.0;
+      for (size_t i = 0; i < nx-1; ++i, ++idx) {
+        double u = (param[0][i+1] + param[0][i]) / 2.0;
+        newValues(idx) = oldValues(from->findElement(u,v,w));
+      }
+    }
+  }
+}
+
+
+std::array<double,3> ASMs3DSimra::getNodeParams(int node) const
+{
+  int x = (node-1) % nx;
+  int y = (node-1) % (nx*ny) / nx;
+  int z = (node-1) / (nx*ny);
+
+  return {param[0][x], param[1][y], param[2][z]};
+}
+
+
+int ASMs3DSimra::findElement(double u, double v, double w,
+                             double* xi, double* eta, double* zeta) const
+{
+  int elmx = std::upper_bound(param[0].begin(), param[0].end()-1, u) - param[0].begin() - 1;
+  int elmy = std::upper_bound(param[1].begin(), param[1].end()-1, v) - param[1].begin() - 1;
+  int elmz = std::upper_bound(param[2].begin(), param[2].end()-1, w) - param[2].begin() - 1;
+
+  if (xi) {
+    double du = param[0][elmx+1] - param[0][elmx];
+    *xi   = -1.0 + (u - param[0][elmx])*2.0 / du;
+  }
+  if (eta) {
+    double dv = param[1][elmy+1] - param[1][elmy];
+    *eta  = -1.0 + (v - param[1][elmy])*2.0 / dv;
+  }
+  if (zeta) {
+    double dw = param[2][elmz+1] - param[2][elmz];
+    *zeta = -1.0 + (w - param[2][elmz])*2.0 / dw;
+  }
+
+  return 1 + elmx + elmy*(nx-1) + elmz*(ny-1)*(nx-1);
+}
+
+
+bool ASMs3DSimra::evaluate (const ASMbase* basis, const Vector& locVec,
+                            RealArray& vec, int basisNum) const
+{
+  // Evaluate the result field at all sampling points.
+  // Note: it is here assumed that *basis and *this have spline bases
+  // defined over the same parameter domain.
+  Matrix sValues;
+  if (!basis->evalSolution(sValues,locVec,param.data()))
+    return false;
+  vec = sValues;
+  return true;
+}
+
+
+std::array<int,3> ASMs3DSimra::findNode(const Vec3& nodeCoord, double tol) const
+{
+  double m = 1e10;
+  auto it = std::find_if(coord.begin(), coord.end(),
+                         [nodeCoord,&m,tol](const Vec3& X)
+                         {
+                           m = std::min(m, (nodeCoord-X).length());
+                           return (nodeCoord-X).length() < tol;
+                         });
+  if (it == coord.end()) {
+    std::cerr << "\n** Closest node was " << m;
+    return {-1,-1,-1};
+  }
+
+  int node = it-coord.begin();
+
+  int x = node % nx;
+  int y = node % (nx*ny) / nx;
+  int z = node / (nx*ny);
+
+  return {x+1,y+1,z+1};
+}
+
+
+void ASMs3DSimra::getBoundaryNodes(int lIndex, IntVec& nodes, int basis, int thick, int, bool local) const
+{
+  IntVec tmpNodes;
+  this->ASMs3D::getBoundaryNodes(lIndex, tmpNodes, basis);
+  nodes.resize(tmpNodes.size());
+
+  size_t nx, ny, nz;
+  this->getNoStructNodes(nx,ny,nz);
+
+  size_t idx = 0;
+  if (lIndex == 3 || lIndex == 4) {
+    for (size_t i = 0; i < nx; ++i)
+      for (size_t k = 0; k < nz; ++k)
+        nodes[idx++] = tmpNodes[k*nx+i];
+  } else if (lIndex == 1 || lIndex == 2) {
+    for (size_t j = 0; j < ny; ++j)
+      for (size_t k = 0; k < nz; ++k)
+        nodes[idx++] = tmpNodes[k*ny+j];
+  } else if (lIndex == 6) {
+    for (size_t i = 0; i < nx; ++i)
+      for (size_t j = 0; j < ny; ++j)
+        nodes[idx++] = tmpNodes[j*nx+i];
+  } else
+    nodes = tmpNodes;
 }

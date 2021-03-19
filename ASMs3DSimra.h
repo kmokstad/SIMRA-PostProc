@@ -56,6 +56,51 @@ public:
   //! \param n3 Number of nodes in z
   void getNoStructNodes(size_t& n1, size_t& n2, size_t& n3) const;
 
+  //! \brief Perform transfer of elemental values from another mesh.
+  //! \param[in] from The mesh to transfer from
+  //! \param[in] oldValues Old elemental values
+  //! \param[out] newValues New elemental values
+  void elementTransfer(const ASMs3DSimra* from,
+                       const Vector& oldValues, Vector& newValues);
+
+  //! \brief Get parameters for a node.
+  std::array<double,3> getNodeParams(int node) const;
+
+  //! \brief Find element for parameter, and optionally calculate local coordinates.
+  int findElement(double u, double v, double w, double* xi = nullptr,
+                  double* eta = nullptr, double* zeta = nullptr) const override;
+
+  //! \brief Evaluates and interpolates a field over a given geometry.
+  //! \param[in] basis The basis of the field to evaluate
+  //! \param[in] locVec The coefficients of the field to evaluate
+  //! \param[out] vec The obtained coefficients after interpolation
+  //! \param[in] basisNum The basis to evaluate for (mixed)
+  bool evaluate (const ASMbase* basis, const Vector& locVec,
+                 RealArray& vec, int basisNum) const override;
+
+  //! \brief Obtain parameters.
+  const std::array<std::vector<double>,3>& getParams() const { return param; }
+
+  //! \brief Obtain parameters.
+  std::array<std::vector<double>,3>& getParams() { return param; }
+
+  //! \brief Returns node matching coordinates.
+  //! \param coord Coordinates of node to find
+  //! \param tol Tolerance for accepted node
+  std::array<int,3> findNode(const Vec3& coord, double tol) const;
+
+
+  using ASMs3DLag::getBoundaryNodes;
+  //! \brief Finds the global (or patch-local) node numbers on a patch boundary.
+  //! \param[in] lIndex Local index of the boundary face
+  //! \param nodes Array of node numbers
+  //! \param[in] basis Which basis to grab nodes for (for mixed methods)
+  //! \param[in] thick Thickness of connection
+  //! \param[in] local If \e true, return patch-local node numbers
+  void getBoundaryNodes(int lIndex, IntVec& nodes,
+                        int basis, int thick,
+                        int, bool local) const override;
+
 private:
   //! \brief Temporary structure for holding mesh structure.
   template<class T>
@@ -93,6 +138,8 @@ private:
         is.read(reinterpret_cast<char*>(elms[i].data()), 8*4);
     }
   };
+
+  std::array<std::vector<double>,3> param;
 };
 
 #endif

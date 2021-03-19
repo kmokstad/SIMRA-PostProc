@@ -33,7 +33,6 @@ public:
   //! \param[in] whiteSpace For message formatting
   ASMbase* readPatch(std::istream& isp, int pchInd, const CharVec& unf,
                      const char* whiteSpace) const override;
-
 };
 
 
