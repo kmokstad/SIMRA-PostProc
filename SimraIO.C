@@ -177,12 +177,12 @@ void SimraBoundaryIO::writeFile (std::ostream& ofs)
   for (size_t i = 0; i < wall.size(); ++i) {
     ofs << std::setw(8) << wall[i] << (num % 9 == 8 ? "\n":"");
     ++num;
-    ofs << std::setw(8) << log[i] << (num % 9 == 8 ? "\n":"");
+    ofs << std::setw(8) << log[i] << (num % 9 == 8 && i != wall.size()-1 ? "\n":"");
     ++num;
   }
   ofs << "\n(K,e)-values:\n";
   for (size_t i = 0; i < k.idx.size(); ++i)
-    ofs << std::setw(8) << k.idx[i] << (i % 9 == 8 ? "\n":"");
+    ofs << std::setw(8) << k.idx[i] << (i % 9 == 8 && i != k.idx.size()-1 ? "\n":"");
   ofs << '\n';
   for (size_t i = 0; i < k.val.size(); ++i)
     ofs << make_real_string(k.val[i]) << make_real_string(d.val[i]) << ((i % 3 == 2 && i != k.val.size()-1) ? "\n":"");
