@@ -42,7 +42,7 @@ clone_ifem
 source $WORKSPACE/deps/IFEM/jenkins/build-ifem-module.sh
 
 parseRevisions
-printHeader IFEM-THM
+printHeader SIMRA-PostProc
 
 build_module_and_upstreams SIMRA-PostProc
 
