@@ -114,6 +114,8 @@ private:
     std::vector<std::array<T,3>> coords; //!< Coordinates of nodes
     std::vector<std::array<int,8>> elms;  //!< Elemental node connectivities
 
+    //! \brief Read in a 'mesh.dat' file.
+    //! \param is Stream to read from
     void read(std::istream &is)
     {
       int header;
@@ -139,7 +141,7 @@ private:
     }
   };
 
-  std::array<std::vector<double>,3> param;
+  std::array<std::vector<double>,3> param; //!< Parameter values for nodes
 };
 
 #endif

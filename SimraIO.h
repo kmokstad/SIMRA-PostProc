@@ -39,6 +39,7 @@ struct SimraIO {
 
   //! \brief Reads results from a restart file.
   //! \param ifs File stream to read from
+  //! \param elmPressures Element pressures
   //! \return True if elmPressures was read
   bool readRestart(std::istream& ifs, std::vector<T>& elmPressures)
   {
@@ -74,7 +75,7 @@ struct SimraIO {
   }
 
   //! \brief Write results to a restart file.
-  //! \param ifs File stream to write to
+  //! \param ofs File stream to write to
   void writeRestart(std::ostream& ofs)
   {
     int header = u1.size()*sizeof(T)*11+sizeof(T);
@@ -104,6 +105,7 @@ struct SimraIO {
 
   //! \brief Reads results for a single time step from a history file.
   //! \param ifs File stream to read from
+  //! \param elmPressures Element pressures
   void readHistory(std::istream& ifs, std::vector<T>& elmPressures)
   {
     int header;
@@ -144,6 +146,7 @@ struct SimraIO {
 
   //! \brief Reads results for a single time step from a init file.
   //! \param ifs File stream to read from
+  //! \param elmPressures Element pressures
   void readInit(std::istream& ifs, std::vector<T>& elmPressures)
   {
     int header;
@@ -170,6 +173,7 @@ struct SimraIO {
 
   //! \brief Write results for a initial condition file.
   //! \param ofs File stream to write to
+  //! \param elmPressures Element pressures
   void writeInit(std::ostream& ofs, const std::vector<T>& elmPressures)
   {
     int header = u1.size()*sizeof(T)*11;

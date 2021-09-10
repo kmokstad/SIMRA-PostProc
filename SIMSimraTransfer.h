@@ -34,7 +34,6 @@ public:
 
   //! \brief Transfer elemental pressures from another mesh.
   //! \param input The simulator with the data to transfer
-  //! \param[out] elmPressures the new elemental pressures
   void elementTransfer(const SIMSimraTransfer& input);
 
   //! \brief Transfer nodal surface roughness from another mesh.
@@ -98,7 +97,7 @@ protected:
   SimraBoundaryIO bnd; //!< Boundary data
   bool useBndTransfer = false; //!< Whether or not to use transfer for boundary data
   NestedRegion configuredRegion; //!< Configured nesting region
-  double nestingTolerance = -1.0;
+  double nestingTolerance = -1.0; //!< Tolerance for nesting detection
   std::vector<int> inflow_faces; //!< Preconfigured inflow faces
 
 private:
