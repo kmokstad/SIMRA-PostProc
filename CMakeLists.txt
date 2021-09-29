@@ -73,6 +73,9 @@ if(NOT MPI_FOUND OR IFEM_SERIAL_TESTS_IN_PARALLEL)
                         1e-5)
 endif()
 list(APPEND TEST_APPS SIMRA-PostProc SIMRA-SolutionTransfer SIMRA-CompareSetup)
+foreach(SRC ${SIMRA_SRCS} main_SolutionTransfer.C main_CompareSetup.C main_PostProc.C)
+  list(APPEND CHECK_SOURCES ${PROJECT_SOURCE_DIR}/${SRC})
+endforeach()
 
 # Unit tests
 IFEM_add_test_app(${PROJECT_SOURCE_DIR}/Test/*.C
