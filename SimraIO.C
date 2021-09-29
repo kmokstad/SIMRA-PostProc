@@ -180,7 +180,6 @@ bool SimraBoundaryIO::readFile (std::istream & ifs, int nNodes)
 
 void SimraBoundaryIO::writeFile (std::ostream& ofs)
 {
-  std::string header;
   ofs << "Boundary conditions\n";
   ofs << std::setw(8) << u.idx.size()
       << std::setw(8) << v.idx.size()
