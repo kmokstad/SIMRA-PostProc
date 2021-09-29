@@ -21,7 +21,7 @@ template<class T>
 struct SimraIO {
   //! \brief Constructor resizes vectors.
   //! !param len Length of results
-  SimraIO(int len)
+  explicit SimraIO(int len)
   {
     u1.resize(len);
     u2.resize(len);
