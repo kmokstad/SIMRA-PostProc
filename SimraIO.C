@@ -74,7 +74,7 @@ bool SimraBoundaryIO::readFile (std::istream & ifs, int nNodes)
     return false;
   }
 
-  int nfixu, nfixv, nfixw, nfixp, nfixe, nfixk, nwelm, nlog;
+  int nfixu, nfixv, nfixw, nfixp, nfixe, nfixk, nwelm=0, nlog;
   float z0_const;
   ifs >> nfixu >> nfixv >> nfixw >> nfixp >> nfixe >> nfixk;
   if (nNodes)
@@ -119,7 +119,7 @@ bool SimraBoundaryIO::readFile (std::istream & ifs, int nNodes)
     return false;
   }
 
-  if (nNodes) {
+  if (nNodes && nwelm) {
     wallE.resize(nwelm);
     for (int i = 0; i < nwelm; ++i)
       ifs >> wallE[i];
