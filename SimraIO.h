@@ -198,7 +198,7 @@ struct SimraIO {
     ofs.write(reinterpret_cast<char*>(&header), 4);
   }
 
-  T time; //!< Time level for solution
+  T time =  0.0; //!< Time level for solution
   std::vector<T> u1; //!< X velocities
   std::vector<T> u2; //!< Y velocities
   std::vector<T> u3; //!< Z velocities

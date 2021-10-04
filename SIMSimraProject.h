@@ -134,7 +134,7 @@ protected:
   bool stratified = true; //!< Include temperature
   bool calcYp = true; //!< True to calculate y+ term
   bool useOrthogonalMesh = false; //!< True to assume terrain-orthogonal mesh lines.
-  double solTime; //!< Solution time
+  double solTime = 0.0; //!< Solution time
   double uRef = 1.0; //!< Reference velocity value
   double lRef = 1.0; //!< Reference length scale
 
