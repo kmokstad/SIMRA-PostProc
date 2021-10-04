@@ -46,7 +46,7 @@ public:
 protected:
   using SIMSimraBase::parse;
   //! \brief Parses a data section from an XML element.
-  bool parse(const TiXmlElement* elem);
+  bool parse(const TiXmlElement* elem) override;
 
 private:
   FSWallDistance fsw;  //!< Fares-Schröder wall distance problem
