@@ -57,8 +57,8 @@ bool ASMs3DSimra::read (std::istream& is)
         for (size_t i = 0; i < nx-1; ++i) {
           const std::array<int,8>& mnpc = mesh.elms[k + i*(nz-1) + j*(nz-1)*(nx-1)];
           myMNPC[idx++] = {mnpc.begin(), mnpc.end()};
-          for (int& i : myMNPC[idx-1])
-            --i;
+          for (int& n : myMNPC[idx-1])
+            --n;
           std::swap(myMNPC[idx-1][2], myMNPC[idx-1][3]);
           std::swap(myMNPC[idx-1][6], myMNPC[idx-1][7]);
         }

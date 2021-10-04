@@ -367,9 +367,6 @@ bool SimraNorm::evalInt (LocalIntegral& elmInt, const FiniteElement& fe,
         epsus -= gradU;
         problem.strain(epsus);
 
-        const RealFunc* psol = aSol->getScalarSol(0);
-
-        double P = (*psol)(X);
         pnorm[ip+H1_Ur_U] += mu*epsus.innerProd(epsus)*fe.detJxW;
         pnorm[ip+TOTAL_E_REC] += (mu*epsus.innerProd(epsus)+(Pr-P)*(Pr-P))*fe.detJxW;
         pnorm[ip+L2_Pr_P] += (Pr-P)*(Pr-P)*fe.detJxW;
