@@ -212,7 +212,7 @@ SimraNorm::SimraNorm (SimraIntegrand& p, AnaSol* asol) :
 bool SimraNorm::evalInt (LocalIntegral& elmInt, const FiniteElement& fe,
                          const Vec3& X) const
 {
-  SimraIntegrand& problem = static_cast<SimraIntegrand&>(myProblem);
+  const SimraIntegrand& problem = static_cast<const SimraIntegrand&>(myProblem);
   ElmNorm& pnorm = static_cast<ElmNorm&>(elmInt);
 
   size_t nsd   = fe.dNdX.cols();
