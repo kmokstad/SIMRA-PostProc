@@ -24,7 +24,7 @@ class SIMSimraBase : public SIM3D {
 public:
   //! \brief Default constructor.
   //! \param nf Number of primary solution fields
-  SIMSimraBase(size_t nf);
+  explicit SIMSimraBase(size_t nf);
 
   //! \brief Reads a patch from given input stream.
   //! \param[in] isp The input stream to read from

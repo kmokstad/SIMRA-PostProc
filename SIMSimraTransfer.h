@@ -24,7 +24,7 @@ class SIMSimraTransfer : public SIMSimraProject {
 public:
   //! \brief Default constructor.
   //! \param context The base xml tag to parse
-  SIMSimraTransfer(const std::string& context = "simra");
+  explicit SIMSimraTransfer(const std::string& context = "simra");
 
   //! \brief Write results to the result file.
   bool writeResults();

@@ -29,7 +29,7 @@ public:
 
   //! \brief Default constructor.
   //! \param nf Number of primary solution fields
-  ASMs3DSimra(size_t nf);
+  explicit ASMs3DSimra(size_t nf);
   //! \brief Empty destructor.
   virtual ~ASMs3DSimra() {}
 
