@@ -71,7 +71,6 @@ bool SIMSimraTransfer::parse (const TiXmlElement *elem)
           IFEM::cout << "\tTolerance for detecting nesting region = "
                      << nestingTolerance << std::endl;
       } else if (!strcasecmp(child->Value(), "inflow")) {
-          std::vector<int> tmp;
           utl::parseIntegers(inflow_faces, utl::getValue(child,"inflow"));
           IFEM::cout << "\tConfigured inflow faces:";
           for (int face : inflow_faces)
@@ -472,7 +471,6 @@ SIMSimraTransfer::determineNestingRegion (const SIMSimraTransfer& out) const
     return NestedRegion{-1};
   }
 
-  Vec3 coord = out.getNodeCoord(1);
   const ASMs3DSimra* pch = static_cast<const ASMs3DSimra*>(this->getPatch(1));
 
   return {pch->findNode(out.getNodeCoord(1), nestingTolerance),
