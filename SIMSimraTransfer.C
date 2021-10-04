@@ -468,7 +468,7 @@ SIMSimraTransfer::determineNestingRegion (const SIMSimraTransfer& out) const
 
   if (nestingTolerance == -1.0) {
     std::cerr << "*** Have to detect nesting region but no tolerance is specified." << std::endl;
-    return NestedRegion{-1};
+    return NestedRegion{{{-1}}};
   }
 
   const ASMs3DSimra* pch = static_cast<const ASMs3DSimra*>(this->getPatch(1));
