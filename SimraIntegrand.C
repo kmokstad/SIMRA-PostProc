@@ -308,8 +308,8 @@ bool SimraNorm::evalInt (LocalIntegral& elmInt, const FiniteElement& fe,
   }
 
   // Analytical temperature
-  double pT = 0;
   if (aSol && aSol->getScalarSol(1)) {
+    double pT = 0;
     pT = (*aSol->getScalarSol(1))(X);
     pnorm[L2_pT] += pT*pT*fe.detJxW;
     pTh -= pT;

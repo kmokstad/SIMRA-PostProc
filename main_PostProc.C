@@ -82,12 +82,13 @@ int main (int argc, char** argv)
   utl::profiler->stop("Initialization");
 
   int nBlock = 0;
-  int geoBlk = 0;
-  if (model.opt.format > -1)
+  if (model.opt.format > -1) {
+    int geoBlk = 0;
     if (!model.writeGlvG(geoBlk, argv[1])) {
       std::cerr << "Error writing VTF file." << std::endl;
       return 4;
     }
+  }
 
   Vector sol;
   Vectors old(6);
