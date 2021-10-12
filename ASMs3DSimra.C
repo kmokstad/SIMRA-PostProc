@@ -12,10 +12,21 @@
 //==============================================================================
 
 #include "ASMs3DSimra.h"
+
+#include "ASMs3D.h"
 #include "ElementBlock.h"
+#include "matrix.h"
+#include "Vec3.h"
 #include "Vec3Oper.h"
 
+#include <algorithm>
+#include <ext/alloc_traits.h>
+#include <iostream>
+#include <memory>
 #include <numeric>
+#include <string>
+#include <utility>
+
 
 bool ASMs3DSimra::useDouble = false;
 

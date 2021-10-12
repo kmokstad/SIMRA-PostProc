@@ -14,7 +14,18 @@
 #ifndef _ASM_S3D_SIMRA_H
 #define _ASM_S3D_SIMRA_H
 
+#include "ASMbase.h"
 #include "ASMs3DLag.h"
+#include "MatVec.h"
+
+#include <array>
+#include <cstddef>
+#include <istream>
+#include <vector>
+
+
+class ElementBlock;
+class Vec3;
 
 
 /*!

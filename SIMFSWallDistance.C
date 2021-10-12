@@ -13,10 +13,20 @@
 //==============================================================================
 
 #include "SIMFSWallDistance.h"
+
 #include "IFEM.h"
-#include "matrix.h"
+#include "LogStream.h"
+#include "SIMadmin.h"
+#include "SIMbase.h"
+#include "SIMenums.h"
+#include "SIMoptions.h"
 #include "Utilities.h"
+
+#include <cstdlib>
+#include <ostream>
+#include <strings.h>
 #include <tinyxml.h>
+#include <vector>
 
 
 SIMFSWallDistance::SIMFSWallDistance() :

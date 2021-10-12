@@ -17,6 +17,15 @@
 #define _FS_WALL_DISTANCE_H
 
 #include "IntegrandBase.h"
+#include "MatVec.h"
+
+#include <cstddef>
+#include <string>
+
+
+class FiniteElement;
+class LocalIntegral;
+class Vec3;
 
 
 /*!

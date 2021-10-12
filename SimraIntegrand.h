@@ -14,10 +14,19 @@
 #ifndef _SIMRA_INTEGRAND_H_
 #define _SIMRA_INTEGRAND_H_
 
-#include "AnaSol.h"
 #include "IntegrandBase.h"
-#include "GlobalIntegral.h"
-#include "EqualOrderOperators.h"
+#include "MatVec.h"
+#include "Vec3.h"
+
+#include <cstddef>
+#include <string>
+#include <vector>
+
+
+class AnaSol;
+class FiniteElement;
+class LocalIntegral;
+class Tensor;
 
 
 /*!

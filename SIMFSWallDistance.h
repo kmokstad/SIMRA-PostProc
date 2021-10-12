@@ -16,8 +16,15 @@
 #define _SIM_FS_WALL_DISTANCE_H
 
 #include "FSWallDistance.h"
-#include "NonLinSIM.h"
 #include "SIMSimraBase.h"
+
+#include "MatVec.h"
+#include "NonLinSIM.h"
+
+#include <string>
+
+
+class TiXmlElement;
 
 
 /*!

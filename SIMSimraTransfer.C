@@ -11,12 +11,24 @@
 //==============================================================================
 
 #include "SIMSimraTransfer.h"
-#include "SimraIO.h"
 #include "ASMs3DSimra.h"
+#include "SimraIntegrand.h"
+#include "SimraIO.h"
+
+#include "ASMbase.h"
 #include "IFEM.h"
+#include "LogStream.h"
 #include "Utilities.h"
+#include "Vec3.h"
 #include "Vec3Oper.h"
 
+#include <algorithm>
+#include <cstddef>
+#include <ext/alloc_traits.h>
+#include <initializer_list>
+#include <iostream>
+#include <memory>
+#include <strings.h>
 #include <tinyxml.h>
 
 
@@ -56,7 +68,7 @@ bool SIMSimraTransfer::parse (const TiXmlElement *elem)
           std::copy(tmp.begin(), tmp.begin()+3, cr[0].begin());
         }
         const char* end = child->Attribute("end");
-        if (start) {
+        if (end) {
           std::vector<int> tmp;
           utl::parseIntegers(tmp, end);
           std::copy(tmp.begin(), tmp.begin()+3, cr[1].begin());

@@ -11,15 +11,32 @@
 //!
 //==============================================================================
 
-#include "IFEM.h"
 #include "ASMs3DSimra.h"
-#include "DataExporter.h"
-#include "HDF5Writer.h"
-#include "SIMenums.h"
 #include "SIMFSWallDistance.h"
 #include "SIMSimraProject.h"
+
+#include "DataExporter.h"
+#include "HDF5Writer.h"
+#include "IFEM.h"
+#include "IntegrandBase.h"
+#include "LogStream.h"
+#include "MatVec.h"
 #include "Profiler.h"
-#include "SIMargsBase.h"
+#include "SIM3D.h"
+#include "SIMadmin.h"
+#include "SIMenums.h"
+#include "SIMoptions.h"
+#include "TimeDomain.h"
+
+#include <cmath>
+#include <cstddef>
+#include <ext/alloc_traits.h>
+#include <iostream>
+#include <map>
+#include <memory>
+#include <vector>
+#include <string>
+#include <strings.h>
 
 
 /*!

@@ -11,18 +11,29 @@
 //==============================================================================
 
 #include "SIMSimraBase.h"
+
 #include "ASMs3DSimra.h"
 #include "IFEM.h"
+#include "LogStream.h"
+#include "SIMdependency.h"
+
+#include <ostream>
+#include <vector>
 
 
-SIMSimraBase::SIMSimraBase(size_t nf) :
+class ASMbase;
+
+
+SIMSimraBase::SIMSimraBase (size_t nf) :
   SIM3D(nf)
 {
 }
 
 
-ASMbase* SIMSimraBase::readPatch(std::istream &isp, int pchInd,
-                                 const CharVec &unf, const char *whiteSpace) const
+ASMbase* SIMSimraBase::readPatch (std::istream &isp,
+                                  int pchInd,
+                                  const CharVec &unf,
+                                  const char *whiteSpace) const
 {
   ASMs3DSimra* pch = new ASMs3DSimra(nf.front());
   if (pch)

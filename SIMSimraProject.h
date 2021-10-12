@@ -13,15 +13,20 @@
 #ifndef SIMSIMRAPROJECT_H
 #define SIMSIMRAPROJECT_H
 
-#include "SIM3D.h"
 #include "SimraIntegrand.h"
 #include "SIMSimraBase.h"
-#include "SimraIO.h"
 
+#include "MatVec.h"
+#include "SIMbase.h"
+
+#include <cstddef>
 #include <fstream>
+#include <string>
 
 
 class DataExporter;
+class TiXmlElement;
+
 
 /*!
   \brief Simulation driver for projection of SIMRA results.

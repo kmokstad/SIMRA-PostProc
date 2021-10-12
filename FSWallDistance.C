@@ -14,8 +14,16 @@
 //==============================================================================
 
 #include "FSWallDistance.h"
+
 #include "FiniteElement.h"
 #include "ElmMats.h"
+#include "LocalIntegral.h"
+#include "Vec3.h"
+
+#include <cmath>
+#include <ext/alloc_traits.h>
+#include <memory>
+#include <vector>
 
 
 FSWallDistance::FSWallDistance (unsigned short int n, double w)

@@ -10,15 +10,32 @@
 //!
 //==============================================================================
 
+#include "ASMs3DSimra.h"
 #include "SIMSimraProject.h"
 #include "SimraIO.h"
+
+#include "AnaSol.h"
+#include "ASMbase.h"
 #include "DataExporter.h"
-#include "ASMs3DSimra.h"
 #include "IFEM.h"
+#include "IntegrandBase.h"
+#include "LogStream.h"
+#include "SIM3D.h"
+#include "SIMoptions.h"
 #include "Utilities.h"
+#include "Vec3.h"
 #include "Vec3Oper.h"
 
+#include <array>
+#include <cmath>
+#include <ext/alloc_traits.h>
+#include <initializer_list>
+#include <iostream>
+#include <memory>
+#include <strings.h>
 #include <tinyxml.h>
+#include <utility>
+#include <vector>
 
 
 SIMSimraProject::SIMSimraProject (const std::string& context) :

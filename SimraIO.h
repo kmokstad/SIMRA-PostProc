@@ -12,9 +12,11 @@
 #ifndef SIMRA_IO_H_
 #define SIMRA_IO_H_
 
+#include <cstddef>
 #include <istream>
-#include <ostream>
+#include <string>
 #include <vector>
+
 
 //! \brief Structure for temporary storage of results.
 template<class T>

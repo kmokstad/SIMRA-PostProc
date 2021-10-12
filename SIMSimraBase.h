@@ -14,6 +14,13 @@
 #define SIM_SIMRA_BASE_H
 
 #include "SIM3D.h"
+#include "SIMinput.h"
+
+#include <cstddef>
+#include <iosfwd>
+
+
+class ASMbase;
 
 
 /*!

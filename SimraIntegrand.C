@@ -12,12 +12,22 @@
 //==============================================================================
 
 #include "SimraIntegrand.h"
+
+#include "AnaSol.h"
 #include "ElmMats.h"
 #include "ElmNorm.h"
 #include "FiniteElement.h"
+#include "Function.h"
+#include "LocalIntegral.h"
+#include "Tensor.h"
 #include "TensorFunction.h"
 #include "Utilities.h"
 #include "Vec3Oper.h"
+
+#include <cmath>
+#include <ext/alloc_traits.h>
+#include <iostream>
+#include <memory>
 
 
 SimraIntegrand::SimraIntegrand () : IntegrandBase(3)
