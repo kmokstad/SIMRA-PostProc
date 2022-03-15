@@ -37,7 +37,7 @@ ASMs3DSimra::ASMs3DSimra (size_t nf)
 }
 
 
-bool ASMs3DSimra::read (std::istream& is)
+bool ASMs3DSimra::read (std::istream& is, int)
 {
   if (is.tellg() != 0)
     return false;

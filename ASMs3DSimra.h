@@ -45,7 +45,7 @@ public:
   virtual ~ASMs3DSimra() {}
 
   //! \brief Creates an instance by reading the given input stream.
-  bool read(std::istream& is) override;
+  bool read(std::istream& is, int = 0) override;
 
   //! \brief Checks if this patch is empty.
   bool empty() const override;
