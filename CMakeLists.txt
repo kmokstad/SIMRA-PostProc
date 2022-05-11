@@ -77,15 +77,8 @@ foreach(SRC ${SIMRA_SRCS} main_SolutionTransfer.C main_CompareSetup.C main_PostP
   list(APPEND CHECK_SOURCES ${PROJECT_SOURCE_DIR}/${SRC})
 endforeach()
 
-# Unit tests
-IFEM_add_test_app(${PROJECT_SOURCE_DIR}/Test/*.C
-                  ${PROJECT_SOURCE_DIR}/Test
-                  SIMRA-PostProc 
-                  IFEMAppCommon ${IFEM_LIBRARIES})
-
 if(IFEM_COMMON_APP_BUILD)
   set(TEST_APPS ${TEST_APPS} PARENT_SCOPE)
-  set(UNIT_TEST_NUMBER ${UNIT_TEST_NUMBER} PARENT_SCOPE)
 else()
   add_check_target()
 endif()
