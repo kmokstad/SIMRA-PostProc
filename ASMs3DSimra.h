@@ -40,12 +40,12 @@ public:
 
   //! \brief Default constructor.
   //! \param nf Number of primary solution fields
-  explicit ASMs3DSimra(size_t nf);
+  explicit ASMs3DSimra(size_t nf = 3) : ASMs3DLag(nf) {}
   //! \brief Empty destructor.
   virtual ~ASMs3DSimra() {}
 
   //! \brief Creates an instance by reading the given input stream.
-  bool read(std::istream& is, int = 0) override;
+  bool read(std::istream& is) override;
 
   //! \brief Checks if this patch is empty.
   bool empty() const override;

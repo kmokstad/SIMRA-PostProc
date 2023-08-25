@@ -31,13 +31,7 @@
 bool ASMs3DSimra::useDouble = false;
 
 
-ASMs3DSimra::ASMs3DSimra (size_t nf)
-  : ASMs3DLag(nf)
-{
-}
-
-
-bool ASMs3DSimra::read (std::istream& is, int)
+bool ASMs3DSimra::read (std::istream& is)
 {
   if (is.tellg() != 0)
     return false;
