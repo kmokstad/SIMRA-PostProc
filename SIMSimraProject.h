@@ -25,7 +25,7 @@
 
 
 class DataExporter;
-class TiXmlElement;
+namespace tinyxml2 { class XMLElement; }
 
 
 /*!
@@ -123,7 +123,7 @@ protected:
 
   //! \brief Parses a data section from an XML document.
   //! \param[in] elem The XML element to parse
-  bool parse(const TiXmlElement *elem) override;
+  bool parse(const tinyxml2::XMLElement* elem) override;
 
   //! \brief Enumeration of result file types.
   enum ResultsType {

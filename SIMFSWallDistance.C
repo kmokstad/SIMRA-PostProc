@@ -25,7 +25,7 @@
 #include <cstdlib>
 #include <ostream>
 #include <strings.h>
-#include <tinyxml.h>
+#include <tinyxml2.h>
 #include <vector>
 
 
@@ -73,11 +73,11 @@ bool SIMFSWallDistance::solveProblem(Vector& distance, const std::string& infile
 }
 
 
-bool SIMFSWallDistance::parse(const TiXmlElement* elem)
+bool SIMFSWallDistance::parse(const tinyxml2::XMLElement* elem)
 {
   bool result = true;
   if (!strcasecmp(elem->Value(),"fswalldistance")) {
-    const TiXmlElement* child = elem->FirstChildElement();
+    const tinyxml2::XMLElement* child = elem->FirstChildElement();
     for (; child && result; child = child->NextSiblingElement())
       if (!strcasecmp(child->Value(),"wall_value")) {
         const char* w = utl::getValue(child,"wall_value");

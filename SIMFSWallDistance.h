@@ -23,8 +23,7 @@
 
 #include <string>
 
-
-class TiXmlElement;
+namespace tinyxml2 { class XMLElement; }
 
 
 /*!
@@ -53,7 +52,7 @@ public:
 protected:
   using SIMSimraBase::parse;
   //! \brief Parses a data section from an XML element.
-  bool parse(const TiXmlElement* elem) override;
+  bool parse(const tinyxml2::XMLElement* elem) override;
 
 private:
   FSWallDistance fsw;  //!< Fares-Schröder wall distance problem

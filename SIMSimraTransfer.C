@@ -29,7 +29,7 @@
 #include <iostream>
 #include <memory>
 #include <strings.h>
-#include <tinyxml.h>
+#include <tinyxml2.h>
 
 
 SIMSimraTransfer::SIMSimraTransfer (const std::string& context) :
@@ -40,10 +40,10 @@ SIMSimraTransfer::SIMSimraTransfer (const std::string& context) :
 }
 
 
-bool SIMSimraTransfer::parse (const TiXmlElement *elem)
+bool SIMSimraTransfer::parse (const tinyxml2::XMLElement* elem)
 {
   if (!strcasecmp(elem->Value(),inputContext.c_str())) {
-    const TiXmlElement* child = elem->FirstChildElement();
+    const tinyxml2::XMLElement* child = elem->FirstChildElement();
     for (; child; child = child->NextSiblingElement())
       if (!strcasecmp(child->Value(), "boundaryfile")) {
         boundaryFile = utl::getValue(child, "boundaryfile");
