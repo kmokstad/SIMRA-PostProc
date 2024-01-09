@@ -18,7 +18,6 @@
 #include "FSWallDistance.h"
 #include "SIMSimraBase.h"
 
-#include "MatVec.h"
 #include "NonLinSIM.h"
 
 #include <string>

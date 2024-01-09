@@ -10,19 +10,16 @@
 //!
 //==============================================================================
 
-#ifndef SIMSIMRAPROJECT_H
-#define SIMSIMRAPROJECT_H
+#ifndef SIM_SIMRA_PROJECT_H
+#define SIM_SIMRA_PROJECT_H
 
 #include "SimraIntegrand.h"
 #include "SIMSimraBase.h"
 
 #include "MatVec.h"
-#include "SIMbase.h"
 
-#include <cstddef>
 #include <fstream>
 #include <string>
-
 
 class DataExporter;
 namespace tinyxml2 { class XMLElement; }
@@ -52,10 +49,9 @@ public:
   };
 
   //! \brief Default constructor.
-  //! \param context The base xml tag to parse
+  //! \param[in] context The base xml tag to parse
   SIMSimraProject(const std::string& context = "simra");
-
-  //! \brief Empty destructor.
+  //! \brief The destructor clears the parent-class integrand reference(s).
   virtual ~SIMSimraProject() { myInts.clear(); myProblem = nullptr; }
 
   //! \brief Read results from the result file.
@@ -152,5 +148,4 @@ protected:
   std::string inputContext; //!< Input context
 };
 
-
-#endif // SIMSIMRAPROJECT_H
+#endif

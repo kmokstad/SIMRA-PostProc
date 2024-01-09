@@ -16,11 +16,7 @@
 #include "SIMSimraProject.h"
 #include "SimraIO.h"
 
-#include "MatVec.h"
-
 #include <array>
-#include <string>
-#include <vector>
 
 namespace tinyxml2 { class XMLElement; }
 
@@ -29,11 +25,14 @@ namespace tinyxml2 { class XMLElement; }
   \brief Simulation driver for transfer of SIMRA results.
 */
 
-class SIMSimraTransfer : public SIMSimraProject {
+class SIMSimraTransfer : public SIMSimraProject
+{
 public:
   //! \brief Default constructor.
-  //! \param context The base xml tag to parse
+  //! \param[in] context The base xml tag to parse
   explicit SIMSimraTransfer(const std::string& context = "simra");
+  //! \brief Empty destructor.
+  virtual ~SIMSimraTransfer() {}
 
   //! \brief Write results to the result file.
   bool writeResults();
@@ -42,15 +41,15 @@ public:
   Matrix getSolutions() const;
 
   //! \brief Transfer elemental pressures from another mesh.
-  //! \param input The simulator with the data to transfer
+  //! \param[in] input The simulator with the data to transfer
   void elementTransfer(const SIMSimraTransfer& input);
 
   //! \brief Transfer nodal surface roughness from another mesh.
-  //! \param input Input simulator
+  //! \param[in] input Input simulator
   Vector nodalTransfer(const SIMSimraTransfer& input);
 
   //! \brief Transfer boundary conditions from another mesh.
-  //! \param in Input simulator
+  //! \param[in] in Input simulator
   void boundaryTransfer(const SIMSimraTransfer& in);
 
   //! \brief Classify boundary nodes by flow direction.
@@ -60,7 +59,7 @@ public:
   void addAtmosphereBC();
 
   //! \brief Adds terrain boundary conditions.
-  //! \param z0 Surface roughness
+  //! \param[in] z0 Surface roughness
   void addTerrainBC(const std::vector<double>& z0);
 
   //! \brief Whether or not to use transfer for boundary data.

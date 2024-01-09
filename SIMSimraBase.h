@@ -14,11 +14,6 @@
 #define SIM_SIMRA_BASE_H
 
 #include "SIM3D.h"
-#include "SIMinput.h"
-
-#include <cstddef>
-#include <iosfwd>
-
 
 class ASMbase;
 
@@ -27,11 +22,14 @@ class ASMbase;
   \brief Base class for simulation drivers using SIMRA patches.
 */
 
-class SIMSimraBase : public SIM3D {
+class SIMSimraBase : public SIM3D
+{
 public:
-  //! \brief Default constructor.
-  //! \param nf Number of primary solution fields
+  //! \brief The constructor forwards to the parent class constructor.
+  //! \param[in] nf Number of primary solution fields
   explicit SIMSimraBase(size_t nf);
+  //! \brief Empty destructor.
+  virtual ~SIMSimraBase() {}
 
   //! \brief Reads a patch from given input stream.
   //! \param[in] isp The input stream to read from
@@ -42,5 +40,4 @@ public:
                      const char* whiteSpace) const override;
 };
 
-
-#endif // SIM_SIMRA_BASE_H
+#endif
